@@ -1,0 +1,19 @@
+.pane{
+-fx-background-image: url("Second_background.jpg");
+-fx-background-position: center;
+-fx-background-repeat: no-repeat;
+-fx-background-size: 100% 100%;
+}
+
+.label{
+-fx-text-fill: #87ceeb;
+-fx-font-style: oblique;
+-fx-font-size: 30px;
+}
+.Button{
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-background-color:Transparent;
+-fx-border-color: #87ceeb;
+-fx-text-fill: white;
+}

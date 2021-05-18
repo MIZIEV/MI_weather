@@ -1,0 +1,29 @@
+.pane{
+-fx-background-image: url("First_background.jpg");
+-fx-background-position: center;
+-fx-background-repeat: no-repeat;
+-fx-background-size: 100% 100%;
+}
+
+.label{
+-fx-text-fill: #87ceeb;
+-fx-font-style: oblique;
+-fx-font-size: 40px;
+}
+
+.Text-Area{
+    -fx-background-color: #87ceeb;
+}
+
+.Button{
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-background-color:Transparent;
+-fx-border-color: #87ceeb;
+-fx-text-fill: white;
+}
+
+.Button:hover{
+-fx-background-color: #191970;
+-fx-text-fill: white;
+}
