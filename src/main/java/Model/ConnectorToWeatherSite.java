@@ -8,23 +8,23 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class ConnectorToWeatherSite {
-    String weather = "http://api.openweathermap.org/data/2.5/weather?q=Poltava&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
-    String output = getConnection(weather);
+
+    CityName cityName;
     String temperature;
     String minTemp;
     String maxTemp;
 
-    public ConnectorToWeatherSite() {
-        System.out.println(output);
-        getResponse(output);
+    public ConnectorToWeatherSite(CityName name) {
+        this.cityName = name;
     }
 
+    public void getConnection() {
+        String weather = "http://api.openweathermap.org/data/2.5/weather?q="+cityName.getCityName()+"&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
 
-    public static String getConnection(String URLAddress) {
         StringBuffer content = new StringBuffer();
 
         try {
-            URL url = new URL(URLAddress);
+            URL url = new URL(weather);
             URLConnection openCon = url.openConnection();
             System.out.println(openCon);
 
@@ -37,16 +37,13 @@ public class ConnectorToWeatherSite {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return content.toString();
+        this.getResponse(content.toString());
     }
 
     public void getResponse(String output) {
         if (!output.isEmpty()) {
-            JSONObject obj = new JSONObject(output);
 
-            System.out.println("Температура: " + obj.getJSONObject("main").getDouble("temp") + "\n" +
-                    "max: " + obj.getJSONObject("main").getDouble("temp_max") + "\n" +
-                    "min: " + obj.getJSONObject("main").getDouble("temp_min"));
+            JSONObject obj = new JSONObject(output);
 
             temperature = obj.getJSONObject("main").getDouble("temp") + " C";
             minTemp = obj.getJSONObject("main").getDouble("temp_max") + " C";
@@ -56,7 +53,8 @@ public class ConnectorToWeatherSite {
     }
 
     public String getTemperature() { return temperature; }
-    public String getMinTemp(){ return minTemp; }
-    public String getMaxTemp(){return maxTemp; }
 
+    public String getMinTemp() { return minTemp; }
+
+    public String getMaxTemp() { return maxTemp; }
 }
