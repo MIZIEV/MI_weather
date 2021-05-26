@@ -13,17 +13,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.EventListener;
-
 public class FirstWindow {
 
     private final Stage firstWindow = new Stage();
-    CityName cityName;
-    SecondWindow secondWindow;
+    CityName cityName = new CityName();
+    ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
 
-    public FirstWindow(CityName name, SecondWindow secondW) {
-        this.cityName = name;
-        this.secondWindow = secondW;
+    public void startWin() {
+        SecondWindow secondWindow = new SecondWindow(cityName, connector,this);
 
         String stylesheet = getClass().getResource("/FirstWindow.css").toExternalForm();
 
@@ -52,8 +49,8 @@ public class FirstWindow {
         inputText.setPrefHeight(50);
         topPane.setCenter(title);
         centralPane.setCenter(centralVBOX);
-        //add all elements in central part
-        centralVBOX.setAlignment(Pos.CENTER);
+
+        centralVBOX.setAlignment(Pos.CENTER);                           //add all elements in central part
         centralVBOX.getChildren().addAll(textAreaSignature, inputText, startButton);
 
         startButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -61,10 +58,9 @@ public class FirstWindow {
             public void handle(ActionEvent event) {
                 cityName.setCityName(inputText.getText());
                 System.out.println(cityName.toString());
-
                 firstWindow.close();
+                connector.getConnection();
                 secondWindow.startWin();
-                ConnectorToWeatherSite connectorToWeatherSite= new ConnectorToWeatherSite();
             }
         });
 
