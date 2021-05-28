@@ -23,7 +23,7 @@ public class FirstWindow {
     private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
 
     private final static String FIRST_WINDOW_TITLE = "Mi weather program";
-    private final static short WINDOW_WIDTH = 10224;
+    private final static short WINDOW_WIDTH = 1024;
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
     private final static short WINDOW_MIN_HEIGHT = 550;
