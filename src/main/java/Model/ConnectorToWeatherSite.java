@@ -13,13 +13,14 @@ public class ConnectorToWeatherSite {
     String temperature;
     String minTemp;
     String maxTemp;
+    String clouds;
 
     public ConnectorToWeatherSite(CityName name) {
         this.cityName = name;
     }
 
     public void getConnection() {
-        String weather = "http://api.openweathermap.org/data/2.5/weather?q="+cityName.getCityName()+"&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
+        String weather = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName.getCityName() + "&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
 
         StringBuffer content = new StringBuffer();
 
@@ -37,6 +38,7 @@ public class ConnectorToWeatherSite {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(content);
         this.getResponse(content.toString());
     }
 
@@ -46,9 +48,9 @@ public class ConnectorToWeatherSite {
             JSONObject obj = new JSONObject(output);
 
             temperature = obj.getJSONObject("main").getDouble("temp") + " C";
-            minTemp = obj.getJSONObject("main").getDouble("temp_max") + " C";
+            minTemp = obj.getJSONObject("main").getDouble("temp_max") + " C ;";
             maxTemp = obj.getJSONObject("main").getDouble("temp_min") + " C";
-
+            clouds = obj.getJSONArray("weather").getJSONObject(0).getString("description");
         }
     }
 
@@ -57,4 +59,6 @@ public class ConnectorToWeatherSite {
     public String getMinTemp() { return minTemp; }
 
     public String getMaxTemp() { return maxTemp; }
+
+    public String getClouds() { return clouds; }
 }
