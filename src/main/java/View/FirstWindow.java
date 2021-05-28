@@ -1,5 +1,6 @@
 package View;
 
+import Controller.StartButtonController;
 import Model.CityName;
 import Model.ConnectorToWeatherSite;
 import javafx.event.ActionEvent;
@@ -16,12 +17,20 @@ import javafx.stage.Stage;
 public class FirstWindow {
 
     private final Stage firstWindow = new Stage();
-    CityName cityName = new CityName();
-    ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
+    private final TextArea inputText = new TextArea();
+
+    private final CityName cityName = new CityName();
+    private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
+
+    private final static String FIRST_WINDOW_TITLE = "Mi weather program";
+    private final static short WINDOW_WIDTH = 10224;
+    private final static short WINDOW_HEIGHT = 768;
+    private final static short WINDOW_MIN_WIDTH = 880;
+    private final static short WINDOW_MIN_HEIGHT = 550;
 
     public void startWin() {
-        SecondWindow secondWindow = new SecondWindow(cityName, connector,this);
-
+        SecondWindow secondWindow = new SecondWindow(cityName, connector, this);
+        StartButtonController startButtonController = new StartButtonController(connector, this, cityName);
         String stylesheet = getClass().getResource("/FirstWindow.css").toExternalForm();
 
         BorderPane generalPane = new BorderPane();          //create all panes
@@ -42,7 +51,6 @@ public class FirstWindow {
         VBox centralVBOX = new VBox(30);                      // create central VBOX and add all elements
         Label title = new Label("MI weather program");
         Label textAreaSignature = new Label("Write the name of the city ");
-        TextArea inputText = new TextArea();
         ButtonsPattern startButton = new ButtonsPattern(150, 50, "Start");
         startButton.getStyleClass().add("Button");
 
@@ -56,20 +64,20 @@ public class FirstWindow {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                cityName.setCityName(inputText.getText());
-                System.out.println(cityName.toString());
+                startButtonController.launchConnector();
                 firstWindow.close();
-                connector.getConnection();
                 secondWindow.startWin();
             }
         });
 
-        Scene firstWindowScene = new Scene(generalPane, 1024, 768);
+        Scene firstWindowScene = new Scene(generalPane, WINDOW_WIDTH, WINDOW_HEIGHT);
         firstWindowScene.getStylesheets().add(stylesheet);
-        firstWindow.setMinWidth(880);
-        firstWindow.setMinHeight(550);
+        firstWindow.setMinWidth(WINDOW_MIN_WIDTH);
+        firstWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         firstWindow.setScene(firstWindowScene);
-        firstWindow.setTitle("Mi weather program");
+        firstWindow.setTitle(FIRST_WINDOW_TITLE);
         firstWindow.show();
     }
+
+    public TextArea getInputText() { return inputText; }
 }
