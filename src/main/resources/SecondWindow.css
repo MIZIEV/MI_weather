@@ -8,12 +8,16 @@
 .label{
 -fx-text-fill: #87ceeb;
 -fx-font-style: oblique;
--fx-font-size: 30px;
+-fx-font-size: 20px;
 }
 .Button{
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
 -fx-background-color:Transparent;
 -fx-border-color: #87ceeb;
+-fx-text-fill: white;
+}
+.Button:hover{
+-fx-background-color: #191970;
 -fx-text-fill: white;
 }
