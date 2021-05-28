@@ -14,10 +14,16 @@ import javafx.stage.Stage;
 
 public class SecondWindow {
 
-    Stage secondWindow = new Stage();
-    CityName cityName;
-    ConnectorToWeatherSite connectorToWeatherSite;
-    FirstWindow firstWindow;
+    private final Stage secondWindow = new Stage();
+    private final CityName cityName;
+    private final ConnectorToWeatherSite connectorToWeatherSite;
+    private final FirstWindow firstWindow;
+
+    private final static String WINDOW_TITLE = "MI weather";
+    private final static short WINDOW_WIDTH = 1024;
+    private final static short WINDOW_HEIGHT = 768;
+    private final static short WINDOW_MIN_WIDTH = 880;
+    private final static short WINDOW_MIN_HEIGHT = 550;
 
     public SecondWindow(CityName name, ConnectorToWeatherSite connector, FirstWindow firstW) {
         this.cityName = name;
@@ -29,34 +35,35 @@ public class SecondWindow {
         String stylesheet = getClass().getResource("/SecondWindow.css").toExternalForm();
 
         BorderPane generalPane = new BorderPane();
-        BorderPane topPane = new BorderPane();
-        BorderPane bottomPane = new BorderPane();
+
+        VBox topVBox = new VBox();
+        HBox bottomHBox = new HBox(50);
         HBox centerHBox = new HBox();
+        HBox topCentralMiddleHBox = new HBox(10);
+
         centerHBox.setAlignment(Pos.CENTER);
         generalPane.getStyleClass().add("pane");
 
         String cityN = cityName.getCityName();
 
         Label cityName = new Label(cityN);
-        topPane.setCenter(cityName);
+        topVBox.setAlignment(Pos.TOP_CENTER);
 
-        VBox leftVBox = new VBox();
-        leftVBox.setAlignment(Pos.CENTER);
         Label temperature = new Label("Temperature");
-        Label min = new Label("min");
-        Label max = new Label("max");
-        leftVBox.getChildren().addAll(temperature, min, max);
-
-        VBox rightVBox = new VBox();
-        rightVBox.setAlignment(Pos.CENTER);
+        Label min = new Label("min:");
+        Label max = new Label("max:");
         Label tempAnswer = new Label(connectorToWeatherSite.getTemperature());
         Label minAnswer = new Label(connectorToWeatherSite.getMinTemp());
         Label maxAnswer = new Label(connectorToWeatherSite.getMaxTemp());
-        rightVBox.getChildren().addAll(tempAnswer, minAnswer, maxAnswer);
+        Label clouds = new Label(connectorToWeatherSite.getClouds());
+
+        topCentralMiddleHBox.setAlignment(Pos.TOP_CENTER);
+        topCentralMiddleHBox.getChildren().addAll(min, minAnswer, max, maxAnswer);
+        topVBox.getChildren().addAll(cityName, temperature, tempAnswer, topCentralMiddleHBox, clouds);
 
         ButtonsPattern backButton = new ButtonsPattern(150, 50, "Back");
         backButton.getStyleClass().add("Button");
-        bottomPane.setLeft(backButton);
+        bottomHBox.getChildren().addAll(backButton);
 
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -66,16 +73,17 @@ public class SecondWindow {
             }
         });
 
-        centerHBox.getChildren().addAll(leftVBox, rightVBox);
-        generalPane.setTop(topPane);
+        generalPane.setTop(topVBox);
         generalPane.setCenter(centerHBox);
-        generalPane.setBottom(bottomPane);
+        generalPane.setBottom(bottomHBox);
 
-        Scene secondWindowScene = new Scene(generalPane, 1024, 768);
+        Scene secondWindowScene = new Scene(generalPane, WINDOW_WIDTH, WINDOW_HEIGHT);
+        secondWindow.setMinWidth(WINDOW_MIN_WIDTH);
+        secondWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         secondWindowScene.getStylesheets().add(stylesheet);
 
         secondWindow.setScene(secondWindowScene);
-        secondWindow.setTitle("MI weather");
+        secondWindow.setTitle(WINDOW_TITLE);
         secondWindow.show();
     }
 }
