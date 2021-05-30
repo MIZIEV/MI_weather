@@ -1,5 +1,7 @@
 package Model;
 
+import View.ErrorsWindow;
+import javafx.scene.control.Label;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -36,7 +38,7 @@ public class ConnectorToWeatherSite {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
         System.out.println(content);
         this.getResponse(content.toString());
