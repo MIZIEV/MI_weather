@@ -1,20 +1,23 @@
 .pane{
--fx-background-color: #4369b2;
+-fx-background-color: #dc143c;
 }
 
 .label{
 -fx-text-fill: white;
 -fx-font-style: oblique;
--fx-font-size: 20px;
+-fx-font-size: 40px;
 }
+
 .Button{
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
--fx-background-color:Transparent;
 -fx-border-color: white;
+-fx-background-color: #dc143c;
 -fx-text-fill: white;
+-fx-font-size: 25px;
 }
-.Button:hover{
--fx-background-color: #4169e1;
--fx-text-fill: white;
+
+.Button: hover{
+-fx-background-color: #a52a2a;
+
 }
