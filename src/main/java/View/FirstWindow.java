@@ -9,6 +9,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -18,6 +20,7 @@ public class FirstWindow {
 
     private final Stage firstWindow = new Stage();
     private final TextArea inputText = new TextArea();
+    private final ImageView image = new ImageView("Free-Weather-Icons.jpg");
 
     private final CityName cityName = new CityName();
     private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
@@ -34,8 +37,8 @@ public class FirstWindow {
         String stylesheet = getClass().getResource("/FirstWindow.css").toExternalForm();
 
         BorderPane generalPane = new BorderPane();          //create all panes
-        BorderPane topPane = new BorderPane();
         BorderPane centralPane = new BorderPane();
+        VBox topVBox = new VBox(40);
         Pane leftInsert = new Pane();
         Pane rightInsert = new Pane();
         leftInsert.setPrefWidth(200);
@@ -43,7 +46,7 @@ public class FirstWindow {
 
         generalPane.getStyleClass().add("pane");
 
-        generalPane.setTop(topPane);
+        generalPane.setTop(topVBox);
         generalPane.setCenter(centralPane);
         generalPane.setLeft(leftInsert);
         generalPane.setRight(rightInsert);
@@ -55,7 +58,10 @@ public class FirstWindow {
         startButton.getStyleClass().add("Button");
 
         inputText.setPrefHeight(50);
-        topPane.setCenter(title);
+        image.setFitWidth(780);
+        image.setFitHeight(160);
+        topVBox.setAlignment(Pos.CENTER);
+        topVBox.getChildren().addAll(title,image);
         centralPane.setCenter(centralVBOX);
 
         centralVBOX.setAlignment(Pos.CENTER);                           //add all elements in central part
@@ -64,14 +70,28 @@ public class FirstWindow {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                startButtonController.launchConnector();
-                firstWindow.close();
-                secondWindow.startWin();
+                if (inputText.getText().trim().length() == 0) {
+                    ErrorsWindow errorsWindow = new ErrorsWindow();
+                    errorsWindow.setErrorMessage(new Label("You have not entered the city name "));
+                    errorsWindow.startWin();
+                } else {
+                    startButtonController.launchConnector();
+
+                    if (connector.getTemperature() == null) {
+                        ErrorsWindow errorsWindow = new ErrorsWindow();
+                        errorsWindow.setErrorMessage(new Label("City not found, try again!!!"));
+                        errorsWindow.startWin();
+                    } else {
+                        firstWindow.close();
+                        secondWindow.startWin();
+                    }
+                }
             }
         });
 
         Scene firstWindowScene = new Scene(generalPane, WINDOW_WIDTH, WINDOW_HEIGHT);
         firstWindowScene.getStylesheets().add(stylesheet);
+        firstWindow.getIcons().add(new Image("weather_icon.png"));
         firstWindow.setMinWidth(WINDOW_MIN_WIDTH);
         firstWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         firstWindow.setScene(firstWindowScene);
