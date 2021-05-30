@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,9 +36,10 @@ public class SecondWindow {
         String stylesheet = getClass().getResource("/SecondWindow.css").toExternalForm();
 
         BorderPane generalPane = new BorderPane();
+        BorderPane bottomPane = new BorderPane();
 
         VBox topVBox = new VBox();
-        HBox bottomHBox = new HBox(50);
+        VBox bottomVBox = new VBox();
         HBox centerHBox = new HBox();
         HBox topCentralMiddleHBox = new HBox(10);
 
@@ -63,7 +65,11 @@ public class SecondWindow {
 
         ButtonsPattern backButton = new ButtonsPattern(150, 50, "Back");
         backButton.getStyleClass().add("Button");
-        bottomHBox.getChildren().addAll(backButton);
+
+        bottomVBox.setAlignment(Pos.CENTER);
+        bottomPane.setPrefSize(400, 150);
+        bottomVBox.getChildren().addAll(backButton);
+        bottomPane.setLeft(bottomVBox);
 
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -75,13 +81,14 @@ public class SecondWindow {
 
         generalPane.setTop(topVBox);
         generalPane.setCenter(centerHBox);
-        generalPane.setBottom(bottomHBox);
+        generalPane.setBottom(bottomPane);
 
         Scene secondWindowScene = new Scene(generalPane, WINDOW_WIDTH, WINDOW_HEIGHT);
-        secondWindow.setMinWidth(WINDOW_MIN_WIDTH);
-        secondWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         secondWindowScene.getStylesheets().add(stylesheet);
 
+        secondWindow.getIcons().add(new Image("weather_icon.png"));
+        secondWindow.setMinWidth(WINDOW_MIN_WIDTH);
+        secondWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         secondWindow.setScene(secondWindowScene);
         secondWindow.setTitle(WINDOW_TITLE);
         secondWindow.show();
