@@ -19,5 +19,6 @@ public class StartButtonController {
     public void launchConnector(){
         cityName.setCityName(firstWindow.getInputText().getText());
         connectorToWeatherSite.getConnection();
+        connectorToWeatherSite.getConnectionOnFiveDays();
     }
 }
