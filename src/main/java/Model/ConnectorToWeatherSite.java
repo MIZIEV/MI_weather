@@ -16,22 +16,29 @@ public class ConnectorToWeatherSite {
     private String clouds;
 
     private String today;
-    private double minTempToday;
+    private String cloudsToday;
+    private int minTempToday;
+    private int maxTempToday;
 
-
-    private double maxTempToday;
     private String tomorrowDay;
-    private double minTempTomorrowDay;
-    private double maxTempTomorrowDay;
+    private String cloudsTomorrow;
+    private int minTempTomorrowDay;
+    private int maxTempTomorrowDay;
+
     private String dayAfterTomorrow;
-    private double minTempAfterTomorrow;
-    private double maxTempAfterTomorrow;
+    private String cloudsAfterTomorrow;
+    private int minTempAfterTomorrow;
+    private int maxTempAfterTomorrow;
+
     private String fourthDay;
-    private double minTempFourthDay;
-    private double maxTempFourthDay;
+    private String cloudsFourthDay;
+    private int minTempFourthDay;
+    private int maxTempFourthDay;
+
     private String fifthDay;
-    private double minTempFifthDay;
-    private double maxTempFifthDay;
+    private String cloudsFifthDay;
+    private int minTempFifthDay;
+    private int maxTempFifthDay;
 
     public ConnectorToWeatherSite(CityName name) {
         this.cityName = name;
@@ -101,30 +108,35 @@ public class ConnectorToWeatherSite {
             double temperature = obj.getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp");
 
             today = obj.getJSONArray("list").getJSONObject(0).getString("dt_txt");
-            minTempToday = obj.getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp_min");
-            maxTempToday = obj.getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp_max");
+            cloudsToday = obj.getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
+            minTempToday = obj.getJSONArray("list").getJSONObject(0).getJSONObject("main").getInt("temp_min");
+            maxTempToday = obj.getJSONArray("list").getJSONObject(0).getJSONObject("main").getInt("temp_max");
 
             tomorrowDay = obj.getJSONArray("list").getJSONObject(3).getString("dt_txt");
-            minTempTomorrowDay = obj.getJSONArray("list").getJSONObject(3).getJSONObject("main").getDouble("temp_min");
-            maxTempTomorrowDay = obj.getJSONArray("list").getJSONObject(3).getJSONObject("main").getDouble("temp_max");
+            cloudsTomorrow = obj.getJSONArray("list").getJSONObject(3).getJSONArray("weather").getJSONObject(0).getString("description");
+            minTempTomorrowDay = obj.getJSONArray("list").getJSONObject(3).getJSONObject("main").getInt("temp_min");
+            maxTempTomorrowDay = obj.getJSONArray("list").getJSONObject(3).getJSONObject("main").getInt("temp_max");
 
             dayAfterTomorrow = obj.getJSONArray("list").getJSONObject(11).getString("dt_txt");
-            minTempAfterTomorrow = obj.getJSONArray("list").getJSONObject(11).getJSONObject("main").getDouble("temp_min");
-            maxTempTomorrowDay = obj.getJSONArray("list").getJSONObject(11).getJSONObject("main").getDouble("temp_max");
+            cloudsAfterTomorrow = obj.getJSONArray("list").getJSONObject(11).getJSONArray("weather").getJSONObject(0).getString("description");
+            minTempAfterTomorrow = obj.getJSONArray("list").getJSONObject(11).getJSONObject("main").getInt("temp_min");
+            maxTempAfterTomorrow = obj.getJSONArray("list").getJSONObject(11).getJSONObject("main").getInt("temp_max");
 
             fourthDay = obj.getJSONArray("list").getJSONObject(19).getString("dt_txt");
-            minTempFourthDay = obj.getJSONArray("list").getJSONObject(19).getJSONObject("main").getDouble("temp_min");
-            maxTempFourthDay = obj.getJSONArray("list").getJSONObject(19).getJSONObject("main").getDouble("temp_max");
+            cloudsFourthDay = obj.getJSONArray("list").getJSONObject(19).getJSONArray("weather").getJSONObject(0).getString("description");
+            minTempFourthDay = obj.getJSONArray("list").getJSONObject(19).getJSONObject("main").getInt("temp_min");
+            maxTempFourthDay = obj.getJSONArray("list").getJSONObject(19).getJSONObject("main").getInt("temp_max");
 
             fifthDay = obj.getJSONArray("list").getJSONObject(27).getString("dt_txt");
-            minTempFifthDay = obj.getJSONArray("list").getJSONObject(27).getJSONObject("main").getDouble("temp_min");
-            maxTempFifthDay = obj.getJSONArray("list").getJSONObject(27).getJSONObject("main").getDouble("temp_max");
+            cloudsFifthDay = obj.getJSONArray("list").getJSONObject(27).getJSONArray("weather").getJSONObject(0).getString("description");
+            minTempFifthDay = obj.getJSONArray("list").getJSONObject(27).getJSONObject("main").getInt("temp_min");
+            maxTempFifthDay = obj.getJSONArray("list").getJSONObject(27).getJSONObject("main").getInt("temp_max");
 
             System.out.println(today + " -" + minTempToday + " " + maxTempToday);
             System.out.println(tomorrowDay + " -" + minTempTomorrowDay + " " + maxTempTomorrowDay);
-            System.out.println(dayAfterTomorrow+ " -" + minTempAfterTomorrow + " " + maxTempAfterTomorrow);
-            System.out.println(fourthDay+ " -" + minTempFourthDay + " " + maxTempFourthDay);
-            System.out.println(fifthDay+ " -" + minTempFifthDay + " " + maxTempFifthDay);
+            System.out.println(dayAfterTomorrow + " -" + minTempAfterTomorrow + " " + maxTempAfterTomorrow);
+            System.out.println(fourthDay + " -" + minTempFourthDay + " " + maxTempFourthDay);
+            System.out.println(fifthDay + " -" + minTempFifthDay + " " + maxTempFifthDay);
             System.out.println(temperature);
         }
     }
@@ -208,5 +220,25 @@ public class ConnectorToWeatherSite {
 
     public double getMaxTempFifthDay() {
         return maxTempFifthDay;
+    }
+
+    public String getCloudsToday() {
+        return cloudsToday;
+    }
+
+    public String getCloudsTomorrow() {
+        return cloudsTomorrow;
+    }
+
+    public String getCloudsAfterTomorrow() {
+        return cloudsAfterTomorrow;
+    }
+
+    public String getCloudsFourthDay() {
+        return cloudsFourthDay;
+    }
+
+    public String getCloudsFifthDay() {
+        return cloudsFifthDay;
     }
 }
