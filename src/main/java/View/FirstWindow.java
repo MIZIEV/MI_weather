@@ -20,7 +20,7 @@ public class FirstWindow {
 
     private final Stage firstWindow = new Stage();
     private final TextArea inputText = new TextArea();
-    private final ImageView image = new ImageView("Free-Weather-Icons.jpg");
+    private final ImageView image = new ImageView("Weather_picture_3.jpg");
 
     private final CityName cityName = new CityName();
     private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
@@ -29,7 +29,7 @@ public class FirstWindow {
     private final static short WINDOW_WIDTH = 1024;
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
-    private final static short WINDOW_MIN_HEIGHT = 550;
+    private final static short WINDOW_MIN_HEIGHT = 650;
 
     public void startWin() {
         SecondWindow secondWindow = new SecondWindow(cityName, connector, this);
@@ -38,30 +38,33 @@ public class FirstWindow {
 
         BorderPane generalPane = new BorderPane();          //create all panes
         BorderPane centralPane = new BorderPane();
-        VBox topVBox = new VBox(40);
+        VBox topVBox = new VBox(30);
         Pane leftInsert = new Pane();
         Pane rightInsert = new Pane();
+        Pane bottomInsert = new Pane();
+
         leftInsert.setPrefWidth(200);
         rightInsert.setPrefWidth(200);
-
+        bottomInsert.setPrefHeight(150);
         generalPane.getStyleClass().add("pane");
 
         generalPane.setTop(topVBox);
         generalPane.setCenter(centralPane);
         generalPane.setLeft(leftInsert);
         generalPane.setRight(rightInsert);
+        generalPane.setBottom(bottomInsert);
 
         VBox centralVBOX = new VBox(30);                      // create central VBOX and add all elements
         Label title = new Label("MI weather program");
-        Label textAreaSignature = new Label("Write the name of the city ");
+        Label textAreaSignature = new Label("Write the city name");
         ButtonsPattern startButton = new ButtonsPattern(150, 50, "Start");
         startButton.getStyleClass().add("Button");
 
         inputText.setPrefHeight(50);
-        image.setFitWidth(780);
-        image.setFitHeight(160);
+        image.setFitWidth(700);
+        image.setFitHeight(300);
         topVBox.setAlignment(Pos.CENTER);
-        topVBox.getChildren().addAll(title,image);
+        topVBox.getChildren().addAll(title, image);
         centralPane.setCenter(centralVBOX);
 
         centralVBOX.setAlignment(Pos.CENTER);                           //add all elements in central part
@@ -77,7 +80,7 @@ public class FirstWindow {
                 } else {
                     startButtonController.launchConnector();
 
-                    if (connector.getTemperature() == null) {
+                    if (connector.getTemperature() == null | connector.getToday() == null) {
                         ErrorsWindow errorsWindow = new ErrorsWindow();
                         errorsWindow.setErrorMessage(new Label("City not found, try again!!!"));
                         errorsWindow.startWin();
