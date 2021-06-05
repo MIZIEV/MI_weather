@@ -3,6 +3,7 @@ package View;
 import Controller.StartButtonController;
 import Model.CityName;
 import Model.ConnectorToWeatherSite;
+import Model.JSONDataParser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -32,8 +33,9 @@ public class FirstWindow {
     private final static short WINDOW_MIN_HEIGHT = 650;
 
     public void startWin() {
-        SecondWindow secondWindow = new SecondWindow(cityName, connector, this);
-        StartButtonController startButtonController = new StartButtonController(connector, this, cityName);
+        JSONDataParser parser = new JSONDataParser();
+        SecondWindow secondWindow = new SecondWindow(cityName, parser, this);
+        StartButtonController startButtonController = new StartButtonController(connector, parser, this, cityName);
         String stylesheet = getClass().getResource("/FirstWindow.css").toExternalForm();
 
         BorderPane generalPane = new BorderPane();          //create all panes
@@ -80,7 +82,7 @@ public class FirstWindow {
                 } else {
                     startButtonController.launchConnector();
 
-                    if (connector.getTemperature() == null | connector.getToday() == null) {
+                    if (parser.getTemperature() == null | parser.getToday() == null) {
                         ErrorsWindow errorsWindow = new ErrorsWindow();
                         errorsWindow.setErrorMessage(new Label("City not found, try again!!!"));
                         errorsWindow.startWin();
