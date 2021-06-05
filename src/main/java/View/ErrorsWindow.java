@@ -16,12 +16,8 @@ public class ErrorsWindow {
     private final static String WINDOW_TITLE = "Error message";
     private final static short WINDOW_WIDTH = 700;
     private final static short WINDOW_HEIGHT = 400;
-    private final static short MIN_WINDOW_WIDTH = 450;
+    private final static short MIN_WINDOW_WIDTH = 630;
     private final static short MIN_WINDOW_HEIGHT = 250;
-
-    public ErrorsWindow() {
-
-    }
 
     public void startWin() {
 
