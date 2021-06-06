@@ -35,7 +35,13 @@ public class JSONDataParser {
     private String cloudsFifthDay;
     private int minTempFifthDay;
     private int maxTempFifthDay;
+
     private final ArrayList<Integer> indexList = new ArrayList<>();
+    private final ArrayList<Integer> tempListOnFiveDays = new ArrayList<>();
+    private final ArrayList<Integer> tempListTomorrow = new ArrayList<>();
+    private final ArrayList<Integer> tempListAfterTomorrow = new ArrayList<>();
+    private final ArrayList<Integer> tempListFourDay = new ArrayList<>();
+    private final ArrayList<Integer> tempListFifthDay = new ArrayList<>();
 
     public void getResponse(String output) {
         if (!output.isEmpty()) {
@@ -65,7 +71,6 @@ public class JSONDataParser {
             while (counter <= index - 1) {
                 data = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
                 onlyData = data.split("\\s");
-                counter++;
 
                 onlyDay = onlyData[0].split("\\-");
 
@@ -92,7 +97,14 @@ public class JSONDataParser {
                     fifthDay = bufferVar;
                     indexList.add(counter);
                 }
+                tempListOnFiveDays.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp"));
+                counter++;
             }
+
+            tempListTomorrow.addAll(tempListOnFiveDays.subList(indexList.get(1), indexList.get(2) + 1));
+            tempListAfterTomorrow.addAll(tempListOnFiveDays.subList(indexList.get(2), indexList.get(3) + 1));
+            tempListFourDay.addAll(tempListOnFiveDays.subList(indexList.get(3), indexList.get(4) + 1));
+            tempListFifthDay.addAll(tempListOnFiveDays.subList(indexList.get(4), tempListOnFiveDays.size() - 5));
 
             today = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getString("dt_txt");
             String todayBuf[] = today.split("\\s");
@@ -228,4 +240,12 @@ public class JSONDataParser {
     public String getCloudsFifthDay() {
         return cloudsFifthDay;
     }
+
+    public ArrayList<Integer> getTempListTomorrow() { return tempListTomorrow; }
+
+    public ArrayList<Integer> getTempListAfterTomorrow() { return tempListAfterTomorrow; }
+
+    public ArrayList<Integer> getTempListFourDay() { return tempListFourDay; }
+
+    public ArrayList<Integer> getTempListFifthDay() { return tempListFifthDay; }
 }
