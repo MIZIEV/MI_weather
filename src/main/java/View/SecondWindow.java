@@ -30,6 +30,11 @@ public class SecondWindow {
     private final JSONDataParser parser;
 
     private final static String WINDOW_TITLE = "MI weather";
+    private final static String STYLE_CLASS_SMALL_LABEL = "Label-small";
+    private final static String STYLE_CLASS_BUTTON_INSIDE_VBOX = "Button-insideVBox";
+    private final static String STYLE_CLASS_BACK_BUTTON = "Button";
+    private final static String STYLE_CLASS_VBox = "VBox";
+
     private final static short WINDOW_WIDTH = 1024;
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
@@ -66,101 +71,60 @@ public class SecondWindow {
         HBox centerHBox = new HBox(20);
         HBox topCentralMiddleHBox = new HBox(10);
 
-        VBox vbox1 = new VBox(10);
-        vbox1.setPrefSize(150, 150);
-        vbox1.setAlignment(Pos.CENTER);
+        VBoxPattern vbox1 = new VBoxPattern(10, 150, 150, Pos.CENTER, STYLE_CLASS_VBox);
         HBox hBox1 = new HBox(10);
         hBox1.setAlignment(Pos.CENTER);
-        Label data1 = new Label(parser.getToday());
-        data1.getStyleClass().add("Label-smale");
-        Label minTemp1 = new Label("min " + format.format(parser.getMinTempToday() - 273.15) + " C;");
-        minTemp1.getStyleClass().add("Label-smale");
-        Label maxTemp1 = new Label("max " + format.format(parser.getMaxTempToday() - 273.15) + " C");
-        maxTemp1.getStyleClass().add("Label-smale");
-        Label clouds1 = new Label(parser.getCloudsToday());
-        clouds1.getStyleClass().add("Label-smale");
-        ButtonsPattern todayInfo = new ButtonsPattern(70, 40, "info");
-        todayInfo.getStyleClass().add("Button-insideVBox");
+        LabelPattern data1 = new LabelPattern(parser.getToday(), STYLE_CLASS_SMALL_LABEL);
+        LabelPattern minTemp1 = new LabelPattern("min " + format.format(parser.getMinTempToday() - 273.15) + " C;", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern maxTemp1 = new LabelPattern("max " + format.format(parser.getMaxTempToday() - 273.15) + " C", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern clouds1 = new LabelPattern(parser.getCloudsToday(), STYLE_CLASS_SMALL_LABEL);
+        ButtonsPattern todayInfo = new ButtonsPattern(70, 40, "info", STYLE_CLASS_BUTTON_INSIDE_VBOX);
         hBox1.getChildren().addAll(minTemp1, maxTemp1);
         vbox1.getChildren().addAll(data1, hBox1, clouds1, todayInfo);
 
-        VBox vbox2 = new VBox(10);
-        vbox2.setPrefSize(150, 150);
-        vbox2.setAlignment(Pos.CENTER);
+        VBoxPattern vbox2 = new VBoxPattern(10, 150, 150, Pos.CENTER, STYLE_CLASS_VBox);
         HBox hBox2 = new HBox(10);
         hBox2.setAlignment(Pos.CENTER);
-        Label data2 = new Label(parser.getTomorrowData());
-        data2.getStyleClass().add("Label-smale");
-        Label minTemp2 = new Label("min " + format.format(analyser.minTemp(parser.getTempListTomorrow()) - 273.15) + " C;");
-        minTemp2.getStyleClass().add("Label-smale");
-        Label maxTemp2 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListTomorrow()) - 273.15) + " C");
-        maxTemp2.getStyleClass().add("Label-smale");
-        Label clouds2 = new Label(parser.getCloudsTomorrow());
-        clouds2.getStyleClass().add("Label-smale");
-        ButtonsPattern infoTomorrow = new ButtonsPattern(70, 40, "info");
-        infoTomorrow.getStyleClass().add("Button-insideVBox");
+        LabelPattern data2 = new LabelPattern(parser.getTomorrowData(), STYLE_CLASS_SMALL_LABEL);
+        LabelPattern minTemp2 = new LabelPattern("min " + format.format(analyser.minTemp(parser.getTempListTomorrow()) - 273.15) + " C;", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern maxTemp2 = new LabelPattern("max " + format.format(analyser.maxTemp(parser.getTempListTomorrow()) - 273.15) + " C", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern clouds2 = new LabelPattern(parser.getCloudsTomorrow(), STYLE_CLASS_SMALL_LABEL);
+        ButtonsPattern infoTomorrow = new ButtonsPattern(70, 40, "info", STYLE_CLASS_BUTTON_INSIDE_VBOX);
         hBox2.getChildren().addAll(minTemp2, maxTemp2);
         vbox2.getChildren().addAll(data2, hBox2, clouds2, infoTomorrow);
 
-        VBox vbox3 = new VBox(10);
-        vbox3.setAlignment(Pos.CENTER);
-        vbox3.setPrefSize(150, 150);
+        VBoxPattern vbox3 = new VBoxPattern(10, 150, 150, Pos.CENTER, STYLE_CLASS_VBox);
         HBox hBox3 = new HBox(10);
         hBox3.setAlignment(Pos.CENTER);
-        Label data3 = new Label(parser.getDayAfterTomorrow());
-        data3.getStyleClass().add("Label-smale");
-        Label minTemp3 = new Label("min " + format.format(analyser.minTemp(parser.getTempListAfterTomorrow()) - 273.15) + " C;");
-        minTemp3.getStyleClass().add("Label-smale");
-        Label maxTemp3 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListAfterTomorrow()) - 273.15) + " C");
-        maxTemp3.getStyleClass().add("Label-smale");
-        Label clouds3 = new Label(parser.getCloudsAfterTomorrow());
-        clouds3.getStyleClass().add("Label-smale");
-        ButtonsPattern afterTomorrowInfo = new ButtonsPattern(70, 40, "info");
-        afterTomorrowInfo.getStyleClass().add("Button-insideVBox");
+        LabelPattern data3 = new LabelPattern(parser.getDayAfterTomorrow(), STYLE_CLASS_SMALL_LABEL);
+        LabelPattern minTemp3 = new LabelPattern("min " + format.format(analyser.minTemp(parser.getTempListAfterTomorrow()) - 273.15) + " C;", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern maxTemp3 = new LabelPattern("max " + format.format(analyser.maxTemp(parser.getTempListAfterTomorrow()) - 273.15) + " C", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern clouds3 = new LabelPattern(parser.getCloudsAfterTomorrow(), STYLE_CLASS_SMALL_LABEL);
+        ButtonsPattern afterTomorrowInfo = new ButtonsPattern(70, 40, "info", STYLE_CLASS_BUTTON_INSIDE_VBOX);
         hBox3.getChildren().addAll(minTemp3, maxTemp3);
         vbox3.getChildren().addAll(data3, hBox3, clouds3, afterTomorrowInfo);
 
-        VBox vbox4 = new VBox(10);
-        vbox4.setAlignment(Pos.CENTER);
-        vbox4.setPrefSize(150, 150);
+        VBoxPattern vbox4 = new VBoxPattern(10, 150, 150, Pos.CENTER, STYLE_CLASS_VBox);
         HBox hBox4 = new HBox(10);
         hBox4.setAlignment(Pos.CENTER);
-        Label data4 = new Label(parser.getFourthDay());
-        data4.getStyleClass().add("Label-smale");
-        Label minTemp4 = new Label("min " + format.format(analyser.minTemp(parser.getTempListFourDay()) - 273.15) + " C;");
-        minTemp4.getStyleClass().add("Label-smale");
-        Label maxTemp4 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListFourDay()) - 273.15) + " C");
-        maxTemp4.getStyleClass().add("Label-smale");
-        Label clouds4 = new Label(parser.getCloudsFourthDay());
-        clouds4.getStyleClass().add("Label-smale");
-        ButtonsPattern fourDayInfo = new ButtonsPattern(70, 40, "info");
-        fourDayInfo.getStyleClass().add("Button-insideVBox");
+        LabelPattern data4 = new LabelPattern(parser.getFourthDay(), STYLE_CLASS_SMALL_LABEL);
+        LabelPattern minTemp4 = new LabelPattern("max " + format.format(analyser.minTemp(parser.getTempListFourDay()) - 273.15) + " C;", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern maxTemp4 = new LabelPattern("max " + format.format(analyser.maxTemp(parser.getTempListFourDay()) - 273.15) + " C", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern clouds4 = new LabelPattern(parser.getCloudsFourthDay(), STYLE_CLASS_SMALL_LABEL);
+        ButtonsPattern fourDayInfo = new ButtonsPattern(70, 40, "info", STYLE_CLASS_BUTTON_INSIDE_VBOX);
         hBox4.getChildren().addAll(minTemp4, maxTemp4);
         vbox4.getChildren().addAll(data4, hBox4, clouds4, fourDayInfo);
 
-        VBox vbox5 = new VBox(10);
-        vbox5.setAlignment(Pos.CENTER);
-        vbox5.setPrefSize(150, 150);
+        VBoxPattern vbox5 = new VBoxPattern(10, 150, 150, Pos.CENTER, STYLE_CLASS_VBox);
         HBox hBox5 = new HBox(10);
         hBox5.setAlignment(Pos.CENTER);
-        Label data5 = new Label(parser.getFifthData());
-        data5.getStyleClass().add("Label-smale");
-        Label minTemp5 = new Label("min " + format.format(analyser.minTemp(parser.getTempListFifthDay()) - 273.15) + " C;");
-        minTemp5.getStyleClass().add("Label-smale");
-        Label maxTemp5 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListFifthDay()) - 273.15) + " C");
-        maxTemp5.getStyleClass().add("Label-smale");
-        Label clouds5 = new Label(parser.getCloudsFifthDay());
-        clouds5.getStyleClass().add("Label-smale");
-        ButtonsPattern fifthDayInfo = new ButtonsPattern(70, 40, "info");
-        fifthDayInfo.getStyleClass().add("Button-insideVBox");
+        LabelPattern data5 = new LabelPattern(parser.getFifthData(), STYLE_CLASS_SMALL_LABEL);
+        LabelPattern minTemp5 = new LabelPattern("min " + format.format(analyser.minTemp(parser.getTempListFifthDay()) - 273.15) + " C;", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern maxTemp5 = new LabelPattern("max " + format.format(analyser.maxTemp(parser.getTempListFifthDay()) - 273.15) + " C", STYLE_CLASS_SMALL_LABEL);
+        LabelPattern clouds5 = new LabelPattern(parser.getCloudsFifthDay(), STYLE_CLASS_SMALL_LABEL);
+        ButtonsPattern fifthDayInfo = new ButtonsPattern(70, 40, "info", STYLE_CLASS_BUTTON_INSIDE_VBOX);
         hBox5.getChildren().addAll(minTemp5, maxTemp5);
         vbox5.getChildren().addAll(data5, hBox5, clouds5, fifthDayInfo);
-
-        vbox1.getStyleClass().add("VBox");
-        vbox2.getStyleClass().add("VBox");
-        vbox3.getStyleClass().add("VBox");
-        vbox4.getStyleClass().add("VBox");
-        vbox5.getStyleClass().add("VBox");
 
         centerHBox.setAlignment(Pos.CENTER);
         generalPane.getStyleClass().add("pane");
@@ -182,9 +146,7 @@ public class SecondWindow {
         topCentralMiddleHBox.getChildren().addAll(min, minAnswer, max, maxAnswer);
         topVBox.getChildren().addAll(cityName, temperature, tempAnswer, topCentralMiddleHBox, clouds);
 
-        ButtonsPattern backButton = new ButtonsPattern(150, 50, "Back");
-        backButton.getStyleClass().add("Button");
-
+        ButtonsPattern backButton = new ButtonsPattern(150, 50, "Back", STYLE_CLASS_BACK_BUTTON);
         bottomPane.setPrefSize(400, 150);
 
         backButton.setOnAction(new EventHandler<ActionEvent>() {

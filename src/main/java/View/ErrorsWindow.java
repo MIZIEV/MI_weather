@@ -13,7 +13,10 @@ public class ErrorsWindow {
 
     private final Stage errorWindow = new Stage();
     private Label errorMessage = new Label("error");
+
     private final static String WINDOW_TITLE = "Error message";
+    private final static String STYLE_CLASS_BUTTON = "Button";
+
     private final static short WINDOW_WIDTH = 700;
     private final static short WINDOW_HEIGHT = 400;
     private final static short MIN_WINDOW_WIDTH = 630;
@@ -27,14 +30,13 @@ public class ErrorsWindow {
         BorderPane bottomPane = new BorderPane();
         generalPane.setBottom(bottomPane);
 
-        ButtonsPattern okButton = new ButtonsPattern(180, 70, "OK");
+        ButtonsPattern okButton = new ButtonsPattern(180, 70, "OK", STYLE_CLASS_BUTTON);
         Label insert = new Label();
 
         generalPane.setCenter(errorMessage);
         bottomPane.setCenter(okButton);
         bottomPane.setBottom(insert);
         generalPane.getStyleClass().add("pane");
-        okButton.getStyleClass().add("Button");
 
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

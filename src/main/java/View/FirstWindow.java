@@ -27,6 +27,8 @@ public class FirstWindow {
     private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
 
     private final static String FIRST_WINDOW_TITLE = "Mi weather program";
+    private final static String STYLE_CLASS_BUTTON = "Button";
+
     private final static short WINDOW_WIDTH = 1024;
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
@@ -59,8 +61,7 @@ public class FirstWindow {
         VBox centralVBOX = new VBox(30);                      // create central VBOX and add all elements
         Label title = new Label("MI weather program");
         Label textAreaSignature = new Label("Write the city name");
-        ButtonsPattern startButton = new ButtonsPattern(150, 50, "Start");
-        startButton.getStyleClass().add("Button");
+        ButtonsPattern startButton = new ButtonsPattern(150, 50, "Start", STYLE_CLASS_BUTTON);
 
         inputText.setPrefHeight(50);
         image.setFitWidth(700);
@@ -104,5 +105,7 @@ public class FirstWindow {
         firstWindow.show();
     }
 
-    public TextArea getInputText() { return inputText; }
+    public TextArea getInputText() {
+        return inputText;
+    }
 }
