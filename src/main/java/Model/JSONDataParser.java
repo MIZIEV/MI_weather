@@ -18,23 +18,15 @@ public class JSONDataParser {
 
     private String tomorrowData;
     private String cloudsTomorrow;
-    private int minTempTomorrowDay;
-    private int maxTempTomorrowDay;
 
     private String dayAfterTomorrow;
     private String cloudsAfterTomorrow;
-    private int minTempAfterTomorrow;
-    private int maxTempAfterTomorrow;
 
     private String fourthDay;
     private String cloudsFourthDay;
-    private int minTempFourthDay;
-    private int maxTempFourthDay;
 
     private String fifthData;
     private String cloudsFifthDay;
-    private int minTempFifthDay;
-    private int maxTempFifthDay;
 
     private final ArrayList<Integer> indexList = new ArrayList<>();
     private final ArrayList<Integer> tempListOnFiveDays = new ArrayList<>();
@@ -104,7 +96,8 @@ public class JSONDataParser {
             tempListTomorrow.addAll(tempListOnFiveDays.subList(indexList.get(1), indexList.get(2) + 1));
             tempListAfterTomorrow.addAll(tempListOnFiveDays.subList(indexList.get(2), indexList.get(3) + 1));
             tempListFourDay.addAll(tempListOnFiveDays.subList(indexList.get(3), indexList.get(4) + 1));
-            tempListFifthDay.addAll(tempListOnFiveDays.subList(indexList.get(4), tempListOnFiveDays.size() - 5));
+            tempListFifthDay.addAll(tempListOnFiveDays.subList(indexList.get(4), tempListOnFiveDays.size()));
+            System.out.println(tempListFifthDay);
 
             today = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getString("dt_txt");
             String todayBuf[] = today.split("\\s");
@@ -117,29 +110,21 @@ public class JSONDataParser {
             String tomorrowBuf[] = tomorrowData.split("\\s");
             tomorrowData = tomorrowBuf[0];
             cloudsTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getJSONArray("weather").getJSONObject(0).getString("description");
-            minTempTomorrowDay = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getJSONObject("main").getInt("temp_min");
-            maxTempTomorrowDay = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getJSONObject("main").getInt("temp_max");
 
             dayAfterTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getString("dt_txt");
             String dayAfterTomorrowBuf[] = dayAfterTomorrow.split("\\s");
             dayAfterTomorrow = dayAfterTomorrowBuf[0];
             cloudsAfterTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getJSONArray("weather").getJSONObject(0).getString("description");
-            minTempAfterTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getJSONObject("main").getInt("temp_min");
-            maxTempAfterTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getJSONObject("main").getInt("temp_max");
 
             fourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getString("dt_txt");
             String fourthDayBuf[] = fourthDay.split("\\s");
             fourthDay = fourthDayBuf[0];
             cloudsFourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getJSONArray("weather").getJSONObject(0).getString("description");
-            minTempFourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getJSONObject("main").getInt("temp_min");
-            maxTempFourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getJSONObject("main").getInt("temp_max");
 
             fifthData = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getString("dt_txt");
             String fifthDataBuf[] = fifthData.split("\\s");
             fifthData = fifthDataBuf[0];
             cloudsFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONArray("weather").getJSONObject(0).getString("description");
-            minTempFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONObject("main").getInt("temp_min");
-            maxTempFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONObject("main").getInt("temp_max");
         }
     }
 
@@ -187,39 +172,9 @@ public class JSONDataParser {
         return maxTempToday;
     }
 
-    public double getMinTempTomorrowDay() {
-        return minTempTomorrowDay;
-    }
-
-    public double getMaxTempTomorrowDay() { return maxTempTomorrowDay; }
-
-    public double getMinTempAfterTomorrow() {
-        return minTempAfterTomorrow;
-    }
-
     public void setTemperature(String temperature) { this.temperature = temperature; }
 
     public void setToday(String today) { this.today = today; }
-
-    public double getMaxTempAfterTomorrow() {
-        return maxTempAfterTomorrow;
-    }
-
-    public double getMinTempFourthDay() {
-        return minTempFourthDay;
-    }
-
-    public double getMaxTempFourthDay() {
-        return maxTempFourthDay;
-    }
-
-    public double getMinTempFifthDay() {
-        return minTempFifthDay;
-    }
-
-    public double getMaxTempFifthDay() {
-        return maxTempFifthDay;
-    }
 
     public String getCloudsToday() {
         return cloudsToday;
