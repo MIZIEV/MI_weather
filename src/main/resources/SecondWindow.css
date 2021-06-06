@@ -1,5 +1,5 @@
 .pane{
--fx-background-color: #4369b2;
+-fx-background-color: #446ab3;
 }
 
 .label{
@@ -7,6 +7,12 @@
 -fx-font-style: oblique;
 -fx-font-size: 20px;
 }
+.Label-smale{
+-fx-text-fill: white;
+-fx-font-style: oblique;
+-fx-font-size: 15px;
+}
+
 .Button{
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
@@ -17,4 +23,22 @@
 .Button:hover{
 -fx-background-color: #4169e1;
 -fx-text-fill: white;
+}
+
+.Button-insideVBox{
+-fx-border-radius:10px;
+-fx-background-radius:10px;
+-fx-background-color:#2e8b57;
+-fx-border-color:#446ab3;
+}
+.Button-insideVBox:hover{
+-fx-background-color: #00ff7f;
+}
+
+.VBox{
+-fx-border-radius: 20px;
+-fx-background-radius: 20px;
+-fx-background-color: #2e8b57;
+}
+.VBox:hover{
 }
