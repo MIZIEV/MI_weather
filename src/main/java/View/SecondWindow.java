@@ -2,13 +2,16 @@ package View;
 
 import Controller.BackButtonController;
 import Model.CityName;
-import Model.ConnectorToWeatherSite;
+import Model.DataAnalyser;
 import Model.JSONDataParser;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -32,7 +35,7 @@ public class SecondWindow {
     private final static short WINDOW_MIN_WIDTH = 880;
     private final static short WINDOW_MIN_HEIGHT = 550;
 
-    public SecondWindow(CityName name,  JSONDataParser jsonParser, FirstWindow firstW) {
+    public SecondWindow(CityName name, JSONDataParser jsonParser, FirstWindow firstW) {
         this.cityName = name;
         this.parser = jsonParser;
         this.firstWindow = firstW;
@@ -41,6 +44,7 @@ public class SecondWindow {
     public void startWin() {
         Insets margin = new Insets(20);
         DecimalFormat format = new DecimalFormat("#");
+        DataAnalyser analyser = new DataAnalyser();
 
         String stylesheet = getClass().getResource("/SecondWindow.css").toExternalForm();
 
@@ -52,6 +56,11 @@ public class SecondWindow {
         Pane topRightInsert = new Pane();
         topLeftInsert.setPrefWidth(350);
         topRightInsert.setPrefWidth(350);
+
+        NumberAxis XCoordinateTime = new NumberAxis(0, 24, 3);
+        NumberAxis YCoordinateDegrees = new NumberAxis(0, 50, 5);
+        AreaChart<Number, Number> diagram = new AreaChart<>(XCoordinateTime, YCoordinateDegrees);
+        diagram.setTitle("Temperature");
 
         VBox topVBox = new VBox();
         HBox centerHBox = new HBox(20);
@@ -70,8 +79,10 @@ public class SecondWindow {
         maxTemp1.getStyleClass().add("Label-smale");
         Label clouds1 = new Label(parser.getCloudsToday());
         clouds1.getStyleClass().add("Label-smale");
+        ButtonsPattern todayInfo = new ButtonsPattern(70, 40, "info");
+        todayInfo.getStyleClass().add("Button-insideVBox");
         hBox1.getChildren().addAll(minTemp1, maxTemp1);
-        vbox1.getChildren().addAll(data1, hBox1, clouds1);
+        vbox1.getChildren().addAll(data1, hBox1, clouds1, todayInfo);
 
         VBox vbox2 = new VBox(10);
         vbox2.setPrefSize(150, 150);
@@ -79,11 +90,17 @@ public class SecondWindow {
         HBox hBox2 = new HBox(10);
         hBox2.setAlignment(Pos.CENTER);
         Label data2 = new Label(parser.getTomorrowData());
-        Label minTemp2 = new Label("min " + format.format(parser.getMinTempTomorrowDay() - 273.15) + " C;");
-        Label maxTemp2 = new Label("max " + format.format(parser.getMaxTempTomorrowDay() - 273.15) + " C");
+        data2.getStyleClass().add("Label-smale");
+        Label minTemp2 = new Label("min " + format.format(analyser.minTemp(parser.getTempListTomorrow()) - 273.15) + " C;");
+        minTemp2.getStyleClass().add("Label-smale");
+        Label maxTemp2 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListTomorrow()) - 273.15) + " C");
+        maxTemp2.getStyleClass().add("Label-smale");
         Label clouds2 = new Label(parser.getCloudsTomorrow());
+        clouds2.getStyleClass().add("Label-smale");
+        ButtonsPattern infoTomorrow = new ButtonsPattern(70, 40, "info");
+        infoTomorrow.getStyleClass().add("Button-insideVBox");
         hBox2.getChildren().addAll(minTemp2, maxTemp2);
-        vbox2.getChildren().addAll(data2, hBox2, clouds2);
+        vbox2.getChildren().addAll(data2, hBox2, clouds2, infoTomorrow);
 
         VBox vbox3 = new VBox(10);
         vbox3.setAlignment(Pos.CENTER);
@@ -91,11 +108,17 @@ public class SecondWindow {
         HBox hBox3 = new HBox(10);
         hBox3.setAlignment(Pos.CENTER);
         Label data3 = new Label(parser.getDayAfterTomorrow());
-        Label minTemp3 = new Label("min " + format.format(parser.getMinTempAfterTomorrow() - 273.15) + " C;");
-        Label maxTemp3 = new Label("max " + format.format(parser.getMaxTempAfterTomorrow() - 273.15) + " C");
+        data3.getStyleClass().add("Label-smale");
+        Label minTemp3 = new Label("min " + format.format(analyser.minTemp(parser.getTempListAfterTomorrow()) - 273.15) + " C;");
+        minTemp3.getStyleClass().add("Label-smale");
+        Label maxTemp3 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListAfterTomorrow()) - 273.15) + " C");
+        maxTemp3.getStyleClass().add("Label-smale");
         Label clouds3 = new Label(parser.getCloudsAfterTomorrow());
+        clouds3.getStyleClass().add("Label-smale");
+        ButtonsPattern afterTomorrowInfo = new ButtonsPattern(70, 40, "info");
+        afterTomorrowInfo.getStyleClass().add("Button-insideVBox");
         hBox3.getChildren().addAll(minTemp3, maxTemp3);
-        vbox3.getChildren().addAll(data3, hBox3, clouds3);
+        vbox3.getChildren().addAll(data3, hBox3, clouds3, afterTomorrowInfo);
 
         VBox vbox4 = new VBox(10);
         vbox4.setAlignment(Pos.CENTER);
@@ -103,11 +126,17 @@ public class SecondWindow {
         HBox hBox4 = new HBox(10);
         hBox4.setAlignment(Pos.CENTER);
         Label data4 = new Label(parser.getFourthDay());
-        Label minTemp4 = new Label("min " + format.format(parser.getMinTempFourthDay() - 273.15) + " C;");
-        Label maxTemp4 = new Label("max " + format.format(parser.getMaxTempFourthDay() - 273.15) + " C");
+        data4.getStyleClass().add("Label-smale");
+        Label minTemp4 = new Label("min " + format.format(analyser.minTemp(parser.getTempListFourDay()) - 273.15) + " C;");
+        minTemp4.getStyleClass().add("Label-smale");
+        Label maxTemp4 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListFourDay()) - 273.15) + " C");
+        maxTemp4.getStyleClass().add("Label-smale");
         Label clouds4 = new Label(parser.getCloudsFourthDay());
+        clouds4.getStyleClass().add("Label-smale");
+        ButtonsPattern fourDayInfo = new ButtonsPattern(70, 40, "info");
+        fourDayInfo.getStyleClass().add("Button-insideVBox");
         hBox4.getChildren().addAll(minTemp4, maxTemp4);
-        vbox4.getChildren().addAll(data4, hBox4, clouds4);
+        vbox4.getChildren().addAll(data4, hBox4, clouds4, fourDayInfo);
 
         VBox vbox5 = new VBox(10);
         vbox5.setAlignment(Pos.CENTER);
@@ -115,11 +144,17 @@ public class SecondWindow {
         HBox hBox5 = new HBox(10);
         hBox5.setAlignment(Pos.CENTER);
         Label data5 = new Label(parser.getFifthData());
-        Label minTemp5 = new Label("min " + format.format(parser.getMinTempFifthDay() - 273.15) + " C;");
-        Label maxTemp5 = new Label("max " + format.format(parser.getMaxTempFifthDay() - 273.15) + " C");
+        data5.getStyleClass().add("Label-smale");
+        Label minTemp5 = new Label("min " + format.format(analyser.minTemp(parser.getTempListFifthDay()) - 273.15) + " C;");
+        minTemp5.getStyleClass().add("Label-smale");
+        Label maxTemp5 = new Label("max " + format.format(analyser.maxTemp(parser.getTempListFifthDay()) - 273.15) + " C");
+        maxTemp5.getStyleClass().add("Label-smale");
         Label clouds5 = new Label(parser.getCloudsFifthDay());
+        clouds5.getStyleClass().add("Label-smale");
+        ButtonsPattern fifthDayInfo = new ButtonsPattern(70, 40, "info");
+        fifthDayInfo.getStyleClass().add("Button-insideVBox");
         hBox5.getChildren().addAll(minTemp5, maxTemp5);
-        vbox5.getChildren().addAll(data5, hBox5, clouds5);
+        vbox5.getChildren().addAll(data5, hBox5, clouds5, fifthDayInfo);
 
         vbox1.getStyleClass().add("VBox");
         vbox2.getStyleClass().add("VBox");
@@ -168,8 +203,84 @@ public class SecondWindow {
         BorderPane.setMargin(topVBox, margin);
         generalPane.setTop(topPane);
 
+        XYChart.Series temp = new XYChart.Series();
+
+        todayInfo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                temp.getData().clear();
+            }
+        });
+        infoTomorrow.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                temp.getData().clear();
+
+                temp.getData().add(new XYChart.Data(0, parser.getTempListTomorrow().get(0) - 273));
+                temp.getData().add(new XYChart.Data(3, parser.getTempListTomorrow().get(1) - 273));
+                temp.getData().add(new XYChart.Data(6, parser.getTempListTomorrow().get(2) - 273));
+                temp.getData().add(new XYChart.Data(9, parser.getTempListTomorrow().get(3) - 273));
+                temp.getData().add(new XYChart.Data(12, parser.getTempListTomorrow().get(4) - 273));
+                temp.getData().add(new XYChart.Data(15, parser.getTempListTomorrow().get(5) - 273));
+                temp.getData().add(new XYChart.Data(18, parser.getTempListTomorrow().get(6) - 273));
+                temp.getData().add(new XYChart.Data(21, parser.getTempListTomorrow().get(7) - 273));
+                temp.getData().add(new XYChart.Data(24, parser.getTempListTomorrow().get(8) - 273));
+
+            }
+        });
+        afterTomorrowInfo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                temp.getData().clear();
+
+                temp.getData().add(new XYChart.Data(0, parser.getTempListAfterTomorrow().get(0) - 273));
+                temp.getData().add(new XYChart.Data(3, parser.getTempListAfterTomorrow().get(1) - 273));
+                temp.getData().add(new XYChart.Data(6, parser.getTempListAfterTomorrow().get(2) - 273));
+                temp.getData().add(new XYChart.Data(9, parser.getTempListAfterTomorrow().get(3) - 273));
+                temp.getData().add(new XYChart.Data(12, parser.getTempListAfterTomorrow().get(4) - 273));
+                temp.getData().add(new XYChart.Data(15, parser.getTempListAfterTomorrow().get(5) - 273));
+                temp.getData().add(new XYChart.Data(18, parser.getTempListAfterTomorrow().get(6) - 273));
+                temp.getData().add(new XYChart.Data(21, parser.getTempListAfterTomorrow().get(7) - 273));
+                temp.getData().add(new XYChart.Data(24, parser.getTempListAfterTomorrow().get(8) - 273));
+            }
+        });
+        fourDayInfo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                temp.getData().clear();
+
+                temp.getData().add(new XYChart.Data(0, parser.getTempListFourDay().get(0) - 273));
+                temp.getData().add(new XYChart.Data(3, parser.getTempListFourDay().get(1) - 273));
+                temp.getData().add(new XYChart.Data(6, parser.getTempListFourDay().get(2) - 273));
+                temp.getData().add(new XYChart.Data(9, parser.getTempListFourDay().get(3) - 273));
+                temp.getData().add(new XYChart.Data(12, parser.getTempListFourDay().get(4) - 273));
+                temp.getData().add(new XYChart.Data(15, parser.getTempListFourDay().get(5) - 273));
+                temp.getData().add(new XYChart.Data(18, parser.getTempListFourDay().get(6) - 273));
+                temp.getData().add(new XYChart.Data(21, parser.getTempListFourDay().get(7) - 273));
+                temp.getData().add(new XYChart.Data(24, parser.getTempListFourDay().get(8) - 273));
+            }
+        });
+        fifthDayInfo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                temp.getData().clear();
+
+                temp.getData().add(new XYChart.Data(0, parser.getTempListFifthDay().get(0) - 273));
+                temp.getData().add(new XYChart.Data(3, parser.getTempListFifthDay().get(1) - 273));
+                temp.getData().add(new XYChart.Data(6, parser.getTempListFifthDay().get(2) - 273));
+                temp.getData().add(new XYChart.Data(9, parser.getTempListFifthDay().get(3) - 273));
+                temp.getData().add(new XYChart.Data(12, parser.getTempListFifthDay().get(4) - 273));
+                temp.getData().add(new XYChart.Data(15, parser.getTempListFifthDay().get(5) - 273));
+                temp.getData().add(new XYChart.Data(18, parser.getTempListFifthDay().get(6) - 273));
+                temp.getData().add(new XYChart.Data(21, parser.getTempListFifthDay().get(7) - 273));
+                temp.getData().add(new XYChart.Data(24, parser.getTempListFifthDay().get(8) - 273));
+            }
+        });
+
+        temp.setName("Temperature");
+        diagram.getData().addAll(temp);
         centerHBox.getChildren().addAll(vbox1, vbox2, vbox3, vbox4, vbox5);
-        centerVbox.getChildren().addAll(centerHBox);
+        centerVbox.getChildren().addAll(centerHBox, diagram);
 
         bottomPane.setCenter(backButton);
         generalPane.setCenter(centerVbox);
