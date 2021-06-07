@@ -1,6 +1,6 @@
 package View;
 
-import Controller.BackButtonController;
+import Controller.*;
 import Model.CityName;
 import Model.DataAnalyser;
 import Model.JSONDataParser;
@@ -28,6 +28,7 @@ public class SecondWindow {
     private final CityName cityName;
     private final FirstWindow firstWindow;
     private final JSONDataParser parser;
+    private final XYChart.Series temp = new XYChart.Series();
 
     private final static String WINDOW_TITLE = "MI weather";
     private final static String STYLE_CLASS_SMALL_LABEL = "Label-small";
@@ -149,14 +150,11 @@ public class SecondWindow {
         ButtonsPattern backButton = new ButtonsPattern(150, 50, "Back", STYLE_CLASS_BACK_BUTTON);
         bottomPane.setPrefSize(400, 150);
 
-        backButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                secondWindow.close();
-                BackButtonController controller = new BackButtonController(parser);
-                controller.deletingTwoValues();
-                firstWindow.startWin();
-            }
+        backButton.setOnAction(event -> {
+            secondWindow.close();
+            BackButtonController controller = new BackButtonController(parser);
+            controller.deletingTwoValues();
+            firstWindow.startWin();
         });
 
         topPane.setLeft(topLeftInsert);
@@ -165,79 +163,16 @@ public class SecondWindow {
         BorderPane.setMargin(topVBox, margin);
         generalPane.setTop(topPane);
 
-        XYChart.Series temp = new XYChart.Series();
+        TomorrowInfo tomorrowInfo = new TomorrowInfo(this, parser);
+        InfoButtonsControllers afterTomorrowController = new AfterTomorrowInfoController(this, parser);
+        InfoButtonsControllers fourDayController = new FourInfoController(this, parser);
+        InfoButtonsControllers fifthDayController = new FifthInfoController(this, parser);
 
-        todayInfo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                temp.getData().clear();
-            }
-        });
-        infoTomorrow.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                temp.getData().clear();
-
-                temp.getData().add(new XYChart.Data(0, parser.getTempListTomorrow().get(0) - 273));
-                temp.getData().add(new XYChart.Data(3, parser.getTempListTomorrow().get(1) - 273));
-                temp.getData().add(new XYChart.Data(6, parser.getTempListTomorrow().get(2) - 273));
-                temp.getData().add(new XYChart.Data(9, parser.getTempListTomorrow().get(3) - 273));
-                temp.getData().add(new XYChart.Data(12, parser.getTempListTomorrow().get(4) - 273));
-                temp.getData().add(new XYChart.Data(15, parser.getTempListTomorrow().get(5) - 273));
-                temp.getData().add(new XYChart.Data(18, parser.getTempListTomorrow().get(6) - 273));
-                temp.getData().add(new XYChart.Data(21, parser.getTempListTomorrow().get(7) - 273));
-                temp.getData().add(new XYChart.Data(24, parser.getTempListTomorrow().get(8) - 273));
-
-            }
-        });
-        afterTomorrowInfo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                temp.getData().clear();
-
-                temp.getData().add(new XYChart.Data(0, parser.getTempListAfterTomorrow().get(0) - 273));
-                temp.getData().add(new XYChart.Data(3, parser.getTempListAfterTomorrow().get(1) - 273));
-                temp.getData().add(new XYChart.Data(6, parser.getTempListAfterTomorrow().get(2) - 273));
-                temp.getData().add(new XYChart.Data(9, parser.getTempListAfterTomorrow().get(3) - 273));
-                temp.getData().add(new XYChart.Data(12, parser.getTempListAfterTomorrow().get(4) - 273));
-                temp.getData().add(new XYChart.Data(15, parser.getTempListAfterTomorrow().get(5) - 273));
-                temp.getData().add(new XYChart.Data(18, parser.getTempListAfterTomorrow().get(6) - 273));
-                temp.getData().add(new XYChart.Data(21, parser.getTempListAfterTomorrow().get(7) - 273));
-                temp.getData().add(new XYChart.Data(24, parser.getTempListAfterTomorrow().get(8) - 273));
-            }
-        });
-        fourDayInfo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                temp.getData().clear();
-
-                temp.getData().add(new XYChart.Data(0, parser.getTempListFourDay().get(0) - 273));
-                temp.getData().add(new XYChart.Data(3, parser.getTempListFourDay().get(1) - 273));
-                temp.getData().add(new XYChart.Data(6, parser.getTempListFourDay().get(2) - 273));
-                temp.getData().add(new XYChart.Data(9, parser.getTempListFourDay().get(3) - 273));
-                temp.getData().add(new XYChart.Data(12, parser.getTempListFourDay().get(4) - 273));
-                temp.getData().add(new XYChart.Data(15, parser.getTempListFourDay().get(5) - 273));
-                temp.getData().add(new XYChart.Data(18, parser.getTempListFourDay().get(6) - 273));
-                temp.getData().add(new XYChart.Data(21, parser.getTempListFourDay().get(7) - 273));
-                temp.getData().add(new XYChart.Data(24, parser.getTempListFourDay().get(8) - 273));
-            }
-        });
-        fifthDayInfo.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                temp.getData().clear();
-
-                temp.getData().add(new XYChart.Data(0, parser.getTempListFifthDay().get(0) - 273));
-                temp.getData().add(new XYChart.Data(3, parser.getTempListFifthDay().get(1) - 273));
-                temp.getData().add(new XYChart.Data(6, parser.getTempListFifthDay().get(2) - 273));
-                temp.getData().add(new XYChart.Data(9, parser.getTempListFifthDay().get(3) - 273));
-                temp.getData().add(new XYChart.Data(12, parser.getTempListFifthDay().get(4) - 273));
-                temp.getData().add(new XYChart.Data(15, parser.getTempListFifthDay().get(5) - 273));
-                temp.getData().add(new XYChart.Data(18, parser.getTempListFifthDay().get(6) - 273));
-                temp.getData().add(new XYChart.Data(21, parser.getTempListFifthDay().get(7) - 273));
-                temp.getData().add(new XYChart.Data(24, parser.getTempListFifthDay().get(8) - 273));
-            }
-        });
+        todayInfo.setOnAction(event -> temp.getData().clear());
+        infoTomorrow.setOnAction(event -> tomorrowInfo.putDataToDiagram());
+        afterTomorrowInfo.setOnAction(event -> afterTomorrowController.putDataToDiagram());
+        fourDayInfo.setOnAction(event -> fourDayController.putDataToDiagram());
+        fifthDayInfo.setOnAction(event -> fifthDayController.putDataToDiagram());
 
         temp.setName("Temperature");
         diagram.getData().addAll(temp);
@@ -259,4 +194,5 @@ public class SecondWindow {
         secondWindow.setTitle(WINDOW_TITLE);
         secondWindow.show();
     }
+    public XYChart.Series getTemp() { return temp; }
 }
