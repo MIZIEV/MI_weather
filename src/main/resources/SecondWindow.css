@@ -1,13 +1,18 @@
 .pane{
--fx-background-color: #446ab3;
+-fx-background-color: #ffffff;
 }
 
 .label{
+-fx-text-fill: black;
+-fx-font-style: oblique;
+-fx-font-size: 20px;
+}
+.Label-standard{
 -fx-text-fill: white;
 -fx-font-style: oblique;
 -fx-font-size: 20px;
 }
-.Label-smale{
+.Label-small{
 -fx-text-fill: white;
 -fx-font-style: oblique;
 -fx-font-size: 15px;
@@ -26,19 +31,49 @@
 }
 
 .Button-insideVBox{
--fx-border-radius:10px;
--fx-background-radius:10px;
--fx-background-color:#2e8b57;
--fx-border-color:#446ab3;
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: transparent;
+-fx-border-color: white;
+-fx-text-fill: white;
 }
 .Button-insideVBox:hover{
--fx-background-color: #00ff7f;
+-fx-background-color: white;
+-fx-text-fill: black;
 }
 
-.VBox{
+.Central-VBox{
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
--fx-background-color: #2e8b57;
+-fx-background-color: #ffac84;
+-fx-text-fill:white;
 }
-.VBox:hover{
+.First-small-VBox{
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #49c39c;
+}
+.Second-small-VBox{
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #6ab3dd;
+}
+.Third-small-VBox{
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #ffac84;
+}
+.Fourth-small-VBox{
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #ed8376;
+}
+.Fifth-small-VBox{
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #f0c658;
+}
+
+.text{
+-fx-text-fill:black;
 }
