@@ -4,6 +4,8 @@ import Model.JSONDataParser;
 import View.SecondWindow;
 import javafx.scene.chart.XYChart;
 
+import java.util.Iterator;
+
 public class FourInfoController implements InfoButtonsControllers {
 
     private final SecondWindow secondWindow;
@@ -17,14 +19,16 @@ public class FourInfoController implements InfoButtonsControllers {
     @Override
     public void putDataToDiagram() {
         secondWindow.getTemp().getData().clear();
-        secondWindow.getTemp().getData().add(new XYChart.Data(0, parser.getTempListFourDay().get(0) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(3, parser.getTempListFourDay().get(1) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(6, parser.getTempListFourDay().get(2) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(9, parser.getTempListFourDay().get(3) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(12, parser.getTempListFourDay().get(4) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(15, parser.getTempListFourDay().get(5) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(18, parser.getTempListFourDay().get(6) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(21, parser.getTempListFourDay().get(7) - 273));
-        secondWindow.getTemp().getData().add(new XYChart.Data(24, parser.getTempListFourDay().get(8) - 273));
+        Iterator<String> iterator = parser.getTempMap().
+                tailMap(parser.getMapKeys().get(parser.getIndexList().get(3))).
+                headMap(parser.getMapKeys().get(parser.getIndexList().get(4)+1)).keySet().iterator();
+
+        while (iterator.hasNext()) {
+            String element = iterator.next();
+            String[] bufferTime = element.split("\\s");
+            int time = Integer.parseInt(bufferTime[2]);
+            if (time == 0 & element.equals(parser.getMapKeys().get(parser.getIndexList().get(4)))) time = 24;
+            secondWindow.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element) - 273));
+        }
     }
 }
