@@ -1,26 +1,31 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.SortedMap;
 
 public class DataAnalyser {
 
-    public int minTemp(ArrayList<Integer> list) {
-        int minTemp = list.get(0);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) < minTemp) {
-                minTemp = list.get(i);
+    public int maxTemp(SortedMap<String, Integer> map) {
+        Iterator<Integer> iterator = map.values().iterator();
+        int max = map.get(map.firstKey());
+        while (iterator.hasNext()) {
+            int element = iterator.next();
+            if (max < element) {
+                max = element;
             }
         }
-        return minTemp;
+        return max;
     }
 
-    public int maxTemp(ArrayList<Integer> list) {
-        int maxTemp = list.get(0);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) > maxTemp) {
-                maxTemp = list.get(i);
+    public int minTemp(SortedMap<String, Integer> map) {
+        Iterator<Integer> iterator = map.values().iterator();
+        int min = map.get(map.firstKey());
+        while (iterator.hasNext()) {
+            int element = iterator.next();
+            if (min > element) {
+                min = element;
             }
         }
-        return maxTemp;
+        return min;
     }
 }
