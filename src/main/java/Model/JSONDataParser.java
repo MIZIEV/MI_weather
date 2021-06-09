@@ -32,13 +32,8 @@ public class JSONDataParser {
 
     private final ArrayList<Integer> indexList = new ArrayList<>();
     private final ArrayList<Integer> tempListOnFiveDays = new ArrayList<>();
-    private final ArrayList<Integer> tempListToday = new ArrayList<>();
-    private final ArrayList<Integer> tempListTomorrow = new ArrayList<>();
-    private final ArrayList<Integer> tempListAfterTomorrow = new ArrayList<>();
-    private final ArrayList<Integer> tempListFourDay = new ArrayList<>();
-    private final ArrayList<Integer> tempListFifthDay = new ArrayList<>();
 
-    private final Map<String, Integer> tempMap = new TreeMap<>();
+    private final TreeMap<String, Integer> tempMap = new TreeMap<>();
     private final ArrayList<String> mapKeys = new ArrayList<>();
 
     public void getResponse(String output) {
@@ -62,7 +57,7 @@ public class JSONDataParser {
             String filteredData[];
             int index;
             int counter = 0;
-            int todayDay = 0, tomorrowDay = 0, afterTomorrowDay = 0, fourDay = 0, fifthDay = 0;
+            int todayDay = 0, tomorrowDay = 0, afterTomorrowDay = 0, fourDay = 0, fifthDay = 0, lastDay = 0;
 
             index = obj.getJSONArray("list").length();
             System.out.println("JSON length - " + index);
@@ -96,22 +91,22 @@ public class JSONDataParser {
                     fifthDay = bufferVar;
                     indexList.add(counter);
                 }
+                if (bufferVar > fourDay & todayDay != bufferVar & tomorrowDay != bufferVar
+                        & afterTomorrowDay != bufferVar & fourDay != bufferVar &
+                        fifthDay != bufferVar & lastDay == 0) {
+                    lastDay = bufferVar;
+                    indexList.add(counter);
+                }
+
                 tempListOnFiveDays.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp"));
                 String dataForMap = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
                 filteredData = dataForMap.split("\\-|\\s|\\:");
 
-                tempMap.put(/*"\n" + */filteredData[1] + " " + filteredData[2] + " " + filteredData[3] /*+ " "*/,
+                tempMap.put(filteredData[1] + " " + filteredData[2] + " " + filteredData[3],
                         obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp"));
-                mapKeys.add(/*"\n" + */filteredData[1] + " " + filteredData[2] + " " + filteredData[3]/* + " "*/);
+                mapKeys.add(filteredData[1] + " " + filteredData[2] + " " + filteredData[3]);
                 counter++;
             }
-
-            tempListToday.addAll(tempListOnFiveDays.subList(0, indexList.get(1)));
-            tempListTomorrow.addAll(tempListOnFiveDays.subList(indexList.get(1), indexList.get(2) + 1));
-            tempListAfterTomorrow.addAll(tempListOnFiveDays.subList(indexList.get(2), indexList.get(3) + 1));
-            tempListFourDay.addAll(tempListOnFiveDays.subList(indexList.get(3), indexList.get(4) + 1));
-            tempListFifthDay.addAll(tempListOnFiveDays.subList(indexList.get(4), tempListOnFiveDays.size()));
-            System.out.println(tempMap);
 
             today = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getString("dt_txt");
             String todayBuf[] = today.split("\\s");
@@ -139,6 +134,7 @@ public class JSONDataParser {
             String fifthDataBuf[] = fifthData.split("\\s");
             fifthData = fifthDataBuf[0];
             cloudsFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONArray("weather").getJSONObject(0).getString("description");
+            System.out.println(tempMap);
         }
     }
 
@@ -212,27 +208,7 @@ public class JSONDataParser {
         return cloudsFifthDay;
     }
 
-    public ArrayList<Integer> getTempListTomorrow() {
-        return tempListTomorrow;
-    }
-
-    public ArrayList<Integer> getTempListAfterTomorrow() {
-        return tempListAfterTomorrow;
-    }
-
-    public ArrayList<Integer> getTempListFourDay() {
-        return tempListFourDay;
-    }
-
-    public ArrayList<Integer> getTempListFifthDay() {
-        return tempListFifthDay;
-    }
-
-    public ArrayList<Integer> getTempListToday() {
-        return tempListToday;
-    }
-
-    public Map<String, Integer> getTempMap() { return tempMap; }
+    public TreeMap<String, Integer> getTempMap() { return tempMap; }
 
     public ArrayList<String> getMapKeys() { return mapKeys; }
 
