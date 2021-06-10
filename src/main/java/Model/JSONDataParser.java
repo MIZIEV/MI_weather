@@ -3,20 +3,15 @@ package Model;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class JSONDataParser {
 
-    private String temperature;
-    private String minTemp;
-    private String maxTemp;
-    private String clouds;
+    private String tempNow;
+    private String cloudsNow;
 
     private String today;
     private String cloudsToday;
-    private int minTempToday;
-    private int maxTempToday;
 
     private String tomorrowData;
     private String cloudsTomorrow;
@@ -38,19 +33,17 @@ public class JSONDataParser {
 
     public void getResponse(String output) {
         if (!output.isEmpty()) {
-
             JSONObject obj = new JSONObject(output);
 
-            temperature = obj.getJSONObject("main").getDouble("temp") + " C";
-            minTemp = obj.getJSONObject("main").getDouble("temp_min") + " C ;";
-            maxTemp = obj.getJSONObject("main").getDouble("temp_max") + " C";
-            clouds = obj.getJSONArray("weather").getJSONObject(0).getString("description");
+            tempNow = obj.getJSONObject("main").getInt("temp") + "°C";
+            cloudsNow = obj.getJSONArray("weather").getJSONObject(0).getString("description");
         }
     }
 
     public void getResponseOnFiveDays(String output) {
         if (!output.isEmpty()) {
             JSONObject obj = new JSONObject(output);
+
             String data;
             String onlyData[];
             String onlyDay[];
@@ -60,7 +53,6 @@ public class JSONDataParser {
             int todayDay = 0, tomorrowDay = 0, afterTomorrowDay = 0, fourDay = 0, fifthDay = 0, lastDay = 0;
 
             index = obj.getJSONArray("list").length();
-            System.out.println("JSON length - " + index);
 
             while (counter <= index - 1) {
                 data = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
@@ -112,8 +104,6 @@ public class JSONDataParser {
             String todayBuf[] = today.split("\\s");
             today = todayBuf[0];
             cloudsToday = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getJSONArray("weather").getJSONObject(0).getString("description");
-            minTempToday = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getJSONObject("main").getInt("temp_min");
-            maxTempToday = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getJSONObject("main").getInt("temp_max");
 
             tomorrowData = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getString("dt_txt");
             String tomorrowBuf[] = tomorrowData.split("\\s");
@@ -134,24 +124,13 @@ public class JSONDataParser {
             String fifthDataBuf[] = fifthData.split("\\s");
             fifthData = fifthDataBuf[0];
             cloudsFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONArray("weather").getJSONObject(0).getString("description");
-            System.out.println(tempMap);
         }
     }
 
-    public String getTemperature() {
-        return temperature;
-    }
+    public String getTempNow() { return tempNow; }
 
-    public String getMinTemp() {
-        return minTemp;
-    }
-
-    public String getMaxTemp() {
-        return maxTemp;
-    }
-
-    public String getClouds() {
-        return clouds;
+    public String getCloudsNow() {
+        return cloudsNow;
     }
 
     public String getToday() {
@@ -174,16 +153,8 @@ public class JSONDataParser {
         return fifthData;
     }
 
-    public double getMinTempToday() {
-        return minTempToday;
-    }
-
-    public double getMaxTempToday() {
-        return maxTempToday;
-    }
-
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
+    public void setTempNow(String tempNow) {
+        this.tempNow = tempNow;
     }
 
     public void setToday(String today) {
