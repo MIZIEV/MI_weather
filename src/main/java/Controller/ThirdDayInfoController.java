@@ -4,12 +4,12 @@ import Model.JSONDataParser;
 import View.SecondWindow;
 import javafx.scene.chart.XYChart;
 
-public class FifthInfoController implements InfoButtonsControllers {
+public class ThirdDayInfoController implements InfoButtonsControllers {
 
     private final SecondWindow secondWindow;
     private final JSONDataParser parser;
 
-    public FifthInfoController(SecondWindow secondW, JSONDataParser jsonParser) {
+    public ThirdDayInfoController(SecondWindow secondW, JSONDataParser jsonParser) {
         this.secondWindow = secondW;
         this.parser = jsonParser;
     }
@@ -19,11 +19,11 @@ public class FifthInfoController implements InfoButtonsControllers {
         secondWindow.getTemp().getData().clear();
 
         for (String element : parser.getTempMap().
-                tailMap(parser.getMapKeys().get(parser.getIndexList().get(4))).
-                headMap(parser.getMapKeys().get(parser.getIndexList().get(5) + 1)).keySet()) {
+                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(2))).
+                headMap(parser.getKeysForMap().get(parser.getIndexList().get(3) + 1)).keySet()) {
             String[] bufferTime = element.split("\\s");
             int time = Integer.parseInt(bufferTime[2]);
-            if (time == 0 & element.equals(parser.getMapKeys().get(parser.getIndexList().get(5)))) time = 24;
+            if (time == 0 & element.equals(parser.getKeysForMap().get(parser.getIndexList().get(3)))) time = 24;
             secondWindow.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element) - 273));
         }
     }
