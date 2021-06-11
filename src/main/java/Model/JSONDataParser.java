@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ * this is class, where JSON data parsing, formatting and placed to the Lists & Map
+ * also it has getters for works with this data
+ */
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -8,35 +11,32 @@ import java.util.TreeMap;
 public class JSONDataParser {
 
     private String tempNow;
-    private String cloudsNow;
+    private String weatherNow;
 
-    private String today;
-    private String cloudsToday;
+    private String todayDate;
+    private String weatherToday;
 
-    private String tomorrowData;
-    private String cloudsTomorrow;
+    private String dateSecondDay;
+    private String weatherSecondDay;
 
-    private String dayAfterTomorrow;
-    private String cloudsAfterTomorrow;
+    private String dateThirdDay;
+    private String weatherThirdDay;
 
-    private String fourthDay;
-    private String cloudsFourthDay;
+    private String dateFourDay;
+    private String weatherFourthDay;
 
-    private String fifthData;
-    private String cloudsFifthDay;
+    private String dateFifthDay;
+    private String weatherFifthDay;
 
     private final ArrayList<Integer> indexList = new ArrayList<>();
-    private final ArrayList<Integer> tempListOnFiveDays = new ArrayList<>();
-
     private final TreeMap<String, Integer> tempMap = new TreeMap<>();
-    private final ArrayList<String> mapKeys = new ArrayList<>();
+    private final ArrayList<String> keysForMap = new ArrayList<>();
 
     public void getResponse(String output) {
         if (!output.isEmpty()) {
             JSONObject obj = new JSONObject(output);
-
             tempNow = obj.getJSONObject("main").getInt("temp") + "°C";
-            cloudsNow = obj.getJSONArray("weather").getJSONObject(0).getString("description");
+            weatherNow = obj.getJSONArray("weather").getJSONObject(0).getString("description");
         }
     }
 
@@ -44,25 +44,18 @@ public class JSONDataParser {
         if (!output.isEmpty()) {
             JSONObject obj = new JSONObject(output);
 
-            String data;
-            String onlyData[];
-            String onlyDay[];
-            String filteredData[];
-            int index;
             int counter = 0;
             int todayDay = 0, tomorrowDay = 0, afterTomorrowDay = 0, fourDay = 0, fifthDay = 0, lastDay = 0;
+            int jsonListLength = obj.getJSONArray("list").length();
 
-            index = obj.getJSONArray("list").length();
-
-            while (counter <= index - 1) {
-                data = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
-                onlyData = data.split("\\s");
-
-                onlyDay = onlyData[0].split("\\-");
+            while (counter <= jsonListLength - 1) {
+                String data = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
+                String onlyData[] = data.split("\\s");
+                String onlyDay[] = onlyData[0].split("\\-");
 
                 int bufferVar = Integer.parseInt(onlyDay[2]);
-                if (todayDay == 0) {
-                    todayDay = bufferVar;
+                if (todayDay == 0) {            // all this "if" construction need for get index, where date changing
+                    todayDay = bufferVar;       // and put this index to indexList
                     indexList.add(counter);
                 }
                 if (todayDay != bufferVar & tomorrowDay == 0) {
@@ -90,98 +83,75 @@ public class JSONDataParser {
                     indexList.add(counter);
                 }
 
-                tempListOnFiveDays.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp"));
+                // filter data to format:  key -( mount,day,hour ), value
                 String dataForMap = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
-                filteredData = dataForMap.split("\\-|\\s|\\:");
-
+                String filteredData[] = dataForMap.split("\\-|\\s|\\:");
+                //  put filtered data to one treeMap
                 tempMap.put(filteredData[1] + " " + filteredData[2] + " " + filteredData[3],
                         obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp"));
-                mapKeys.add(filteredData[1] + " " + filteredData[2] + " " + filteredData[3]);
+                // put the same filtered keys to ArrayList, they will be comparing with Map in another class
+                keysForMap.add(filteredData[1] + " " + filteredData[2] + " " + filteredData[3]);
                 counter++;
             }
 
-            today = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getString("dt_txt");
-            String todayBuf[] = today.split("\\s");
-            today = todayBuf[0];
-            cloudsToday = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getJSONArray("weather").getJSONObject(0).getString("description");
+            todayDate = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getString("dt_txt");
+            String todayBuf[] = todayDate.split("\\s");
+            todayDate = todayBuf[0];
+            weatherToday = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getJSONArray("weather").getJSONObject(0).getString("description");
 
-            tomorrowData = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getString("dt_txt");
-            String tomorrowBuf[] = tomorrowData.split("\\s");
-            tomorrowData = tomorrowBuf[0];
-            cloudsTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getJSONArray("weather").getJSONObject(0).getString("description");
+            dateSecondDay = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getString("dt_txt");
+            String tomorrowBuf[] = dateSecondDay.split("\\s");
+            dateSecondDay = tomorrowBuf[0];
+            weatherSecondDay = obj.getJSONArray("list").getJSONObject(indexList.get(1)).getJSONArray("weather").getJSONObject(0).getString("description");
 
-            dayAfterTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getString("dt_txt");
-            String dayAfterTomorrowBuf[] = dayAfterTomorrow.split("\\s");
-            dayAfterTomorrow = dayAfterTomorrowBuf[0];
-            cloudsAfterTomorrow = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getJSONArray("weather").getJSONObject(0).getString("description");
+            dateThirdDay = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getString("dt_txt");
+            String dayAfterTomorrowBuf[] = dateThirdDay.split("\\s");
+            dateThirdDay = dayAfterTomorrowBuf[0];
+            weatherThirdDay = obj.getJSONArray("list").getJSONObject(indexList.get(2)).getJSONArray("weather").getJSONObject(0).getString("description");
 
-            fourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getString("dt_txt");
-            String fourthDayBuf[] = fourthDay.split("\\s");
-            fourthDay = fourthDayBuf[0];
-            cloudsFourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getJSONArray("weather").getJSONObject(0).getString("description");
+            dateFourDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getString("dt_txt");
+            String fourthDayBuf[] = dateFourDay.split("\\s");
+            dateFourDay = fourthDayBuf[0];
+            weatherFourthDay = obj.getJSONArray("list").getJSONObject(indexList.get(3)).getJSONArray("weather").getJSONObject(0).getString("description");
 
-            fifthData = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getString("dt_txt");
-            String fifthDataBuf[] = fifthData.split("\\s");
-            fifthData = fifthDataBuf[0];
-            cloudsFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONArray("weather").getJSONObject(0).getString("description");
+            dateFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getString("dt_txt");
+            String fifthDataBuf[] = dateFifthDay.split("\\s");
+            dateFifthDay = fifthDataBuf[0];
+            weatherFifthDay = obj.getJSONArray("list").getJSONObject(indexList.get(4)).getJSONArray("weather").getJSONObject(0).getString("description");
         }
     }
 
     public String getTempNow() { return tempNow; }
 
-    public String getCloudsNow() {
-        return cloudsNow;
-    }
+    public String getWeatherNow() { return weatherNow; }
 
-    public String getToday() {
-        return today;
-    }
+    public String getTodayDate() { return todayDate; }
 
-    public String getTomorrowData() {
-        return tomorrowData;
-    }
+    public String getWeatherToday() { return weatherToday; }
 
-    public String getDayAfterTomorrow() {
-        return dayAfterTomorrow;
-    }
+    public String getDateSecondDay() { return dateSecondDay; }
 
-    public String getFourthDay() {
-        return fourthDay;
-    }
+    public String getWeatherSecondDay() { return weatherSecondDay; }
 
-    public String getFifthData() {
-        return fifthData;
-    }
+    public String getDateThirdDay() { return dateThirdDay; }
 
-    public void setTempNow(String tempNow) {
-        this.tempNow = tempNow;
-    }
+    public String getWeatherThirdDay() { return weatherThirdDay; }
 
-    public void setToday(String today) {
-        this.today = today;
-    }
+    public String getDateFourDay() { return dateFourDay; }
 
-    public String getCloudsToday() { return cloudsToday; }
+    public String getWeatherFourthDay() { return weatherFourthDay; }
 
-    public String getCloudsTomorrow() {
-        return cloudsTomorrow;
-    }
+    public String getDateFifthDay() { return dateFifthDay; }
 
-    public String getCloudsAfterTomorrow() {
-        return cloudsAfterTomorrow;
-    }
-
-    public String getCloudsFourthDay() {
-        return cloudsFourthDay;
-    }
-
-    public String getCloudsFifthDay() {
-        return cloudsFifthDay;
-    }
+    public String getWeatherFifthDay() { return weatherFifthDay; }
 
     public TreeMap<String, Integer> getTempMap() { return tempMap; }
 
-    public ArrayList<String> getMapKeys() { return mapKeys; }
+    public ArrayList<String> getKeysForMap() { return keysForMap; }
 
     public ArrayList<Integer> getIndexList() { return indexList; }
+
+    public void setTempNow(String tempNow) { this.tempNow = tempNow; }
+
+    public void setTodayDate(String todayDate) { this.todayDate = todayDate; }
 }
