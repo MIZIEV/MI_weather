@@ -4,8 +4,8 @@ import Controller.StartButtonController;
 import Model.CityName;
 import Model.ConnectorToWeatherSite;
 import Model.JSONDataParser;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import animatefx.animation.FadeIn;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,20 +21,23 @@ public class FirstWindow {
 
     private final Stage firstWindow = new Stage();
     private final TextArea inputText = new TextArea();
-    private final ImageView image = new ImageView("Weather_picture_3.jpg");
 
     private final CityName cityName = new CityName();
     private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
 
     private final static String FIRST_WINDOW_TITLE = "Mi weather program";
     private final static String STYLE_CLASS_BUTTON = "Button";
-
+    private final ImageView image = new ImageView("white_picture.jpg");
+    private final static short IMAGE_WIDTH = 600;
+    private final static short IMAGE_HEIGHT = 200;
     private final static short WINDOW_WIDTH = 1024;
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
     private final static short WINDOW_MIN_HEIGHT = 650;
 
     public void startWin() {
+        Insets margin = new Insets(40);
+
         JSONDataParser parser = new JSONDataParser();
         SecondWindow secondWindow = new SecondWindow(cityName, parser, this);
         StartButtonController startButtonController = new StartButtonController(connector, parser, this, cityName);
@@ -64,33 +67,31 @@ public class FirstWindow {
         ButtonsPattern startButton = new ButtonsPattern(150, 50, "Start", STYLE_CLASS_BUTTON);
 
         inputText.setPrefHeight(50);
-        image.setFitWidth(700);
-        image.setFitHeight(300);
+        image.setFitWidth(IMAGE_WIDTH);
+        image.setFitHeight(IMAGE_HEIGHT);
         topVBox.setAlignment(Pos.CENTER);
+        BorderPane.setMargin(topVBox, margin);
         topVBox.getChildren().addAll(title, image);
         centralPane.setCenter(centralVBOX);
 
         centralVBOX.setAlignment(Pos.CENTER);                           //add all elements in central part
         centralVBOX.getChildren().addAll(textAreaSignature, inputText, startButton);
 
-        startButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (inputText.getText().trim().length() == 0) {
+        startButton.setOnAction(event -> {
+            if (inputText.getText().trim().length() == 0) {
+                ErrorsWindow errorsWindow = new ErrorsWindow();
+                errorsWindow.setErrorMessage(new Label("You have not entered the city name "));
+                errorsWindow.startWin();
+            } else {
+                startButtonController.launchConnector();
+
+                if (parser.getTempNow() == null | parser.getTodayDate() == null) {
                     ErrorsWindow errorsWindow = new ErrorsWindow();
-                    errorsWindow.setErrorMessage(new Label("You have not entered the city name "));
+                    errorsWindow.setErrorMessage(new Label("City not found, try again!!!"));
                     errorsWindow.startWin();
                 } else {
-                    startButtonController.launchConnector();
-
-                    if (parser.getTemperature() == null | parser.getToday() == null) {
-                        ErrorsWindow errorsWindow = new ErrorsWindow();
-                        errorsWindow.setErrorMessage(new Label("City not found, try again!!!"));
-                        errorsWindow.startWin();
-                    } else {
-                        firstWindow.close();
-                        secondWindow.startWin();
-                    }
+                    firstWindow.close();
+                    secondWindow.startWin();
                 }
             }
         });
@@ -102,6 +103,7 @@ public class FirstWindow {
         firstWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         firstWindow.setScene(firstWindowScene);
         firstWindow.setTitle(FIRST_WINDOW_TITLE);
+        new FadeIn(generalPane).play();
         firstWindow.show();
     }
 
