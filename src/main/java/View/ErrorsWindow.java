@@ -1,7 +1,6 @@
 package View;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import animatefx.animation.FadeIn;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -23,7 +22,6 @@ public class ErrorsWindow {
     private final static short MIN_WINDOW_HEIGHT = 250;
 
     public void startWin() {
-
         String stylesheet = getClass().getResource("/ErrorWindow.css").toExternalForm();
 
         BorderPane generalPane = new BorderPane();
@@ -38,12 +36,7 @@ public class ErrorsWindow {
         bottomPane.setBottom(insert);
         generalPane.getStyleClass().add("pane");
 
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                errorWindow.close();
-            }
-        });
+        okButton.setOnAction(event -> errorWindow.close());
 
         Scene errorWinScene = new Scene(generalPane, WINDOW_WIDTH, WINDOW_HEIGHT);
         errorWinScene.getStylesheets().add(stylesheet);
@@ -53,9 +46,9 @@ public class ErrorsWindow {
         errorWindow.setTitle(WINDOW_TITLE);
         errorWindow.setScene(errorWinScene);
         errorWindow.initModality(Modality.APPLICATION_MODAL);
+        new FadeIn(generalPane).play();
         errorWindow.show();
     }
-
     public void setErrorMessage(Label errorMessage) {
         this.errorMessage = errorMessage;
     }
