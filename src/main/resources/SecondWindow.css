@@ -2,6 +2,13 @@
 -fx-background-color: #ffffff;
 }
 
+.Pane-for-diagram{
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #b0c4de;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
 .label{
 -fx-text-fill: black;
 -fx-font-style: oblique;
@@ -19,15 +26,18 @@
 }
 
 .Button{
--fx-border-radius: 20px;
--fx-background-radius: 20px;
--fx-background-color:Transparent;
--fx-border-color: white;
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color:#ffac84;
+-fx-border-color: #ffac84;
 -fx-text-fill: white;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 .Button:hover{
--fx-background-color: #4169e1;
--fx-text-fill: white;
+-fx-border-radius: 0 20 0 20;
+-fx-background-radius: 0 20 0 20;
+-fx-background-color: white;
+-fx-text-fill: black;
 }
 
 .Button-insideVBox{
@@ -42,36 +52,62 @@
 -fx-text-fill: black;
 }
 
+.Button-left-menu{
+-fx-background-color:#0063b1;
+}
+.Button-left-menu:hover{
+-fx-border-color:white;
+}
+
 .Central-VBox{
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
 -fx-background-color: #ffac84;
 -fx-text-fill:white;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
 .First-small-VBox{
 -fx-border-radius: 20 0 20 0;
 -fx-background-radius: 20 0 20 0;
 -fx-background-color: #49c39c;
+-fx-border-color:#49c39c;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
 .Second-small-VBox{
 -fx-border-radius: 20 0 20 0;
 -fx-background-radius: 20 0 20 0;
 -fx-background-color: #6ab3dd;
+-fx-border-color:#6ab3dd;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
 .Third-small-VBox{
 -fx-border-radius: 20 0 20 0;
 -fx-background-radius: 20 0 20 0;
 -fx-background-color: #ffac84;
+-fx-border-color:#ffac84;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
 .Fourth-small-VBox{
 -fx-border-radius: 20 0 20 0;
 -fx-background-radius: 20 0 20 0;
 -fx-background-color: #ed8376;
+-fx-border-color:#ed8376;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
 .Fifth-small-VBox{
 -fx-border-radius: 20 0 20 0;
 -fx-background-radius: 20 0 20 0;
 -fx-background-color: #f0c658;
+-fx-border-color:#f0c658;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.left-menu-VBox{
+-fx-background-color:#0063b1;
 }
 
 .text{

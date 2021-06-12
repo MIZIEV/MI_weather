@@ -1,26 +1,28 @@
 .pane{
--fx-background-color: linear-gradient(to left,#4369b2, #355ba4 );
+-fx-background-color: #ffffff;
 }
 
 .label{
--fx-text-fill: white;
+-fx-text-fill: #6ab3dd;
 -fx-font-style: oblique;
 -fx-font-size: 40px;
 }
 
 .Text-Area{
-    -fx-background-color: #87ceeb;
+    -fx-background-color: #ffac84;
 }
 
 .Button{
--fx-border-radius: 20px;
--fx-background-radius: 20px;
--fx-background-color:Transparent;
--fx-border-color: white;
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color:#6ab3dd;
+-fx-border-color: #6ab3dd;
 -fx-text-fill: white;
 }
 
 .Button:hover{
--fx-background-color: #4169e1;
--fx-text-fill: white;
+-fx-background-color: #ffffff;
+-fx-text-fill: black;
+-fx-border-radius: 0 20 0 20;
+-fx-background-radius: 0 20 0 20;
 }
