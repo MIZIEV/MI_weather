@@ -1,4 +1,4 @@
-package Controller;
+package Controller.ControllersForDiagram;
 
 import Model.JSONDataParser;
 import View.SecondWindow;
