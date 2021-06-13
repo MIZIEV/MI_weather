@@ -1,4 +1,4 @@
-package Controller;
+package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
 import Model.JSONDataParser;
@@ -25,5 +25,6 @@ public class ThirdDayInfControl {
         generalInfo.setWeatherString(parser.getWeatherThirdDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(2));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(2));
+        generalInfo.setWindDirectionInt(parser.getWindDirection().get(2));
     }
 }

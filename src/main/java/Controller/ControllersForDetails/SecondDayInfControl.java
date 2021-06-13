@@ -1,4 +1,4 @@
-package Controller;
+package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
 import Model.JSONDataParser;
@@ -25,5 +25,7 @@ public class SecondDayInfControl {
         generalInfo.setWeatherString(parser.getWeatherSecondDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(1));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(1));
+        generalInfo.setWindDirectionInt(parser.getWindDirection().get(1));
+
     }
 }

@@ -1,4 +1,4 @@
-package Controller;
+package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
 import Model.JSONDataParser;
@@ -25,5 +25,7 @@ public class FourDayInfControl {
         generalInfo.setWeatherString(parser.getWeatherFourthDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(3));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(3));
+        generalInfo.setWindDirectionInt(parser.getWindDirection().get(3));
+
     }
 }
