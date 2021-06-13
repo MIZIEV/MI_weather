@@ -1,5 +1,6 @@
 package Controller;
 
+import Controller.ControllersForDiagram.InfoButtonsControllers;
 import Model.JSONDataParser;
 import View.SecondWindow;
 import javafx.scene.chart.XYChart;
@@ -24,7 +25,7 @@ public class TodayInfoController implements InfoButtonsControllers {
             int time = Integer.parseInt(stringTime);
             if (time == 0) time = 24;
             secondWindow.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element) - 273));
-            if (element.equals(parser.getMapKeys().get(parser.getIndexList().get(1)))) break;
+            if (element.equals(parser.getKeysForMap().get(parser.getIndexList().get(1)))) break;
         }
     }
 }
