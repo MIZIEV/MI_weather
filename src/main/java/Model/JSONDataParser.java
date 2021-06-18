@@ -36,6 +36,12 @@ public class JSONDataParser {
     private final ArrayList<Integer> windDirection = new ArrayList<>();
     private final ArrayList<Integer> humidityList = new ArrayList<>();
 
+    private final StartEndIndexDay todayIndex = new StartEndIndexDay();
+    private final StartEndIndexDay secondDayIndex = new StartEndIndexDay();
+    private final StartEndIndexDay thirdDayIndex = new StartEndIndexDay();
+    private final StartEndIndexDay fourDayIndex = new StartEndIndexDay();
+    private final StartEndIndexDay fifthDayIndex = new StartEndIndexDay();
+
     public void getResponse(String output) {
         if (!output.isEmpty()) {
             JSONObject obj = new JSONObject(output);
@@ -64,6 +70,7 @@ public class JSONDataParser {
                     speedWindList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"));
                     windDirection.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"));
                     humidityList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity"));
+                    todayIndex.setStartDayIndex(counter);
                 }
                 if (todayDay != bufferVar & tomorrowDay == 0) {
                     tomorrowDay = bufferVar;
@@ -71,6 +78,8 @@ public class JSONDataParser {
                     speedWindList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"));
                     windDirection.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"));
                     humidityList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity"));
+                    todayIndex.setEndDayIndex(counter);
+                    secondDayIndex.setStartDayIndex(counter);
                 }
                 if (tomorrowDay != bufferVar & todayDay != bufferVar & afterTomorrowDay == 0) {
                     afterTomorrowDay = bufferVar;
@@ -78,6 +87,8 @@ public class JSONDataParser {
                     speedWindList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"));
                     windDirection.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"));
                     humidityList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity"));
+                    secondDayIndex.setEndDayIndex(counter);
+                    thirdDayIndex.setStartDayIndex(counter);
                 }
                 if (bufferVar > afterTomorrowDay & todayDay != bufferVar & tomorrowDay != bufferVar
                         & afterTomorrowDay != bufferVar & fourDay == 0) {
@@ -86,6 +97,8 @@ public class JSONDataParser {
                     speedWindList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"));
                     windDirection.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"));
                     humidityList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity"));
+                    thirdDayIndex.setEndDayIndex(counter);
+                    fourDayIndex.setStartDayIndex(counter);
                 }
                 if (bufferVar > fourDay & todayDay != bufferVar & tomorrowDay != bufferVar
                         & afterTomorrowDay != bufferVar & fourDay != bufferVar & fifthDay == 0) {
@@ -94,6 +107,8 @@ public class JSONDataParser {
                     speedWindList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"));
                     windDirection.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"));
                     humidityList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity"));
+                    fourDayIndex.setEndDayIndex(counter);
+                    fifthDayIndex.setStartDayIndex(counter);
                 }
                 if (bufferVar > fourDay & todayDay != bufferVar & tomorrowDay != bufferVar
                         & afterTomorrowDay != bufferVar & fourDay != bufferVar &
@@ -103,6 +118,7 @@ public class JSONDataParser {
                     speedWindList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"));
                     windDirection.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"));
                     humidityList.add(obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity"));
+                    fifthDayIndex.setEndDayIndex(counter);
                 }
 
                 // filter data to format:  key -( mount,day,hour ), value
@@ -115,9 +131,12 @@ public class JSONDataParser {
                 keysForMap.add(filteredData[1] + " " + filteredData[2] + " " + filteredData[3]);
                 counter++;
             }
-            System.out.println(speedWindList);
-            System.out.println(windDirection);
-            System.out.println(humidityList);
+            System.out.println("index list" + indexList);
+            System.out.println("today index - "+ todayIndex.toString());
+            System.out.println("class - " + secondDayIndex.toString());
+            System.out.println("third day index - "+thirdDayIndex.toString());
+            System.out.println("four day index -"+fourDayIndex.toString());
+            System.out.println("fifth day index - "+fifthDayIndex.toString());
             todayDate = obj.getJSONArray("list").getJSONObject(indexList.get(0)).getString("dt_txt");
             String todayBuf[] = todayDate.split("\\s");
             todayDate = todayBuf[0];
@@ -145,43 +164,102 @@ public class JSONDataParser {
         }
     }
 
-    public String getTempNow() { return tempNow; }
+    public String getTempNow() {
+        return tempNow;
+    }
 
-    public String getWeatherNow() { return weatherNow; }
+    public String getWeatherNow() {
+        return weatherNow;
+    }
 
-    public String getTodayDate() { return todayDate; }
+    public String getTodayDate() {
+        return todayDate;
+    }
 
-    public String getWeatherToday() { return weatherToday; }
+    public String getWeatherToday() {
+        return weatherToday;
+    }
 
-    public String getDateSecondDay() { return dateSecondDay; }
+    public String getDateSecondDay() {
+        return dateSecondDay;
+    }
 
-    public String getWeatherSecondDay() { return weatherSecondDay; }
+    public String getWeatherSecondDay() {
+        return weatherSecondDay;
+    }
 
-    public String getDateThirdDay() { return dateThirdDay; }
+    public String getDateThirdDay() {
+        return dateThirdDay;
+    }
 
-    public String getWeatherThirdDay() { return weatherThirdDay; }
+    public String getWeatherThirdDay() {
+        return weatherThirdDay;
+    }
 
-    public String getDateFourDay() { return dateFourDay; }
+    public String getDateFourDay() {
+        return dateFourDay;
+    }
 
-    public String getWeatherFourthDay() { return weatherFourthDay; }
+    public String getWeatherFourthDay() {
+        return weatherFourthDay;
+    }
 
-    public String getDateFifthDay() { return dateFifthDay; }
+    public String getDateFifthDay() {
+        return dateFifthDay;
+    }
 
-    public String getWeatherFifthDay() { return weatherFifthDay; }
+    public String getWeatherFifthDay() {
+        return weatherFifthDay;
+    }
 
-    public TreeMap<String, Integer> getTempMap() { return tempMap; }
+    public TreeMap<String, Integer> getTempMap() {
+        return tempMap;
+    }
 
-    public ArrayList<String> getKeysForMap() { return keysForMap; }
+    public ArrayList<String> getKeysForMap() {
+        return keysForMap;
+    }
 
-    public ArrayList<Integer> getIndexList() { return indexList; }
+    public ArrayList<Integer> getIndexList() {
+        return indexList;
+    }
 
-    public void setTempNow(String tempNow) { this.tempNow = tempNow; }
+    public void setTempNow(String tempNow) {
+        this.tempNow = tempNow;
+    }
 
-    public void setTodayDate(String todayDate) { this.todayDate = todayDate; }
+    public void setTodayDate(String todayDate) {
+        this.todayDate = todayDate;
+    }
 
-    public ArrayList<Double> getSpeedWindList(){ return speedWindList; }
+    public ArrayList<Double> getSpeedWindList() {
+        return speedWindList;
+    }
 
-    public ArrayList<Integer> getWindDirection(){ return windDirection; }
+    public ArrayList<Integer> getWindDirection() {
+        return windDirection;
+    }
 
-    public ArrayList<Integer> getHumidityList(){return humidityList; }
+    public ArrayList<Integer> getHumidityList() {
+        return humidityList;
+    }
+    public StartEndIndexDay getTodayIndex() {
+        return todayIndex;
+    }
+
+    public StartEndIndexDay getThirdDayIndex() {
+        return thirdDayIndex;
+    }
+
+    public StartEndIndexDay getFourDayIndex() {
+        return fourDayIndex;
+    }
+
+    public StartEndIndexDay getFifthDayIndex() {
+        return fifthDayIndex;
+    }
+
+    public StartEndIndexDay getSecondDayIndex() {
+        return secondDayIndex;
+    }
 }
