@@ -23,5 +23,8 @@ public class TodayGenInfController {
                 tailMap(parser.getKeysForMap().get(parser.getIndexList().get(0))).
                 headMap(parser.getKeysForMap().get(parser.getIndexList().get(1) + 1))) - 273);
         generalInfo.setWeatherString(parser.getWeatherNow());
+        generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(0));
+        generalInfo.setHumidityDouble(parser.getHumidityList().get(0));
+        generalInfo.setWindDirectionInt(parser.getWindDirection().get(0));
     }
 }
