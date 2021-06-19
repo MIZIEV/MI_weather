@@ -1,9 +1,7 @@
 package View;
 
-import Controller.WeatherTimeImageController;
 import Controller.WindDirectionControl;
 import Model.JSONDataParser;
-import Model.PresentTime;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,12 +14,22 @@ import javafx.scene.layout.VBox;
 public class GeneralInfo {
 
     private final JSONDataParser parser;
+
     private int minTempInt;
     private int maxTempInt;
     private int windDirectionInt;
     private double windSpeedDouble;
     private double humidityDouble;
     private String weatherString = "clouds";
+
+    private final static String LABEL_STYLE ="Label";
+    private final static String PANE_STYLE ="Border-Pane";
+    private final static short PANE_WIDTH = 1200;
+    private final static short PANE_HEIGHT = 400;
+    private final static byte INSIDE_PANE_MARGIN = 50;
+    private final static byte INSIDE_VBOX_SPACING = 10;
+    private final static byte INDICATOR_WIDTH = 80;
+    private final static byte INDICATOR_HEIGHT = 80;
 
     public GeneralInfo(JSONDataParser jsonParser) {
         this.parser = jsonParser;
@@ -30,51 +38,49 @@ public class GeneralInfo {
     public BorderPane showInfo() {
 
         String stylesheet = getClass().getResource("/GeneralInfoStyle.css").toExternalForm();
-        Insets margin = new Insets(50);
-
+        Insets margin = new Insets(INSIDE_PANE_MARGIN);
         WindDirectionControl windController = new WindDirectionControl();
-
-        PresentTime presentTime = new PresentTime();
-        WeatherTimeImageController weatherImageController = new WeatherTimeImageController(presentTime);
         WeatherImage weatherImage = new WeatherImage(parser);
 
         BorderPane infoPane = new BorderPane();
-        infoPane.getStyleClass().add("Border-Pane");
+        infoPane.getStyleClass().add(PANE_STYLE);
         HBox centralHBox = new HBox(120);
         centralHBox.setAlignment(Pos.CENTER);
         BorderPane.setMargin(centralHBox, margin);
 
-        VBox vBox1 = new VBox(10);
-        LabelPattern titleFirstVBox = new LabelPattern("Temperature:", "Label");
-        LabelPattern maxTemp = new LabelPattern("max temp: "+maxTempInt+"°C", "Label");
-        LabelPattern minTemp = new LabelPattern("min temp: "+minTempInt+"°C", "Label");
+        VBox vBox1 = new VBox(INSIDE_VBOX_SPACING);
+        LabelPattern titleFirstVBox = new LabelPattern("Temperature:", LABEL_STYLE);
+        LabelPattern maxTemp = new LabelPattern("max temp: "+maxTempInt+"°C", LABEL_STYLE);
+        LabelPattern minTemp = new LabelPattern("min temp: "+minTempInt+"°C", LABEL_STYLE);
         vBox1.getChildren().addAll(titleFirstVBox, maxTemp, minTemp);
 
-        VBox vbox2 = new VBox(10);
-        LabelPattern titleSecondVBox = new LabelPattern("Weather:", "Label");
-        LabelPattern weatherVar = new LabelPattern(weatherString, "Label");
-        ImageView weatherImages = weatherImage.selectPicture(weatherImageController.startController());
+        VBox vbox2 = new VBox(INSIDE_VBOX_SPACING);
+        LabelPattern titleSecondVBox = new LabelPattern("Weather:", LABEL_STYLE);
+        LabelPattern weatherVar = new LabelPattern(weatherString, LABEL_STYLE);
+        ImageView weatherImages = weatherImage.selectPicture(weatherString);
+        new FadeIn(weatherImages).play();
         vbox2.getChildren().addAll(titleSecondVBox, weatherVar, weatherImages);
 
-        VBox vbox3 = new VBox(10);
-        LabelPattern titleThirdVBox = new LabelPattern("Wind:", "Label");
-        LabelPattern windSpeed = new LabelPattern("Wind speed: "+windSpeedDouble+" m/s", "Label");
-        LabelPattern windDirection = new LabelPattern("Wind direction: " + windDirectionInt + "°", "Label");
+        VBox vbox3 = new VBox(INSIDE_VBOX_SPACING);
+        LabelPattern titleThirdVBox = new LabelPattern("Wind:", LABEL_STYLE);
+        LabelPattern windSpeed = new LabelPattern("Wind speed: "+windSpeedDouble+" m/s", LABEL_STYLE);
+        LabelPattern windDirection = new LabelPattern("Wind direction: " + windDirectionInt + "°", LABEL_STYLE);
         ImageView windImage = new ImageView("/WindDirectionIcons/wind_direction_" + windController.getDirection(windDirectionInt) + ".jpg");
+        new FadeIn(windImage).play();
         vbox3.getChildren().addAll(titleThirdVBox, windSpeed, windDirection,windImage);
 
-        VBox vbox4 = new VBox(10);
-        LabelPattern otherInfo = new LabelPattern("Other information:", "Label");
-        LabelPattern humidity = new LabelPattern("Humidity:", "Label");
+        VBox vbox4 = new VBox(INSIDE_VBOX_SPACING);
+        LabelPattern otherInfo = new LabelPattern("Other information:", LABEL_STYLE);
+        LabelPattern humidity = new LabelPattern("Humidity:", LABEL_STYLE);
         ProgressIndicator humidityBar = new ProgressIndicator();
         humidityBar.setProgress(humidityDouble / 100);
-        humidityBar.setPrefSize(80, 80);
+        humidityBar.setPrefSize(INDICATOR_WIDTH, INDICATOR_HEIGHT);
         vbox4.getChildren().addAll(otherInfo, humidity, humidityBar);
 
         centralHBox.getChildren().addAll(vBox1, vbox2, vbox3, vbox4);
         infoPane.setCenter(centralHBox);
         infoPane.getStylesheets().add(stylesheet);
-        infoPane.setPrefSize(1200, 400);
+        infoPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
         new FadeIn(infoPane).play();
 
         return infoPane;
