@@ -1,4 +1,4 @@
-package Controller;
+package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
 import Model.JSONDataParser;
