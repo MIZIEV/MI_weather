@@ -25,12 +25,67 @@
 -fx-text-fill: black;
 }
 
-.Button-left-menu{
+.Back-Button{
+-fx-background-color:#0063b1;
+-fx-background-image: url('/ButtonsIcons/right_menu_back_icon.jpg');
+-fx-background-size: 50px 90px;
+-fx-background-position: center;
+-fx-border-color:#0063b1;
+}
+.Back-Button: hover{
+-fx-border-color:#0063b1;
+-fx-background-image: url('/ButtonsIcons/right_menu_back_icon_hover.jpg');
+}
+
+.Toggle-Button-diagram{
+-fx-background-image: url('/ToggleButtonsIcons/diagram_icon.jpg');
+-fx-background-repeat: no-repeat;
+-fx-background-size: 50px 90px;
+-fx-background-position: center;
 -fx-background-color: #0063b1;
 -fx-border-color: #0063b1;
 }
-.Button-left-menu:hover{
--fx-border-color:white;
+.Toggle-Button-diagram:selected{
+-fx-background-image: url('/ToggleButtonsIcons/diagram_icon_selected.jpg');
+-fx-background-color: #e61121;
+-fx-border-color: #e61121;
+}
+.Toggle-Button-diagram:hover{
+-fx-border-color: white;
+}
+
+.Toggle-Button-info{
+-fx-background-image: url('/ToggleButtonsIcons/info_icon.jpg');
+-fx-background-repeat: no-repeat;
+-fx-background-size: 50px 90px;
+-fx-background-position: center;
+-fx-background-color: #0063b1;
+-fx-border-color: #0063b1;
+}
+.Toggle-Button-info:selected{
+-fx-background-image: url('/ToggleButtonsIcons/info_icon_selected.jpg');
+-fx-background-color: #e61121;
+-fx-border-color: #e61121;
+}
+.Toggle-Button-info:hover{
+-fx-border-color: white;
+}
+
+.Toggle-Button-DB-info{
+-fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon.jpg');
+-fx-background-repeat: no-repeat;
+-fx-background-size: 50px 90px;
+-fx-background-position: center;
+-fx-background-color: #0063b1;
+-fx-border-color: #0063b1;
+}
+.Toggle-Button-DB-info:selected{
+-fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon_selected.jpg');
+-fx-background-color: #e61121;
+-fx-border-color: #e61121;
+}
+.Toggle-Button-DB-info:hover{
+-fx-border-color: white;
 }
 
 .Central-VBox{
