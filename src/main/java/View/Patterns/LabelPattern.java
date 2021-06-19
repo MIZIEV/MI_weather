@@ -1,4 +1,4 @@
-package View;
+package View.Patterns;
 
 import Model.DataAnalyser;
 import Model.IndexClass;
