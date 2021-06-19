@@ -2,18 +2,6 @@
 -fx-background-color: #ffffff;
 }
 
-.Pane-for-diagram{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #b0c4de;
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-.label{
--fx-text-fill: black;
--fx-font-style: oblique;
--fx-font-size: 20px;
-}
 .Label-standard{
 -fx-text-fill: white;
 -fx-font-style: oblique;
@@ -23,21 +11,6 @@
 -fx-text-fill: white;
 -fx-font-style: oblique;
 -fx-font-size: 15px;
-}
-
-.Button{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color:#ffac84;
--fx-border-color: #ffac84;
--fx-text-fill: white;
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-.Button:hover{
--fx-border-radius: 0 20 0 20;
--fx-background-radius: 0 20 0 20;
--fx-background-color: white;
--fx-text-fill: black;
 }
 
 .Button-insideVBox{
@@ -53,16 +26,17 @@
 }
 
 .Button-left-menu{
--fx-background-color:#0063b1;
+-fx-background-color: #0063b1;
+-fx-border-color: #0063b1;
 }
 .Button-left-menu:hover{
 -fx-border-color:white;
 }
 
 .Central-VBox{
--fx-border-radius: 20px;
--fx-background-radius: 20px;
--fx-background-color: #ffac84;
+-fx-border-radius: 20 0 20 0;
+-fx-background-radius: 20 0 20 0;
+-fx-background-color: #6a5acd;
 -fx-text-fill:white;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
@@ -106,6 +80,7 @@
 -fx-border-color:#f0c658;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
+
 .left-menu-VBox{
 -fx-background-color:#0063b1;
 }
