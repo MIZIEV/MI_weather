@@ -4,10 +4,10 @@ import javafx.scene.control.Button;
 
 public class ButtonsPattern extends Button {
 
-    public ButtonsPattern(int height, int width, String name, String styleCLass) {
+    public ButtonsPattern(int width, int height, String name, String styleCLass) {
 
         setText(name);
-        setPrefSize(height, width);
+        setPrefSize(width, height);
         getStyleClass().add(styleCLass);
     }
 }
