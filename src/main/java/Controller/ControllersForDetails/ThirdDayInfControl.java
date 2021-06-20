@@ -17,11 +17,11 @@ public class ThirdDayInfControl {
 
     public void putDataToPane() {
         generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(2))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(3) + 1))) - 273);
+                tailMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getEndDayIndex() + 1))) - 273);
         generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(2))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(3) + 1))) - 273);
+                tailMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getEndDayIndex() + 1))) - 273);
         generalInfo.setWeatherString(parser.getWeatherThirdDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(2));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(2));

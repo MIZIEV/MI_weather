@@ -17,15 +17,14 @@ public class FourDayInfControl {
 
     public void putDataToPane() {
         generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(3))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(4) + 1))) - 273);
+                tailMap(parser.getKeysForMap().get(parser.getFourDayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getFourDayIndex().getEndDayIndex() + 1))) - 273);
         generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(3))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(4) + 1))) - 273);
+                tailMap(parser.getKeysForMap().get(parser.getFourDayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getFourDayIndex().getEndDayIndex() + 1))) - 273);
         generalInfo.setWeatherString(parser.getWeatherFourthDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(3));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(3));
         generalInfo.setWindDirectionInt(parser.getWindDirection().get(3));
-
     }
 }

@@ -1,6 +1,7 @@
 package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
+import Model.IndexClass;
 import Model.JSONDataParser;
 import View.GeneralInfo;
 
@@ -17,11 +18,11 @@ public class TodayGenInfController {
 
     public void putDataToPane() {
         generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(0))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(1) + 1))) - 273);
+                tailMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getTodayIndex().getEndDayIndex() + 1))) - 273);
         generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(0))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(1) + 1))) - 273);
+                tailMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex() + 1))) - 273);
         generalInfo.setWeatherString(parser.getWeatherNow());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(0));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(0));
