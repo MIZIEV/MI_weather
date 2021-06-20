@@ -26,7 +26,7 @@ public class TodayInfoController implements InfoButtonsControllers {
             int time = Integer.parseInt(stringTime);
             if (time == 0) time = 24;
             diagram.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element) - 273));
-            if (element.equals(parser.getKeysForMap().get(parser.getIndexList().get(1)))) break;
+            if (element.equals(parser.getKeysForMap().get(parser.getTodayIndex().getEndDayIndex()))) break;
         }
     }
 }

@@ -20,11 +20,11 @@ public class FourDayInfoController implements InfoButtonsControllers {
         diagram.getTemp().getData().clear();
 
         for (String element : parser.getTempMap().
-                tailMap(parser.getKeysForMap().get(parser.getIndexList().get(3))).
-                headMap(parser.getKeysForMap().get(parser.getIndexList().get(4) + 1)).keySet()) {
+                tailMap(parser.getKeysForMap().get(parser.getFourDayIndex().getStartDayIndex())).
+                headMap(parser.getKeysForMap().get(parser.getFourDayIndex().getEndDayIndex() + 1)).keySet()) {
             String[] bufferTime = element.split("\\s");
             int time = Integer.parseInt(bufferTime[2]);
-            if (time == 0 & element.equals(parser.getKeysForMap().get(parser.getIndexList().get(4)))) time = 24;
+            if (time == 0 & element.equals(parser.getKeysForMap().get(parser.getFourDayIndex().getEndDayIndex()))) time = 24;
             diagram.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element) - 273));
         }
     }
