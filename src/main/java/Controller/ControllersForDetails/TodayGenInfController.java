@@ -19,10 +19,10 @@ public class TodayGenInfController {
     public void putDataToPane() {
         generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex())).
-                headMap(parser.getKeysForMap().get(parser.getTodayIndex().getEndDayIndex() + 1))) - 273);
+                headMap(parser.getKeysForMap().get(parser.getTodayIndex().getEndDayIndex() + 1))));
         generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex())).
-                headMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex() + 1))) - 273);
+                headMap(parser.getKeysForMap().get(parser.getTodayIndex().getStartDayIndex() + 1))));
         generalInfo.setWeatherString(parser.getWeatherNow());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(0));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(0));

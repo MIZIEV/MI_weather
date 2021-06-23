@@ -18,10 +18,10 @@ public class SecondDayInfControl {
     public void putDataToPane() {
         generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getSecondDayIndex().getStartDayIndex())).
-                headMap(parser.getKeysForMap().get(parser.getSecondDayIndex().getEndDayIndex() + 1))) - 273);
+                headMap(parser.getKeysForMap().get(parser.getSecondDayIndex().getEndDayIndex() + 1))));
         generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getSecondDayIndex().getStartDayIndex())).
-                headMap(parser.getKeysForMap().get(parser.getSecondDayIndex().getEndDayIndex() + 1))) - 273);
+                headMap(parser.getKeysForMap().get(parser.getSecondDayIndex().getEndDayIndex() + 1))));
         generalInfo.setWeatherString(parser.getWeatherSecondDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(1));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(1));

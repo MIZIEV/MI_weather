@@ -18,10 +18,10 @@ public class FifthDayControl {
     public void putDataToPane() {
         generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getStartDayIndex())).
-                headMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getEndDayIndex() + 1))) - 273);
+                headMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getEndDayIndex() + 1))));
         generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getStartDayIndex())).
-                headMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getEndDayIndex() + 1))) - 273);
+                headMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getEndDayIndex() + 1))));
         generalInfo.setWeatherString(parser.getWeatherFifthDay());
         generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(4));
         generalInfo.setHumidityDouble(parser.getHumidityList().get(4));
