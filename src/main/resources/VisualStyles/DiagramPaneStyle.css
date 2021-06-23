@@ -1,7 +1,7 @@
 .Pane-for-diagram{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #6a5acd;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #13153c;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 .label{
