@@ -34,7 +34,8 @@ public class Diagram {
 
     public BorderPane showDiagram() {
 
-        String stylesheet = getClass().getResource("/DiagramPaneStyle.css").toExternalForm();
+        String stylesheet = getClass().getResource("/VisualStyles/DiagramPaneStyle.css").toExternalForm();
+        String diagramStylesheet = getClass().getResource("/VisualStyles/DiagramStyle.css").toExternalForm();
         BorderPane diagramPane = new BorderPane();
         diagramPane.getStyleClass().add(PANE_STYLE);
 
@@ -46,6 +47,7 @@ public class Diagram {
         temp.setName(" °C ");
         diagram.getData().addAll(temp);
         diagram.setTitle(DIAGRAM_TITLE);
+        diagram.getStylesheets().add(diagramStylesheet);
         diagramPane.setCenter(diagram);
         diagramPane.getStylesheets().add(stylesheet);
         diagramPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
