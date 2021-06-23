@@ -1,28 +1,34 @@
 .pane{
--fx-background-color: #ffffff;
+-fx-background-color: #13153c;
+
 }
 
 .label{
--fx-text-fill: #6ab3dd;
+-fx-text-fill: white;
 -fx-font-style: oblique;
 -fx-font-size: 40px;
 }
 
-.Text-Area{
-    -fx-background-color: #ffac84;
+.HBox{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-border-color: white;
+}
+.text-input{
+-fx-background-color: rgba(0,0,0,0);
+-fx-border-width: 0 0 1 0;
+-fx-text-fill: white;
+-fx-border-color: #00012d;
 }
 
 .Button{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color:#6ab3dd;
--fx-border-color: #6ab3dd;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #00012d;
+-fx-border-color: white;
 -fx-text-fill: white;
 }
 
 .Button:hover{
--fx-background-color: #ffffff;
--fx-text-fill: black;
--fx-border-radius: 0 20 0 20;
--fx-background-radius: 0 20 0 20;
+-fx-background-color: #13153c;
 }

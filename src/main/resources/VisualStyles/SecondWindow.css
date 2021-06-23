@@ -1,5 +1,10 @@
 .pane{
--fx-background-color: #ffffff;
+-fx-background-color: #00012d;
+}
+.image-pane{
+-fx-border-radius: 40 40 40 40;
+-fx-background-radius: 40 40 40 40;
+-fx-border-color: white;
 }
 
 .Label-standard{
@@ -14,8 +19,8 @@
 }
 
 .Button-insideVBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
 -fx-background-color: transparent;
 -fx-border-color: white;
 -fx-text-fill: white;
@@ -28,118 +33,74 @@
 .Back-Button{
 -fx-background-color:#0063b1;
 -fx-background-image: url('/ButtonsIcons/right_menu_back_icon.jpg');
--fx-background-size: 50px 90px;
+-fx-background-size: 140px 50px;
 -fx-background-position: center;
--fx-border-color:#0063b1;
 }
 .Back-Button: hover{
--fx-border-color:#0063b1;
 -fx-background-image: url('/ButtonsIcons/right_menu_back_icon_hover.jpg');
 }
 
 .Toggle-Button-diagram{
 -fx-background-image: url('/ToggleButtonsIcons/diagram_icon.jpg');
 -fx-background-repeat: no-repeat;
--fx-background-size: 50px 90px;
+-fx-background-size: 140px 50px;
 -fx-background-position: center;
 -fx-background-color: #0063b1;
--fx-border-color: #0063b1;
 }
 .Toggle-Button-diagram:selected{
 -fx-background-image: url('/ToggleButtonsIcons/diagram_icon_selected.jpg');
--fx-background-color: #e61121;
--fx-border-color: #e61121;
 }
 .Toggle-Button-diagram:hover{
--fx-border-color: white;
 }
 
 .Toggle-Button-info{
 -fx-background-image: url('/ToggleButtonsIcons/info_icon.jpg');
 -fx-background-repeat: no-repeat;
--fx-background-size: 50px 90px;
+-fx-background-size: 140px 50px;
 -fx-background-position: center;
 -fx-background-color: #0063b1;
--fx-border-color: #0063b1;
 }
 .Toggle-Button-info:selected{
 -fx-background-image: url('/ToggleButtonsIcons/info_icon_selected.jpg');
--fx-background-color: #e61121;
--fx-border-color: #e61121;
 }
 .Toggle-Button-info:hover{
--fx-border-color: white;
+
 }
 
 .Toggle-Button-DB-info{
 -fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon.jpg');
 -fx-background-repeat: no-repeat;
--fx-background-size: 50px 90px;
+-fx-background-size: 140px 50px;
 -fx-background-position: center;
 -fx-background-color: #0063b1;
--fx-border-color: #0063b1;
 }
 .Toggle-Button-DB-info:selected{
 -fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon_selected.jpg');
--fx-background-color: #e61121;
--fx-border-color: #e61121;
 }
 .Toggle-Button-DB-info:hover{
--fx-border-color: white;
+
 }
 
 .Central-VBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #6a5acd;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #13153c;
 -fx-text-fill:white;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 .First-small-VBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #49c39c;
--fx-border-color:#49c39c;
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-.Second-small-VBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #6ab3dd;
--fx-border-color:#6ab3dd;
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-.Third-small-VBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #ffac84;
--fx-border-color:#ffac84;
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-.Fourth-small-VBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #ed8376;
--fx-border-color:#ed8376;
--fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-.Fifth-small-VBox{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #f0c658;
--fx-border-color:#f0c658;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #13153c;
+-fx-border-color: #13153c;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 .left-menu-VBox{
--fx-background-color:#0063b1;
+-fx-background-color: #13153c;
 }
 
 .text{
--fx-text-fill:black;
+-fx-text-fill: white;
 }
