@@ -24,7 +24,7 @@ public class SecondDayInfoController implements InfoButtonsControllers {
             String[] bufferTime = element.split("\\s");
             int time = Integer.parseInt(bufferTime[2]);
             if (time == 0 & element.equals(parser.getKeysForMap().get(parser.getSecondDayIndex().getEndDayIndex()))) time = 24;
-            diagram.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element) - 273));
+            diagram.getTemp().getData().add(new XYChart.Data(time, parser.getTempMap().get(element)));
         }
     }
 }
