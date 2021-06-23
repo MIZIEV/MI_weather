@@ -31,12 +31,12 @@ public class LabelPattern extends Label {
         if (labelText.equals("min ")) {
             temp = analyser.minTemp(parser.getTempMap().
                     tailMap(parser.getKeysForMap().get(indexClass.getStartDayIndex())).
-                    headMap(parser.getKeysForMap().get(indexClass.getEndDayIndex() + 1))) - 273;
+                    headMap(parser.getKeysForMap().get(indexClass.getEndDayIndex() + 1)));
             return temp;
         } else if (labelText.equals("max ")) {
             temp = analyser.maxTemp(parser.getTempMap().
                     tailMap(parser.getKeysForMap().get(indexClass.getStartDayIndex())).
-                    headMap(parser.getKeysForMap().get(indexClass.getEndDayIndex() + 1))) - 273;
+                    headMap(parser.getKeysForMap().get(indexClass.getEndDayIndex() + 1)));
             return temp;
         } else return temp;
     }
