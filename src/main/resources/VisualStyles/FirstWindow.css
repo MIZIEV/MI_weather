@@ -18,7 +18,10 @@
 -fx-background-color: rgba(0,0,0,0);
 -fx-border-width: 0 0 1 0;
 -fx-text-fill: white;
+-fx-font-style: oblique;
+-fx-font-size: 25px;
 -fx-border-color: #00012d;
+-fx-alignment: center;
 }
 
 .Button{
