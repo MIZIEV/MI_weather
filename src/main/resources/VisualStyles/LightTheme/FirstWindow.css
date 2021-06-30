@@ -1,0 +1,41 @@
+.pane{
+-fx-background-color: #f5f6fa;
+}
+
+.label{
+-fx-text-fill: #44bd32;
+-fx-font-style: oblique;
+-fx-font-size: 40px;
+}
+
+.HBox{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-border-color: #44bd32;
+}
+
+.text-input{
+-fx-background-color: rgba(0,0,0,0);
+-fx-border-width: 0 0 1 0;
+-fx-text-fill: #44bd32;
+-fx-font-style: oblique;
+-fx-font-size: 25px;
+-fx-border-color: #44bd32;
+-fx-alignment: center;
+}
+
+.Button{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #f5f6fa;
+-fx-border-color: #44bd32;
+-fx-text-fill: #44bd32;
+}
+
+.Button:hover{
+-fx-background-color: #dcdde1;
+}
+.Radio-Button{
+-fx-font-size: 20px;
+-fx-text-fill: #44bd32;
+}

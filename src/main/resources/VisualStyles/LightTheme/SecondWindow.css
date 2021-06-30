@@ -1,0 +1,111 @@
+.pane{
+-fx-background-color: #f5f6fa;
+}
+.image-pane{
+-fx-border-radius: 40 40 40 40;
+-fx-background-radius: 40 40 40 40;
+-fx-border-color: #44bd32;
+}
+.indicator-HBox{
+-fx-background-radius: 20 20 20 20;
+-fx-border-radius: 20 20 20 20;
+-fx-border-color: #44bd32;
+}
+
+.Label-standard{
+-fx-text-fill: #44bd32;
+-fx-font-style: oblique;
+-fx-font-size: 20px;
+}
+.Label-small{
+-fx-text-fill: #44bd32;
+-fx-font-style: oblique;
+-fx-font-size: 15px;
+}
+
+.Button-insideVBox{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: transparent;
+-fx-border-color: #44bd32;
+-fx-text-fill: #44bd32;
+}
+.Button-insideVBox:hover{
+-fx-background-color: #44bd32;
+-fx-text-fill: black;
+}
+
+.Back-Button{
+-fx-background-color:#0063b1;
+-fx-background-image: url('/ButtonsIcons/right_menu_back_icon.jpg');
+-fx-background-size: 140px 50px;
+-fx-background-position: center;
+}
+.Back-Button: hover{
+-fx-background-image: url('/ButtonsIcons/right_menu_back_icon_hover.jpg');
+}
+
+.Toggle-Button-diagram{
+-fx-background-image: url('/ToggleButtonsIcons/diagram_icon.jpg');
+-fx-background-repeat: no-repeat;
+-fx-background-size: 140px 50px;
+-fx-background-position: center;
+-fx-background-color: #0063b1;
+}
+.Toggle-Button-diagram:selected{
+-fx-background-image: url('/ToggleButtonsIcons/diagram_icon_selected.jpg');
+}
+.Toggle-Button-diagram:hover{
+}
+
+.Toggle-Button-info{
+-fx-background-image: url('/ToggleButtonsIcons/info_icon.jpg');
+-fx-background-repeat: no-repeat;
+-fx-background-size: 140px 50px;
+-fx-background-position: center;
+-fx-background-color: #0063b1;
+}
+.Toggle-Button-info:selected{
+-fx-background-image: url('/ToggleButtonsIcons/info_icon_selected.jpg');
+}
+.Toggle-Button-info:hover{
+
+}
+
+.Toggle-Button-DB-info{
+-fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon.jpg');
+-fx-background-repeat: no-repeat;
+-fx-background-size: 140px 50px;
+-fx-background-position: center;
+-fx-background-color: #0063b1;
+}
+.Toggle-Button-DB-info:selected{
+-fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon_selected.jpg');
+}
+.Toggle-Button-DB-info:hover{
+
+}
+
+.Central-VBox{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #dcdde1;
+-fx-text-fill:white;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.First-small-VBox{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #dcdde1;
+-fx-border-color: #dcdde1;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.left-menu-VBox{
+-fx-background-color: #dcdde1;
+}
+
+.text{
+-fx-text-fill: #44bd32;
+}
