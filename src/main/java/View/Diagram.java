@@ -32,16 +32,16 @@ public class Diagram {
         this.analyser = dataAnalyser;
     }
 
-    public BorderPane showDiagram() {
+    public BorderPane showDiagram(String stylesheet) {
 
-        String stylesheet = getClass().getResource("/VisualStyles/DiagramPaneStyle.css").toExternalForm();
-        String diagramStylesheet = getClass().getResource("/VisualStyles/DiagramStyle.css").toExternalForm();
+        String paneStylesheet = getClass().getResource(stylesheet + "DiagramPaneStyle.css").toExternalForm();
+        String diagramStylesheet = getClass().getResource(stylesheet + "DiagramStyle.css").toExternalForm();
         BorderPane diagramPane = new BorderPane();
         diagramPane.getStyleClass().add(PANE_STYLE);
 
         NumberAxis XCoordinateTime = new NumberAxis(LOWER_BOUND_X, UPPER_BOUND_X, TICK_UNIT_X);
         NumberAxis YCoordinateDegrees = new NumberAxis(LOWER_BOUND_Y,
-                (analyser.maxTemp(parser.getTempMap()) - 273) + UPPER_BOUND_Y, TICK_UNIT_Y);
+                (analyser.maxTemp(parser.getTempMap())) + UPPER_BOUND_Y, TICK_UNIT_Y);
         AreaChart<Number, Number> diagram = new AreaChart<>(XCoordinateTime, YCoordinateDegrees);
 
         temp.setName(" °C ");
@@ -49,7 +49,7 @@ public class Diagram {
         diagram.setTitle(DIAGRAM_TITLE);
         diagram.getStylesheets().add(diagramStylesheet);
         diagramPane.setCenter(diagram);
-        diagramPane.getStylesheets().add(stylesheet);
+        diagramPane.getStylesheets().add(paneStylesheet);
         diagramPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
         new FadeIn(diagramPane).play();
         return diagramPane;

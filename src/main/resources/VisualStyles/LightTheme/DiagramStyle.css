@@ -1,0 +1,18 @@
+.chart-legend {
+   -fx-background-color: transparent;
+}
+.chart-legend-item{
+    -fx-text-fill: #2f3640;
+}
+.chart-title{
+-fx-text-fill: #2f3640;
+}
+.chart-plot-background{
+-fx-background-color: #f5f6fa;
+}
+.axis{
+ -fx-tick-label-fill: #2f3640;
+}
+.default-color0.chart-area-symbol{ -fx-background-color: #44bd32,#4cd137;}
+.default-color0.chart-series-area-line { -fx-stroke: #44bd32; }
+.default-color0.chart-series-area-fill { -fx-fill: rgba(76,209,55, 0.3)}

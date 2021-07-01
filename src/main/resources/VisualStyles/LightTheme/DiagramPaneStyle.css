@@ -1,0 +1,10 @@
+.Pane-for-diagram{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #dcdde1;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.label{
+-fx-text-fill: black;
+-fx-font-size: 20px;
+}
