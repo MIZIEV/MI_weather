@@ -2,6 +2,7 @@ package View;
 
 import animatefx.animation.FadeIn;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -12,6 +13,7 @@ public class GoogleMap {
     private final Stage map = new Stage();
     private final static short WIN_WIDTH = 1024;
     private final static short WIN_HEIGHT = 768;
+    private final static String WIN_TITLE = "Google map";
     private final static String GOOGLE_URL = "https://www.google.com.ua/maps/place/";
 
     public void launchMap(String cityName) {
@@ -22,6 +24,8 @@ public class GoogleMap {
         BorderPane mainPane = new BorderPane();
         mainPane.setCenter(webView);
         Scene mapScene = new Scene(mainPane, WIN_WIDTH, WIN_HEIGHT);
+        map.setTitle(WIN_TITLE);
+        map.getIcons().add(new Image("/google_map_icon.png"));
         map.setScene(mapScene);
         new FadeIn(mainPane).play();
         map.show();
