@@ -14,12 +14,10 @@
 
 .Label-standard{
 -fx-text-fill: #44bd32;
--fx-font-style: oblique;
 -fx-font-size: 20px;
 }
 .Label-small{
 -fx-text-fill: #44bd32;
--fx-font-style: oblique;
 -fx-font-size: 15px;
 }
 
@@ -37,53 +35,53 @@
 
 .Back-Button{
 -fx-background-color:#0063b1;
--fx-background-image: url('/ButtonsIcons/right_menu_back_icon.jpg');
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/back_button.jpg');
 -fx-background-size: 140px 50px;
 -fx-background-position: center;
 }
 .Back-Button: hover{
--fx-background-image: url('/ButtonsIcons/right_menu_back_icon_hover.jpg');
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/back_button_hover.jpg');
 }
-
+.Google-Button{
+-fx-background-color:#0063b1;
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/google_map_button.jpg');
+-fx-background-size: 140px 50px;
+-fx-background-position: center;
+}
+.Google-Button: hover{
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/google_map_button_hover.jpg');
+}
 .Toggle-Button-diagram{
--fx-background-image: url('/ToggleButtonsIcons/diagram_icon.jpg');
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/diagram_icon.jpg');
 -fx-background-repeat: no-repeat;
 -fx-background-size: 140px 50px;
 -fx-background-position: center;
 -fx-background-color: #0063b1;
 }
 .Toggle-Button-diagram:selected{
--fx-background-image: url('/ToggleButtonsIcons/diagram_icon_selected.jpg');
-}
-.Toggle-Button-diagram:hover{
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/diagram_icon_selected.jpg');
 }
 
 .Toggle-Button-info{
--fx-background-image: url('/ToggleButtonsIcons/info_icon.jpg');
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/info_icon.jpg');
 -fx-background-repeat: no-repeat;
 -fx-background-size: 140px 50px;
 -fx-background-position: center;
 -fx-background-color: #0063b1;
 }
 .Toggle-Button-info:selected{
--fx-background-image: url('/ToggleButtonsIcons/info_icon_selected.jpg');
-}
-.Toggle-Button-info:hover{
-
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/info_icon_selected.jpg');
 }
 
 .Toggle-Button-DB-info{
--fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon.jpg');
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/DBInfo_icon.jpg');
 -fx-background-repeat: no-repeat;
 -fx-background-size: 140px 50px;
 -fx-background-position: center;
 -fx-background-color: #0063b1;
 }
 .Toggle-Button-DB-info:selected{
--fx-background-image: url('/ToggleButtonsIcons/DBInfo_icon_selected.jpg');
-}
-.Toggle-Button-DB-info:hover{
-
+-fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/DBInfo_icon_selected.jpg');
 }
 
 .Central-VBox{
