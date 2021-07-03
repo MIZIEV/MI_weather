@@ -19,10 +19,9 @@ public class PieChartController {
     }
 
     public void putDataToPie(PieChart pieChart) {
-        dbAnalyzer.dataAnalyze(dbWorker.getDataList());
-
-        for (String cityName : dbAnalyzer.getDataForPieChart().keySet()) {
-            PieChart.Data data = new PieChart.Data(cityName, dbAnalyzer.getDataForPieChart().get(cityName));
+        for (String cityName : dbAnalyzer.transformData(dbWorker.getDataList()).keySet()) {
+            PieChart.Data data = new PieChart.Data(cityName,
+                    dbAnalyzer.transformData(dbWorker.getDataList()).get(cityName));
             pieChart.getData().add(data);
         }
     }
