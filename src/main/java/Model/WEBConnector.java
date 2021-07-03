@@ -1,5 +1,7 @@
 package Model;
 
+import View.ErrorsWindow;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -35,7 +37,9 @@ public class WEBConnector {
             }
             bufferedReader.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            ErrorsWindow errorsWindow = new ErrorsWindow();
+            errorsWindow.launchErrorWin("Error in WEB connector"+"\n"
+            + "with today weather call API");
         }
         return content.toString();
     }
@@ -57,7 +61,9 @@ public class WEBConnector {
             }
             bufferedReade.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            ErrorsWindow errorsWindow = new ErrorsWindow();
+            errorsWindow.launchErrorWin("Error in WEB connector"+"\n"
+            +"with forecast on five day call API ");
         }
         return content.toString();
     }
