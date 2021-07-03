@@ -1,15 +1,25 @@
 package Model.DBModel;
 
-public class StringForDB {
+/**
+ * class description:
+ * this class is needed to describes data for the database
+ */
+public class DataForDB {
 
-    private String cityName;
-    private String date;
-    private String time;
-    private int temperature;
+    private final String cityName;
+    private final String date;
+    private final String time;
+    private final double windSpeed;
+    private final int windDirection;
+    private final int humidity;
+    private final int temperature;
 
-    public StringForDB(String cityName, int temp, String data) {
+    public DataForDB(String cityName, int temp, String data, double windSpeed, int direction, int humidity) {
         this.cityName = cityName;
         this.temperature = temp;
+        this.windSpeed = windSpeed;
+        this.windDirection = direction;
+        this.humidity = humidity;
 
         String bufferString[] = data.split("\\s");
         date = bufferString[0];
@@ -23,7 +33,7 @@ public class StringForDB {
 
     @Override
     public int hashCode() {
-        int result = temperature;
+        int result = temperature + windDirection + humidity + (int) windSpeed;
 
         result = 31 * result + (cityName != null ? cityName.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
@@ -31,7 +41,6 @@ public class StringForDB {
 
         return result;
     }
-
 
     public String getCityName() {
         return cityName;
@@ -48,4 +57,10 @@ public class StringForDB {
     public int getTemperature() {
         return temperature;
     }
+
+    public double getWindSpeed() { return windSpeed; }
+
+    public int getWindDirection() { return windDirection; }
+
+    public int getHumidity() { return humidity; }
 }
