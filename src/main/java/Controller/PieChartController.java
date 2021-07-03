@@ -1,0 +1,29 @@
+package Controller;
+
+import Model.DBModel.DBAnalyzer;
+import Model.DBModel.DBWorker;
+import javafx.scene.chart.PieChart;
+
+/**
+ * class description:
+ * this class is needed to put data from data base to pie chart with putDataToPie(PieChart pieChart) method
+ */
+public class PieChartController {
+
+    private final DBAnalyzer dbAnalyzer;
+    private final DBWorker dbWorker;
+
+    public PieChartController(DBAnalyzer dbAnalyzer, DBWorker worker) {
+        this.dbAnalyzer = dbAnalyzer;
+        this.dbWorker = worker;
+    }
+
+    public void putDataToPie(PieChart pieChart) {
+        dbAnalyzer.dataAnalyze(dbWorker.getDataList());
+
+        for (String cityName : dbAnalyzer.getDataForPieChart().keySet()) {
+            PieChart.Data data = new PieChart.Data(cityName, dbAnalyzer.getDataForPieChart().get(cityName));
+            pieChart.getData().add(data);
+        }
+    }
+}
