@@ -6,8 +6,12 @@ import javafx.scene.image.ImageView;
 /**
  * class description:
  * This class is needed to choosing tha weather image.
- * getTodayImage method takes strings with present time & theme, then depending on the weather, it return images.
- * selectImage method takes strings with weather & theme, then return weather images without time dependency
+ *
+ * getTodayImage(String nowTime, String styleTheme) method takes strings with present time & theme,
+ * then depending on the weather, it return images.
+ *
+ * selectImage(String weather, String styleTheme) method takes strings with weather & theme,
+ * then return weather images without time dependency
  */
 public class WeatherImage {
 
