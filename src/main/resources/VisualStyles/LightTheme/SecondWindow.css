@@ -1,24 +1,16 @@
 .pane{
 -fx-background-color: #f5f6fa;
 }
+
 .image-pane{
 -fx-border-radius: 40 40 40 40;
 -fx-background-radius: 40 40 40 40;
 -fx-border-color: #44bd32;
 }
-.indicator-HBox{
--fx-background-radius: 20 20 20 20;
--fx-border-radius: 20 20 20 20;
--fx-border-color: #44bd32;
-}
 
-.Label-standard{
+.Label{
 -fx-text-fill: #44bd32;
 -fx-font-size: 20px;
-}
-.Label-small{
--fx-text-fill: #44bd32;
--fx-font-size: 15px;
 }
 
 .Button-insideVBox{
@@ -84,7 +76,7 @@
 -fx-background-image: url('/VisualStyles/LightTheme/ButtonsIcons/DBInfo_icon_selected.jpg');
 }
 
-.Central-VBox{
+.Left-block-VBox{
 -fx-border-radius: 20 20 20 20;
 -fx-background-radius: 20 20 20 20;
 -fx-background-color: #dcdde1;
@@ -92,7 +84,7 @@
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-.First-small-VBox{
+.VBox-block{
 -fx-border-radius: 20 20 20 20;
 -fx-background-radius: 20 20 20 20;
 -fx-background-color: #dcdde1;
@@ -100,7 +92,7 @@
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
-.left-menu-VBox{
+.left-VBox{
 -fx-background-color: #dcdde1;
 }
 
