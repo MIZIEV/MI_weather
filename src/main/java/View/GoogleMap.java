@@ -18,6 +18,7 @@ public class GoogleMap {
     private final static short WIN_WIDTH = 1024;
     private final static short WIN_HEIGHT = 768;
     private final static String WIN_TITLE = "Google map";
+    private final static String WIN_ICON_URL = "/Icons/google_map_icon.png";
     private final static String GOOGLE_URL = "https://www.google.com.ua/maps/place/";
 
     public void launchMap(String cityName) {
@@ -29,7 +30,7 @@ public class GoogleMap {
         mainPane.setCenter(webView);
         Scene mapScene = new Scene(mainPane, WIN_WIDTH, WIN_HEIGHT);
         map.setTitle(WIN_TITLE);
-        map.getIcons().add(new Image("/google_map_icon.png"));
+        map.getIcons().add(new Image(WIN_ICON_URL));
         map.setScene(mapScene);
         new FadeIn(mainPane).play();
         map.show();

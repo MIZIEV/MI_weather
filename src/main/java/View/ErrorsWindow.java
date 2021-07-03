@@ -16,7 +16,7 @@ public class ErrorsWindow {
 
     private final static String WINDOW_TITLE = "Error message";
     private final static String STYLE_CLASS_BUTTON = "Button";
-    private final static String WIN_ICON_URL = "error_icon.png";
+    private final static String WIN_ICON_URL = "Icons/error_icon.png";
 
     private final static short WINDOW_WIDTH = 700;
     private final static short WINDOW_HEIGHT = 400;
@@ -34,7 +34,7 @@ public class ErrorsWindow {
         BorderPane mainPane = new BorderPane();
         VBox mainBox = new VBox(VBOX_SPACING);
         mainBox.setAlignment(Pos.CENTER);
-        ImageView errorImage = new ImageView("/error_icon.jpg");
+        ImageView errorImage = new ImageView("/Icons/error_icon.jpg");
 
         ButtonsPattern okButton = new ButtonsPattern(BUTTON_WIDTH, BUTTON_HEIGHT, "OK", STYLE_CLASS_BUTTON);
         Label errorMessage = new Label();
