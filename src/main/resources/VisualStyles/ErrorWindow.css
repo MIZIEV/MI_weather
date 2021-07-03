@@ -1,23 +1,21 @@
 .pane{
--fx-background-color: #dc143c;
+-fx-background-color: #e84118;
 }
 
 .label{
--fx-text-fill: white;
--fx-font-style: oblique;
+-fx-text-fill: #f5f6fa;
 -fx-font-size: 40px;
 }
 
 .Button{
 -fx-border-radius: 20px;
 -fx-background-radius: 20px;
--fx-border-color: white;
--fx-background-color: #dc143c;
--fx-text-fill: white;
+-fx-border-color: #f5f6fa;
+-fx-background-color: #e84118;
+-fx-text-fill: #f5f6fa;
 -fx-font-size: 25px;
 }
 
 .Button: hover{
--fx-background-color: #a52a2a;
-
+-fx-background-color: #e1b12c;
 }

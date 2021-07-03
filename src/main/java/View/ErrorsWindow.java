@@ -1,55 +1,59 @@
 package View;
 
+import View.Patterns.ButtonsPattern;
 import animatefx.animation.FadeIn;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ErrorsWindow {
 
-    private final Stage errorWindow = new Stage();
-    private Label errorMessage = new Label("error");
-
     private final static String WINDOW_TITLE = "Error message";
     private final static String STYLE_CLASS_BUTTON = "Button";
+    private final static String WIN_ICON_URL = "error_icon.png";
 
     private final static short WINDOW_WIDTH = 700;
     private final static short WINDOW_HEIGHT = 400;
     private final static short MIN_WINDOW_WIDTH = 630;
     private final static short MIN_WINDOW_HEIGHT = 250;
 
-    public void startWin() {
-        String stylesheet = getClass().getResource("/ErrorWindow.css").toExternalForm();
+    private final static byte VBOX_SPACING = 10;
+    private final static short BUTTON_WIDTH = 180;
+    private final static short BUTTON_HEIGHT = 70;
 
-        BorderPane generalPane = new BorderPane();
-        BorderPane bottomPane = new BorderPane();
-        generalPane.setBottom(bottomPane);
+    public void launchErrorWin(String errorText) {
+        String stylesheet = getClass().getResource("/VisualStyles/ErrorWindow.css").toExternalForm();
 
-        ButtonsPattern okButton = new ButtonsPattern(180, 70, "OK", STYLE_CLASS_BUTTON);
-        Label insert = new Label();
+        Stage errorWin = new Stage();
+        BorderPane mainPane = new BorderPane();
+        VBox mainBox = new VBox(VBOX_SPACING);
+        mainBox.setAlignment(Pos.CENTER);
+        ImageView errorImage = new ImageView("/error_icon.jpg");
 
-        generalPane.setCenter(errorMessage);
-        bottomPane.setCenter(okButton);
-        bottomPane.setBottom(insert);
-        generalPane.getStyleClass().add("pane");
+        ButtonsPattern okButton = new ButtonsPattern(BUTTON_WIDTH, BUTTON_HEIGHT, "OK", STYLE_CLASS_BUTTON);
+        Label errorMessage = new Label();
+        errorMessage.setText(errorText);
+        mainBox.getChildren().addAll(errorImage,errorMessage, okButton);
+        mainPane.setCenter(mainBox);
 
-        okButton.setOnAction(event -> errorWindow.close());
+        mainPane.getStyleClass().add("pane");
+        okButton.setOnAction(event -> errorWin.close());
 
-        Scene errorWinScene = new Scene(generalPane, WINDOW_WIDTH, WINDOW_HEIGHT);
+        Scene errorWinScene = new Scene(mainPane, WINDOW_WIDTH, WINDOW_HEIGHT);
         errorWinScene.getStylesheets().add(stylesheet);
-        errorWindow.setMinWidth(MIN_WINDOW_WIDTH);
-        errorWindow.setMinHeight(MIN_WINDOW_HEIGHT);
-        errorWindow.getIcons().add(new Image("error_icon.png"));
-        errorWindow.setTitle(WINDOW_TITLE);
-        errorWindow.setScene(errorWinScene);
-        errorWindow.initModality(Modality.APPLICATION_MODAL);
-        new FadeIn(generalPane).play();
-        errorWindow.show();
-    }
-    public void setErrorMessage(Label errorMessage) {
-        this.errorMessage = errorMessage;
+        errorWin.setMinWidth(MIN_WINDOW_WIDTH);
+        errorWin.setMinHeight(MIN_WINDOW_HEIGHT);
+        errorWin.getIcons().add(new Image(WIN_ICON_URL));
+        errorWin.setTitle(WINDOW_TITLE);
+        errorWin.setScene(errorWinScene);
+        errorWin.initModality(Modality.APPLICATION_MODAL);
+        new FadeIn(mainPane).play();
+        errorWin.show();
     }
 }
