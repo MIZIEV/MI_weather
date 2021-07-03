@@ -4,7 +4,6 @@
 
 .label{
 -fx-text-fill: #44bd32;
--fx-font-style: oblique;
 -fx-font-size: 40px;
 }
 
@@ -18,7 +17,6 @@
 -fx-background-color: rgba(0,0,0,0);
 -fx-border-width: 0 0 1 0;
 -fx-text-fill: #44bd32;
--fx-font-style: oblique;
 -fx-font-size: 25px;
 -fx-border-color: #44bd32;
 -fx-alignment: center;

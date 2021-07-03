@@ -1,11 +1,9 @@
 .pane{
 -fx-background-color: #13153c;
-
 }
 
 .label{
 -fx-text-fill: white;
--fx-font-style: oblique;
 -fx-font-size: 40px;
 }
 
@@ -14,11 +12,11 @@
 -fx-background-radius: 20 20 20 20;
 -fx-border-color: white;
 }
+
 .text-input{
 -fx-background-color: rgba(0,0,0,0);
 -fx-border-width: 0 0 1 0;
 -fx-text-fill: white;
--fx-font-style: oblique;
 -fx-font-size: 25px;
 -fx-border-color: #00012d;
 -fx-alignment: center;
@@ -34,4 +32,8 @@
 
 .Button:hover{
 -fx-background-color: #13153c;
+}
+.Radio-Button{
+-fx-font-size: 20px;
+-fx-text-fill: white;
 }
