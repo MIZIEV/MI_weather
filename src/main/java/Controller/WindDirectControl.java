@@ -2,7 +2,7 @@ package Controller;
 
 /**
  * class description:
- * this class needed to determinate the wind direction
+ * this class is needed to determinate the wind direction
  *
  * getDirection(int windDegrees) method takes wind direction value in degrees (meteorological),
  * then return string with wind direction value
