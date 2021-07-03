@@ -2,6 +2,10 @@ package Model.DBModel;
 
 import java.sql.*;
 
+/**
+ * class description:
+ * this class is needed to get connection with database
+ */
 public class DBConnector {
 
     private Connection connection;
@@ -12,19 +16,17 @@ public class DBConnector {
     public void startConnection() {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("connection DONE");
         } catch (SQLException throwables) {
             System.out.println("error DB connector");
         }
     }
-    public void stopConnection(){
+
+    public void stopConnection() {
         try {
             connection.close();
-            System.out.println("close connection");
         } catch (SQLException throwables) {
             System.out.println("error in stop connection");
         }
     }
-
-    public Connection getConnection(){ return connection; }
+    public Connection getConnection() { return connection; }
 }
