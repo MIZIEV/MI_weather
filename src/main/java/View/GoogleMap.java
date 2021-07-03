@@ -8,6 +8,10 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+/**
+ * class description:
+ * this class opens google map with the user selected city
+ */
 public class GoogleMap {
 
     private final Stage map = new Stage();
@@ -19,7 +23,7 @@ public class GoogleMap {
     public void launchMap(String cityName) {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        webEngine.load(GOOGLE_URL + cityName);
+        webEngine.load(GOOGLE_URL+cityName);
 
         BorderPane mainPane = new BorderPane();
         mainPane.setCenter(webView);
