@@ -21,7 +21,7 @@ public class LabelPattern extends Label {
         this.parser = parser;
         this.analyser = analyser;
         this.labelText = text;
-        this.indexClass=indexClass;
+        this.indexClass = indexClass;
         setText(text + this.getTemp() + "°C");
         getStyleClass().add(styleClass);
     }

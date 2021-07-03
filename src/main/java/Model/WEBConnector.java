@@ -5,27 +5,31 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class ConnectorToWeatherSite {
+/**
+ * class description:
+ * this class is needed to get connection to site "https://openweathermap.org/" with API calls
+ */
+public class WEBConnector {
 
     private final CityName cityName;
 
-    public ConnectorToWeatherSite(CityName name) {
+    public WEBConnector(CityName name) {
         this.cityName = name;
     }
 
-    public String getConnection() {
-        String weather = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName.getCityName() + "&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
+    public String getTodayWeatherData() {
 
+        String statisticalWeatherDataAPICall = "http://api.openweathermap.org/data/2.5/weather?q=" +
+                cityName.getCityName() + "&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
         StringBuffer content = new StringBuffer();
 
         try {
-            URL url = new URL(weather);
+            URL url = new URL(statisticalWeatherDataAPICall);
             URLConnection openCon = url.openConnection();
-            System.out.println(openCon);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(openCon.getInputStream()));
-            String line;
 
+            String line;
             while ((line = bufferedReader.readLine()) != null) {
                 content.append(line + "\n");
             }
@@ -33,27 +37,25 @@ public class ConnectorToWeatherSite {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(content);
         return content.toString();
     }
 
-    public String getConnectionOnFiveDays() {
+    public String getForecastOnFiveDays() {
 
-        String APICall = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName.getCityName() + "&appid=ceb8e786e2a20dff0a80033639084138";
+        String forecastOnFiveDaysAPICall = "http://api.openweathermap.org/data/2.5/forecast?q=" +
+                cityName.getCityName() + "&appid=ceb8e786e2a20dff0a80033639084138";
         StringBuffer content = new StringBuffer();
 
         try {
-            URL url = new URL(APICall);
+            URL url = new URL(forecastOnFiveDaysAPICall);
             URLConnection openCon = url.openConnection();
-            System.out.println(openCon);
             BufferedReader bufferedReade = new BufferedReader(new InputStreamReader(openCon.getInputStream()));
-            String line;
 
+            String line;
             while ((line = bufferedReade.readLine()) != null) {
                 content.append(line + "\n");
             }
             bufferedReade.close();
-            System.out.println(content);
         } catch (Exception e) {
             e.printStackTrace();
         }
