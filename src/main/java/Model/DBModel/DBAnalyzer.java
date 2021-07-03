@@ -10,18 +10,18 @@ import java.util.HashSet;
  */
 public class DBAnalyzer {
 
-    public HashMap<String, Integer> transformData(ArrayList<StringFromDB> list) {
+    public HashMap<String, Integer> transformData(ArrayList<DataFromDB> list) {
 
         HashMap<String, Integer> dataForPieChart = new HashMap<>();
         HashSet<String> cityName = new HashSet<>();
 
-        for (StringFromDB element : list) {
+        for (DataFromDB element : list) {
             cityName.add(element.getCityName());
         }
 
         for (String element : cityName) {
             int counter = 0;
-            for (StringFromDB listElement : list) {
+            for (DataFromDB listElement : list) {
                 if (element.equals(listElement.getCityName())) counter++;
                 dataForPieChart.put(element, counter);
             }
