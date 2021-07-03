@@ -4,6 +4,7 @@ package Model;
  * also it has getters for works with this data
  */
 
+import Model.DBModel.DataForDB;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -29,17 +30,23 @@ public class JSONDataParser {
     private String dateFifthDay;
     private String weatherFifthDay;
 
+    private final CityName cityName;
     private final TreeMap<String, Integer> tempMap = new TreeMap<>();
     private final ArrayList<String> keysForMap = new ArrayList<>();
     private final ArrayList<Double> speedWindList = new ArrayList<>();
     private final ArrayList<Integer> windDirection = new ArrayList<>();
     private final ArrayList<Integer> humidityList = new ArrayList<>();
+    private final ArrayList<DataForDB> listForDB = new ArrayList<>();
 
     private final StartEndIndexDay todayIndex = new StartEndIndexDay();
     private final StartEndIndexDay secondDayIndex = new StartEndIndexDay();
     private final StartEndIndexDay thirdDayIndex = new StartEndIndexDay();
     private final StartEndIndexDay fourDayIndex = new StartEndIndexDay();
     private final StartEndIndexDay fifthDayIndex = new StartEndIndexDay();
+
+    public JSONDataParser(CityName cityName) {
+        this.cityName = cityName;
+    }
 
     public void getResponse(String output) {
         if (!output.isEmpty()) {
@@ -114,22 +121,24 @@ public class JSONDataParser {
                     fifthDayIndex.setEndDayIndex(counter);
                 }
 
+                listForDB.add(new DataForDB(cityName.getCityName(),
+                        obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp") - 273,
+                        obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt"),
+                        obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"),
+                        obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getInt("deg"),
+                        obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("humidity")));
+
                 // filter data to format:  key -( mount,day,hour ), value
                 String dataForMap = obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt");
                 String filteredData[] = dataForMap.split("\\-|\\s|\\:");
                 //  put filtered data to one treeMap
                 tempMap.put(filteredData[1] + " " + filteredData[2] + " " + filteredData[3],
-                        obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp"));
+                        obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp")-273);
                 // put the same filtered keys to ArrayList, they will be comparing with Map in another class
                 keysForMap.add(filteredData[1] + " " + filteredData[2] + " " + filteredData[3]);
                 counter++;
-            }
-            System.out.println("today index - "+ todayIndex.toString());
-            System.out.println("class - " + secondDayIndex.toString());
-            System.out.println("third day index - "+thirdDayIndex.toString());
-            System.out.println("four day index -"+fourDayIndex.toString());
-            System.out.println("fifth day index - "+fifthDayIndex.toString());
 
+            }
             todayDate = obj.getJSONArray("list").getJSONObject(todayIndex.getStartDayIndex()).getString("dt_txt");
             String todayBuf[] = todayDate.split("\\s");
             todayDate = todayBuf[0];
@@ -235,11 +244,23 @@ public class JSONDataParser {
 
     public StartEndIndexDay getTodayIndex() { return todayIndex; }
 
-    public StartEndIndexDay getThirdDayIndex() { return thirdDayIndex; }
+    public StartEndIndexDay getThirdDayIndex() {
+        return thirdDayIndex;
+    }
 
-    public StartEndIndexDay getFourDayIndex() { return fourDayIndex; }
+    public StartEndIndexDay getFourDayIndex() {
+        return fourDayIndex;
+    }
 
-    public StartEndIndexDay getFifthDayIndex() { return fifthDayIndex; }
+    public StartEndIndexDay getFifthDayIndex() {
+        return fifthDayIndex;
+    }
 
-    public StartEndIndexDay getSecondDayIndex() { return secondDayIndex; }
+    public StartEndIndexDay getSecondDayIndex() {
+        return secondDayIndex;
+    }
+
+    public ArrayList<DataForDB> getListForDB() {
+        return listForDB;
+    }
 }
