@@ -1,0 +1,15 @@
+.chart-legend{
+-fx-background-color: transparent;
+-fx-border-color: #44bd32;
+}
+.chart-legend-item{
+-fx-text-fill: #2f3640;
+}
+
+.chart-pie-label{
+-fx-fill: #2f3640;
+-fx-size: 10px;
+}
+
+.data0.chart-pie {
+}

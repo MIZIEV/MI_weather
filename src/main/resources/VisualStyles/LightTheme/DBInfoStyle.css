@@ -1,11 +1,11 @@
 .Border-Pane{
--fx-border-radius: 20 0 20 0;
--fx-background-radius: 20 0 20 0;
--fx-background-color: #6a5acd;
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: #dcdde1;
 -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 .Label{
--fx-text-fill: white;
+-fx-text-fill: #2f3640;
 -fx-font-style: oblique;
 -fx-font-size: 20px;
 }
