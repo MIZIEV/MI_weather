@@ -2,29 +2,29 @@ package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
 import Model.JSONDataParser;
-import View.GeneralInfo;
+import View.DetailInfo;
 
 public class ThirdDayInfControl {
-    private final GeneralInfo generalInfo;
+    private final DetailInfo detailInfo;
     private final JSONDataParser parser;
     private final DataAnalyser analyser;
 
-    public ThirdDayInfControl(GeneralInfo generalInfo, JSONDataParser jsonParser, DataAnalyser analyser) {
-        this.generalInfo = generalInfo;
+    public ThirdDayInfControl(DetailInfo detailInfo, JSONDataParser jsonParser, DataAnalyser analyser) {
+        this.detailInfo = detailInfo;
         this.parser = jsonParser;
         this.analyser = analyser;
     }
 
     public void putDataToPane() {
-        generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
+        detailInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getStartDayIndex())).
                 headMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getEndDayIndex() + 1))));
-        generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
+        detailInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getStartDayIndex())).
                 headMap(parser.getKeysForMap().get(parser.getThirdDayIndex().getEndDayIndex() + 1))));
-        generalInfo.setWeatherString(parser.getWeatherThirdDay());
-        generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(2));
-        generalInfo.setHumidityDouble(parser.getHumidityList().get(2));
-        generalInfo.setWindDirectionInt(parser.getWindDirection().get(2));
+        detailInfo.setWeatherString(parser.getWeatherThirdDay());
+        detailInfo.setWindSpeedDouble(parser.getSpeedWindList().get(2));
+        detailInfo.setHumidityDouble(parser.getHumidityList().get(2));
+        detailInfo.setWindDirectionInt(parser.getWindDirection().get(2));
     }
 }

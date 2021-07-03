@@ -2,29 +2,29 @@ package Controller.ControllersForDetails;
 
 import Model.DataAnalyser;
 import Model.JSONDataParser;
-import View.GeneralInfo;
+import View.DetailInfo;
 
 public class FifthDayControl {
-    private final GeneralInfo generalInfo;
+    private final DetailInfo detailInfo;
     private final JSONDataParser parser;
     private final DataAnalyser analyser;
 
-    public FifthDayControl(GeneralInfo generalInfo, JSONDataParser jsonParser, DataAnalyser analyser) {
-        this.generalInfo = generalInfo;
+    public FifthDayControl(DetailInfo detailInfo, JSONDataParser jsonParser, DataAnalyser analyser) {
+        this.detailInfo = detailInfo;
         this.parser = jsonParser;
         this.analyser = analyser;
     }
 
     public void putDataToPane() {
-        generalInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
+        detailInfo.setMinTempInt(analyser.minTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getStartDayIndex())).
                 headMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getEndDayIndex() + 1))));
-        generalInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
+        detailInfo.setMaxTempInt(analyser.maxTemp(parser.getTempMap().
                 tailMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getStartDayIndex())).
                 headMap(parser.getKeysForMap().get(parser.getFifthDayIndex().getEndDayIndex() + 1))));
-        generalInfo.setWeatherString(parser.getWeatherFifthDay());
-        generalInfo.setWindSpeedDouble(parser.getSpeedWindList().get(4));
-        generalInfo.setHumidityDouble(parser.getHumidityList().get(4));
-        generalInfo.setWindDirectionInt(parser.getWindDirection().get(4));
+        detailInfo.setWeatherString(parser.getWeatherFifthDay());
+        detailInfo.setWindSpeedDouble(parser.getSpeedWindList().get(4));
+        detailInfo.setHumidityDouble(parser.getHumidityList().get(4));
+        detailInfo.setWindDirectionInt(parser.getWindDirection().get(4));
     }
 }
