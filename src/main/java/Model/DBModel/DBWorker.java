@@ -1,6 +1,7 @@
 package Model.DBModel;
 
 import Model.JSONDataParser;
+import View.ErrorsWindow;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class DBWorker {
     private final static int WIND_DIRECTION_COLUMN = 7;
     private final static int HUMIDITY_COLUMN = 8;
 
-    private final ArrayList<StringFromDB> dataList = new ArrayList<>();
+    private final ArrayList<DataFromDB> dataList = new ArrayList<>();
 
     public DBWorker(JSONDataParser parser) {
         this.parser = parser;
@@ -52,7 +53,8 @@ public class DBWorker {
                 preparedStatement.execute();
             }
         } catch (SQLException throwables) {
-            System.out.println("error in DBWorker INSERT");
+            ErrorsWindow errorsWindow = new ErrorsWindow();
+            errorsWindow.launchErrorWin("Error with setting  data to DB");
         }
     }
 
@@ -60,20 +62,21 @@ public class DBWorker {
         try (Statement statement = dbConnector.getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(SELECT)) {
 
-            StringFromDB stringFromDB;
+            DataFromDB dataFromDB;
             while (resultSet.next()) {
-                stringFromDB = new StringFromDB(resultSet.getString(CITY_NAME_COLLUM),
+                dataFromDB = new DataFromDB(resultSet.getString(CITY_NAME_COLLUM),
                         resultSet.getInt(TEMPERATURE_COLLUM),
                         resultSet.getString(DATE_COLLUM),
                         resultSet.getDouble(WIND_SPEED_COLUMN),
                         resultSet.getInt(WIND_DIRECTION_COLUMN),
                         resultSet.getInt(HUMIDITY_COLUMN));
 
-                dataList.add(stringFromDB);
+                dataList.add(dataFromDB);
             }
         } catch (SQLException throwables) {
-            System.out.println("error getDataFromDB method !!!");
+            ErrorsWindow errorsWindow = new ErrorsWindow();
+            errorsWindow.launchErrorWin("Error with getting data from DB");
         }
     }
-    public ArrayList<StringFromDB> getDataList() { return dataList; }
+    public ArrayList<DataFromDB> getDataList() { return dataList; }
 }
