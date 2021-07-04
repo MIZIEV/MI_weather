@@ -102,15 +102,15 @@ public class SecondWindow {
         leftInfoBlock.getChildren().addAll(nameOfTheCity, temperature, tempAnswer, temperatureHBox, clouds);
 
         VBoxBlock firstBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
-        firstBlock.arrangeElements(parser.getTodayDate(),parser.getTodayIndex(), parser, analyser);
+        firstBlock.arrangeElements(parser.getTodayDate(),parser.getWeatherToday(),parser.getTodayIndex(), parser, analyser);
         VBoxBlock secondBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
-        secondBlock.arrangeElements(parser.getDateSecondDay(),parser.getSecondDayIndex(), parser, analyser);
+        secondBlock.arrangeElements(parser.getDateSecondDay(),parser.getWeatherSecondDay(),parser.getSecondDayIndex(), parser, analyser);
         VBoxBlock thirdBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
-        thirdBlock.arrangeElements(parser.getDateThirdDay(),parser.getThirdDayIndex(), parser, analyser);
+        thirdBlock.arrangeElements(parser.getDateThirdDay(),parser.getWeatherThirdDay(),parser.getThirdDayIndex(), parser, analyser);
         VBoxBlock fourBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
-        fourBlock.arrangeElements(parser.getDateFourDay(),parser.getFourDayIndex(), parser, analyser);
+        fourBlock.arrangeElements(parser.getDateFourDay(),parser.getWeatherFourthDay(),parser.getFourDayIndex(), parser, analyser);
         VBoxBlock fifthBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
-        fifthBlock.arrangeElements(parser.getDateFifthDay(),parser.getFifthDayIndex(), parser, analyser);
+        fifthBlock.arrangeElements(parser.getDateFifthDay(),parser.getWeatherFifthDay(),parser.getFifthDayIndex(), parser, analyser);
         collectionBlocks.getChildren().addAll(firstBlock, secondBlock, thirdBlock, fourBlock, fifthBlock);
 
         mainPane.getStyleClass().add("pane");
