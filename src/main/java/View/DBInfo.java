@@ -3,6 +3,7 @@ package View;
 import Controller.PieChartController;
 import Model.DBModel.DBAnalyzer;
 import Model.DBModel.DBWorker;
+import View.Patterns.ButtonsPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
@@ -17,20 +18,33 @@ public class DBInfo {
 
     private final DBWorker dbWorker;
 
+    private final static short PANE_WIDTH = 1200;
+    private final static short PANE_HEIGHT = 400;
+
+    private final static byte CENTRAL_HBOX_SPACING = 20;
+    private final static byte DB_SIZE_VBOX_SPACING = 10;
+
+    private final static short BUTTON_WIDTH = 120;
+    private final static short BUTTON_HEIGHT = 40;
+
+    private final static String SC_INFO_PANE = "Border-Pane";
+    private final static String SC_LABEL = "Label";
+    private final static String SC_CLEAR_BUTTON = "clear-button";
+
     public DBInfo(DBWorker worker) {
         this.dbWorker = worker;
     }
 
     public BorderPane showInfo(String theme) {
-        String stylesheets = getClass().getResource(theme+"DBInfoStyle.css").toExternalForm();
-        String pieChartStyle = getClass().getResource(theme+"PieChartStyle.css").toExternalForm();
+        String stylesheets = getClass().getResource(theme + "DBInfoStyle.css").toExternalForm();
+        String pieChartStyle = getClass().getResource(theme + "PieChartStyle.css").toExternalForm();
         DBAnalyzer dbAnalyzer = new DBAnalyzer();
         PieChartController controller = new PieChartController(dbAnalyzer, dbWorker);
 
-        ImageView DBSizeImage = new ImageView(theme+"DB_size_icon.jpg");
+        ImageView DBSizeImage = new ImageView(theme + "DB_size_icon.jpg");
         BorderPane infoPane = new BorderPane();
-        HBox centralHBox = new HBox(20);
-        VBox DBSizeBox = new VBox(10);
+        HBox centralHBox = new HBox(CENTRAL_HBOX_SPACING);
+        VBox DBSizeBox = new VBox(DB_SIZE_VBOX_SPACING);
         DBSizeBox.setAlignment(Pos.CENTER);
         centralHBox.setAlignment(Pos.CENTER);
         PieChart pieChart = new PieChart();
@@ -39,14 +53,20 @@ public class DBInfo {
         controller.putDataToPie(pieChart);
 
         Label DBSize = new Label("Data base size - " + dbWorker.getDataList().size());
-        DBSize.getStyleClass().add("Label");
-        DBSizeBox.getChildren().addAll(DBSize,DBSizeImage);
+        DBSize.getStyleClass().add(SC_LABEL);
+        ButtonsPattern clearDBButton = new ButtonsPattern(BUTTON_WIDTH, BUTTON_HEIGHT, "Clear DB", SC_CLEAR_BUTTON);
+        DBSizeBox.getChildren().addAll(DBSize, DBSizeImage, clearDBButton);
+        clearDBButton.setOnAction(event -> {
+            dbWorker.clearData();
+            DBSize.setText("Data base size - " + 0);
+            controller.clearDataFromPie(pieChart);
+        });
 
         centralHBox.getChildren().addAll(pieChart, DBSizeBox);
         infoPane.setCenter(centralHBox);
-        infoPane.getStyleClass().add("Border-Pane");
+        infoPane.getStyleClass().add(SC_INFO_PANE);
         new FadeIn(infoPane).play();
-        infoPane.setPrefSize(1200, 400);
+        infoPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
         infoPane.getStylesheets().add(stylesheets);
         return infoPane;
     }
