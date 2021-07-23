@@ -25,4 +25,6 @@ public class PieChartController {
             pieChart.getData().add(data);
         }
     }
+
+    public void clearDataFromPie(PieChart pieChart){ pieChart.getData().clear(); }
 }
