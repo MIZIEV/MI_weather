@@ -1,8 +1,8 @@
-package View.Patterns;
+package prog.view.patterns.controls;
 
-import Model.DataAnalyser;
-import Model.IndexClass;
-import Model.JSONDataParser;
+import prog.Model.DataAnalyser;
+import prog.Model.IndexClass;
+import prog.Model.JSONDataParser;
 import javafx.scene.control.Label;
 
 public class LabelPattern extends Label {

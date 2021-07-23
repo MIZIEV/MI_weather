@@ -1,10 +1,12 @@
-package View.Patterns;
+package prog.view.patterns.containers;
 
-import Model.DataAnalyser;
-import Model.IndexClass;
-import Model.JSONDataParser;
+import prog.Model.DataAnalyser;
+import prog.Model.IndexClass;
+import prog.Model.JSONDataParser;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import prog.view.patterns.controls.ButtonsPattern;
+import prog.view.patterns.controls.LabelPattern;
 
 public class VBoxBlock extends VBoxPattern {
 

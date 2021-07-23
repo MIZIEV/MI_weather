@@ -1,4 +1,4 @@
-package View.Patterns;
+package prog.view.patterns.containers;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
