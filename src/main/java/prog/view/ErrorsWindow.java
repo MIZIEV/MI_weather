@@ -1,6 +1,6 @@
-package View;
+package prog.view;
 
-import View.Patterns.ButtonsPattern;
+import prog.view.patterns.controls.ButtonsPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

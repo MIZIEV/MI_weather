@@ -1,14 +1,13 @@
-package View;
+package prog.view;
 
-import Controller.ControllersForDetails.*;
-import Controller.ControllersForDiagram.*;
-import Controller.TimeController;
-import Model.CityName;
-import Model.DBModel.DBWorker;
-import Model.DataAnalyser;
-import Model.JSONDataParser;
-import Model.PresentTime;
-import View.Patterns.*;
+import prog.Controller.ControllersForDetails.*;
+import prog.Controller.ControllersForDiagram.*;
+import prog.Controller.TimeController;
+import prog.Model.CityName;
+import prog.Model.DBModel.DBWorker;
+import prog.Model.DataAnalyser;
+import prog.Model.JSONDataParser;
+import prog.Model.PresentTime;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,6 +18,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import prog.view.patterns.containers.VBoxBlock;
+import prog.view.patterns.containers.VBoxPattern;
+import prog.view.patterns.controls.ButtonsPattern;
+import prog.view.patterns.controls.LabelPattern;
+import prog.view.patterns.controls.ToggleButtonPattern;
 
 public class SecondWindow {
 
@@ -76,7 +80,6 @@ public class SecondWindow {
         DetailInfo detailInfo = new DetailInfo(parser);
         Diagram diagram = new Diagram(parser, analyser);
         DBWorker dbWorker = new DBWorker(parser);
-        DBInfo dbInfo = new DBInfo(dbWorker);
         dbWorker.setDataToDB();
         dbWorker.getDataFromDB();
         //____________________________________________________creating the main window components
@@ -100,7 +103,7 @@ public class SecondWindow {
         LabelPattern clouds = new LabelPattern(parser.getWeatherNow(), SC_LABEL);
         temperatureHBox.getChildren().addAll(min, max);
         leftInfoBlock.getChildren().addAll(nameOfTheCity, temperature, tempAnswer, temperatureHBox, clouds);
-
+        //____________________________________________________creating all info blocks
         VBoxBlock firstBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
         firstBlock.arrangeElements(parser.getTodayDate(),parser.getWeatherToday(),parser.getTodayIndex(), parser, analyser);
         VBoxBlock secondBlock = new VBoxBlock(VBOX_BLOCK_SPICING, VBOX_BLOCK_WIDTH, VBOX_BLOCK_HEIGHT, Pos.CENTER, SC_VBOX_BLOCK);
@@ -219,6 +222,7 @@ public class SecondWindow {
         });
 
         DBInfoButton.setOnAction(event -> {
+            DBInfo dbInfo = new DBInfo(dbWorker);
             centralPane.getChildren().clear();
             fifthDayController.clearDataFromDiagram(diagram);
             centralPane.setCenter(dbInfo.showInfo(theme));

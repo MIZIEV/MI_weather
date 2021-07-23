@@ -1,10 +1,10 @@
-package View;
+package prog.view;
 
-import Controller.StartButtonController;
-import Model.CityName;
-import Model.ConnectorToWeatherSite;
-import Model.JSONDataParser;
-import View.Patterns.ButtonsPattern;
+import prog.Controller.StartButtonController;
+import prog.Model.CityName;
+import prog.Model.WEBConnector;
+import prog.Model.JSONDataParser;
+import prog.view.patterns.controls.ButtonsPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,15 +22,15 @@ import javafx.stage.Stage;
 
 public class FirstWindow {
 
-    private final Stage firstWindow = new Stage();
     private final TextField inputText = new TextField();
-    private final CityName cityName = new CityName();
-    private final ConnectorToWeatherSite connector = new ConnectorToWeatherSite(cityName);
 
+    private final static String WIN_ICON_URL = "Icons/weather_icon.png";
     private final static String FIRST_WINDOW_TITLE = "Mi weather program";
-    private final static String STYLE_CLASS_BUTTON = "Button";
-    private final static String LIGHT_TITLE_IMAGE = "title_icon2.jpg";
-    private final static String DARK_TITLE_IMAGE = "title_icon.jpg";
+    private final static String SC_BUTTON = "Button";            // SC = style class
+    private final static String SC_RADIO_BUTTON = "Radio-Button";
+    private final static String SC_TEXT_AREA = "text-input";
+    private final static String LIGHT_TITLE_IMAGE = "Icons/light_title_icon.jpg";
+    private final static String DARK_TITLE_IMAGE = "Icons/dark_title_icon.jpg";
 
     private final static short IMAGE_WIDTH = 300;
     private final static short IMAGE_HEIGHT = 300;
@@ -40,22 +40,31 @@ public class FirstWindow {
     private final static short WINDOW_MIN_WIDTH = 400;
     private final static short WINDOW_MIN_HEIGHT = 700;
 
+    private final static short BUTTON_WIDTH = 150;
+    private final static short BUTTON_HEIGHT = 50;
+
+    private final static byte TOP_CENTRAL_HBOX_SPACING = 30;
+    private final static byte THEME_SPACING = 40;
+    private final static short TEXT_AREA_WIDTH = 350;
+    private final static short TEXT_AREA_HEIGHT = 50;
+    private final static byte CARET_POSITION_IN_TEXT_AREA = 5;
+
     public void startWin() {
         Insets margin = new Insets(40);
-
+        Stage firstWindow = new Stage();
+        CityName cityName = new CityName();
+        WEBConnector connector = new WEBConnector();
         JSONDataParser parser = new JSONDataParser(cityName);
         SecondWindow secondWindow = new SecondWindow(cityName, parser, this);
+
         StartButtonController startButtonController = new StartButtonController(connector, parser, this, cityName);
 
         String darkStylesheet = getClass().getResource("/VisualStyles/DarkTheme/FirstWindow.css").toExternalForm();
         String lightStylesheet = getClass().getResource("/VisualStyles/LightTheme/FirstWindow.css").toExternalForm();
 
-        String secWinDarkStyle = getClass().getResource("/VisualStyles/DarkTheme/SecondWindow.css").toExternalForm();
-        String secWinLightStyle = getClass().getResource("/VisualStyles/LightTheme/SecondWindow.css").toExternalForm();
-
         BorderPane mainPane = new BorderPane();          //create all panes
         BorderPane centralPane = new BorderPane();
-        HBox topHBox = new HBox(30);
+        HBox topHBox = new HBox(TOP_CENTRAL_HBOX_SPACING);
         BorderPane.setMargin(topHBox, margin);
         topHBox.getStyleClass().add("HBox");
         Scene firstWindowScene = new Scene(mainPane, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -64,23 +73,23 @@ public class FirstWindow {
         mainPane.setTop(topHBox);
         mainPane.setCenter(centralPane);
 
-        VBox centralVBOX = new VBox(30);                      // create central VBOX and add all elements
+        VBox centralVBOX = new VBox(TOP_CENTRAL_HBOX_SPACING);              // create central VBOX and add all elements
         ToggleGroup themeGroup = new ToggleGroup();
         RadioButton darkThemeButton = new RadioButton("Dark theme");
         RadioButton lightThemeButton = new RadioButton("Light theme");
-        darkThemeButton.getStyleClass().add("Radio-Button");
-        lightThemeButton.getStyleClass().add("Radio-Button");
+        darkThemeButton.getStyleClass().add(SC_RADIO_BUTTON);
+        lightThemeButton.getStyleClass().add(SC_RADIO_BUTTON);
         themeGroup.getToggles().addAll(darkThemeButton, lightThemeButton);
         darkThemeButton.fire();
-        HBox radioButtonsBox = new HBox(40);
+        HBox radioButtonsBox = new HBox(THEME_SPACING);
         radioButtonsBox.setAlignment(Pos.CENTER);
         radioButtonsBox.getChildren().addAll(darkThemeButton, lightThemeButton);
         Label textAreaSignature = new Label("Write the city name");
-        ButtonsPattern startButton = new ButtonsPattern(150, 50, "Start", STYLE_CLASS_BUTTON);
+        ButtonsPattern startButton = new ButtonsPattern(BUTTON_WIDTH, BUTTON_HEIGHT, "Start", SC_BUTTON);
 
-        inputText.getStyleClass().add("text-input");
-        inputText.setMaxSize(350, 50);
-        inputText.positionCaret(5);
+        inputText.getStyleClass().add(SC_TEXT_AREA);
+        inputText.setMaxSize(TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
+        inputText.positionCaret(CARET_POSITION_IN_TEXT_AREA);
 
         ImageView titleImage = new ImageView();
         titleImage.setFitWidth(IMAGE_WIDTH);
@@ -97,19 +106,17 @@ public class FirstWindow {
         startButton.setOnAction(event -> {
             if (inputText.getText().trim().length() == 0) {
                 ErrorsWindow errorsWindow = new ErrorsWindow();
-                errorsWindow.setErrorMessage(new Label("You have not entered the city name "));
-                errorsWindow.startWin();
+                errorsWindow.launchErrorWin("You have not entered the city name ");
             } else {
                 startButtonController.launchConnector();
 
                 if (parser.getTempNow() == null | parser.getTodayDate() == null) {
                     ErrorsWindow errorsWindow = new ErrorsWindow();
-                    errorsWindow.setErrorMessage(new Label("City not found, try again!!!"));
-                    errorsWindow.startWin();
+                    errorsWindow.launchErrorWin("City not found, try again!!!");
                 } else {
                     firstWindow.close();
-                    if (darkThemeButton.isSelected()) secondWindow.startWin(secWinDarkStyle);
-                    else secondWindow.startWin(secWinLightStyle);
+                    if (darkThemeButton.isSelected()) secondWindow.startWin("/VisualStyles/DarkTheme/");
+                    else secondWindow.startWin("/VisualStyles/LightTheme/");
                 }
             }
         });
@@ -132,7 +139,7 @@ public class FirstWindow {
         });
 
         firstWindowScene.getStylesheets().add(darkStylesheet);
-        firstWindow.getIcons().add(new Image("weather_icon.png"));
+        firstWindow.getIcons().add(new Image(WIN_ICON_URL));
         firstWindow.setMinWidth(WINDOW_MIN_WIDTH);
         firstWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         firstWindow.setScene(firstWindowScene);

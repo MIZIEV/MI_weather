@@ -1,7 +1,7 @@
-package View;
+package prog.view;
 
-import Model.DataAnalyser;
-import Model.JSONDataParser;
+import prog.Model.DataAnalyser;
+import prog.Model.JSONDataParser;
 import animatefx.animation.FadeIn;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;

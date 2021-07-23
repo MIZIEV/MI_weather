@@ -1,6 +1,6 @@
-package View;
+package prog.view;
 
-import Model.JSONDataParser;
+import prog.Model.JSONDataParser;
 import javafx.scene.image.ImageView;
 
 /**
