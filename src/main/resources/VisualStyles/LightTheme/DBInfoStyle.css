@@ -9,3 +9,15 @@
 -fx-font-style: oblique;
 -fx-font-size: 20px;
 }
+
+.clear-button{
+-fx-border-radius: 20 20 20 20;
+-fx-background-radius: 20 20 20 20;
+-fx-background-color: transparent;
+-fx-border-color: #44bd32;
+-fx-text-fill: #44bd32;
+}
+.clear-button:hover{
+-fx-background-color: #44bd32;
+-fx-text-fill: black;
+}
