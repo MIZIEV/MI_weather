@@ -19,6 +19,7 @@ public class DBWorker {
     private final DBConnector dbConnector = new DBConnector();
     private final static String INSERT = "INSERT IGNORE INTO temp_table values (?,?,?,?,?,?,?,?)";
     private final static String SELECT = "SELECT * FROM temp_data.temp_table";
+    private final static String DELETE = "DELETE FROM temp_table";
 
     private final static int ID_COLLUM = 1;
     private final static int CITY_NAME_COLLUM = 2;
@@ -78,5 +79,16 @@ public class DBWorker {
             errorsWindow.launchErrorWin("Error with getting data from DB");
         }
     }
+
+    public void clearData() {
+        dbConnector.startConnection();
+        try (PreparedStatement preparedStatement = dbConnector.getConnection().prepareStatement(DELETE)) {
+            preparedStatement.execute();
+        } catch (SQLException throwables) {
+            ErrorsWindow errorsWindow = new ErrorsWindow();
+            errorsWindow.launchErrorWin("Error while clearing the DB");
+        }
+    }
+
     public ArrayList<DataFromDB> getDataList() { return dataList; }
 }
