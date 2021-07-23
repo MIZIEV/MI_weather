@@ -13,12 +13,6 @@ import java.net.URLConnection;
  */
 public class WEBConnector {
 
-    private final CityName cityName;
-
-    public WEBConnector(CityName name) {
-        this.cityName = name;
-    }
-
     public String getAPIResponse(String APICall) {
 
         StringBuffer content = new StringBuffer();
