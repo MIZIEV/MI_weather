@@ -1,4 +1,6 @@
-package Model.DBModel;
+package prog.model.database;
+
+import prog.view.ErrorsWindow;
 
 import java.sql.*;
 
@@ -17,7 +19,8 @@ public class DBConnector {
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException throwables) {
-            System.out.println("error DB connector");
+            ErrorsWindow errorsWindow = new ErrorsWindow();
+            errorsWindow.launchErrorWin("Error with DB connection");
         }
     }
 

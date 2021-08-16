@@ -1,4 +1,4 @@
-package Model;
+package prog.model;
 
 import java.util.Iterator;
 import java.util.SortedMap;

@@ -1,4 +1,4 @@
-package Model.DBModel;
+package prog.model.database;
 
 import java.util.ArrayList;
 import java.util.HashMap;

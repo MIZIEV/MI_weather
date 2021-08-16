@@ -1,7 +1,7 @@
-package Model.DBModel;
+package prog.model.database;
 
-import Model.JSONDataParser;
-import View.ErrorsWindow;
+import prog.model.web.JSONDataParser;
+import prog.view.ErrorsWindow;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

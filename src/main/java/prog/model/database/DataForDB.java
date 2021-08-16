@@ -1,4 +1,4 @@
-package Model.DBModel;
+package prog.model.database;
 
 /**
  * class description:
