@@ -1,6 +1,6 @@
-package Model;
+package prog.model.web;
 
-import View.ErrorsWindow;
+import prog.view.ErrorsWindow;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

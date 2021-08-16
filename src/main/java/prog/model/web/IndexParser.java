@@ -1,6 +1,6 @@
-package Model;
+package prog.model.web;
 
-public interface IndexClass {
+public interface IndexParser {
     int getStartDayIndex();
 
     int getEndDayIndex();

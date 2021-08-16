@@ -1,10 +1,11 @@
-package Model;
+package prog.model.web;
 /**
  * this is class, where JSON data parsing, formatting and placed to the Lists & Map
  * also it has getters for works with this data
  */
 
-import Model.DBModel.DataForDB;
+import prog.model.CityName;
+import prog.model.database.DataForDB;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,11 +39,11 @@ public class JSONDataParser {
     private final ArrayList<Integer> humidityList = new ArrayList<>();
     private final ArrayList<DataForDB> listForDB = new ArrayList<>();
 
-    private final StartEndIndexDay todayIndex = new StartEndIndexDay();
-    private final StartEndIndexDay secondDayIndex = new StartEndIndexDay();
-    private final StartEndIndexDay thirdDayIndex = new StartEndIndexDay();
-    private final StartEndIndexDay fourDayIndex = new StartEndIndexDay();
-    private final StartEndIndexDay fifthDayIndex = new StartEndIndexDay();
+    private final StartEndIndexDayParser todayIndex = new StartEndIndexDayParser();
+    private final StartEndIndexDayParser secondDayIndex = new StartEndIndexDayParser();
+    private final StartEndIndexDayParser thirdDayIndex = new StartEndIndexDayParser();
+    private final StartEndIndexDayParser fourDayIndex = new StartEndIndexDayParser();
+    private final StartEndIndexDayParser fifthDayIndex = new StartEndIndexDayParser();
 
     public JSONDataParser(CityName cityName) {
         this.cityName = cityName;
@@ -242,21 +243,21 @@ public class JSONDataParser {
         return humidityList;
     }
 
-    public StartEndIndexDay getTodayIndex() { return todayIndex; }
+    public StartEndIndexDayParser getTodayIndex() { return todayIndex; }
 
-    public StartEndIndexDay getThirdDayIndex() {
+    public StartEndIndexDayParser getThirdDayIndex() {
         return thirdDayIndex;
     }
 
-    public StartEndIndexDay getFourDayIndex() {
+    public StartEndIndexDayParser getFourDayIndex() {
         return fourDayIndex;
     }
 
-    public StartEndIndexDay getFifthDayIndex() {
+    public StartEndIndexDayParser getFifthDayIndex() {
         return fifthDayIndex;
     }
 
-    public StartEndIndexDay getSecondDayIndex() {
+    public StartEndIndexDayParser getSecondDayIndex() {
         return secondDayIndex;
     }
 

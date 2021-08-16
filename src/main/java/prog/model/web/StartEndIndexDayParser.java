@@ -1,6 +1,6 @@
-package Model;
+package prog.model.web;
 
-public class StartEndIndexDay implements IndexClass{
+public class StartEndIndexDayParser implements IndexParser {
 
     private int startDayIndex;
     private int endDayIndex;
@@ -23,6 +23,6 @@ public class StartEndIndexDay implements IndexClass{
 
     @Override
     public String toString() {
-        return "start index - "+startDayIndex+" end index - "+endDayIndex;
+        return "start index - " + startDayIndex + " end index - " + endDayIndex;
     }
 }
