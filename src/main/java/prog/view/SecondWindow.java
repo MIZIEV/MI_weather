@@ -3,11 +3,11 @@ package prog.view;
 import prog.Controller.ControllersForDetails.*;
 import prog.Controller.ControllersForDiagram.*;
 import prog.Controller.TimeController;
-import prog.Model.CityName;
-import prog.Model.DBModel.DBWorker;
-import prog.Model.DataAnalyser;
-import prog.Model.JSONDataParser;
-import prog.Model.PresentTime;
+import prog.model.CityName;
+import prog.model.database.DBWorker;
+import prog.model.DataAnalyser;
+import prog.model.JSONDataParser;
+import prog.model.PresentTime;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -31,6 +31,7 @@ public class SecondWindow {
     private final JSONDataParser parser;
     //____________________________________________________SC - style class, TB - toggle button
     private final static String WINDOW_TITLE = "MI weather";
+    private final static String WINDOW_ICON_URL = "Icons/weather_icon.png";
     private final static String SC_SIDE_BAR = "left-VBox";
     private final static String SC_LABEL = "Label";
     private final static String SC_LEFT_VBOX_BLOCK = "Left-block-VBox";
@@ -45,6 +46,8 @@ public class SecondWindow {
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
     private final static short WINDOW_MIN_HEIGHT = 550;
+    private final static short WINDOW_MAX_WIDTH = 1050;
+    private final static short WINDOW_MAX_HEIGHT = 750;
     private final static short SIDEBAR_WIDTH = 250;
     //____________________________________________________other elements constants
     private final static short IMAGE_SIZE = 150;
@@ -244,9 +247,11 @@ public class SecondWindow {
 
         Scene secondWindowScene = new Scene(mainPane, WINDOW_WIDTH, WINDOW_HEIGHT);
         secondWindowScene.getStylesheets().add(winStylesheet);
-        secondWindow.getIcons().add(new Image("Icons/weather_icon.png"));
+        secondWindow.getIcons().add(new Image(WINDOW_ICON_URL));
         secondWindow.setMinWidth(WINDOW_MIN_WIDTH);
         secondWindow.setMinHeight(WINDOW_MIN_HEIGHT);
+        secondWindow.setMaxWidth(WINDOW_MAX_WIDTH);
+        secondWindow.setMaxHeight(WINDOW_MAX_HEIGHT);
         secondWindow.setScene(secondWindowScene);
         secondWindow.setTitle(WINDOW_TITLE);
         new FadeIn(mainPane).play();

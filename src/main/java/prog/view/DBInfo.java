@@ -1,8 +1,8 @@
 package prog.view;
 
 import prog.Controller.PieChartController;
-import prog.Model.DBModel.DBAnalyzer;
-import prog.Model.DBModel.DBWorker;
+import prog.model.database.DBAnalyzer;
+import prog.model.database.DBWorker;
 import prog.view.patterns.controls.ButtonsPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Pos;

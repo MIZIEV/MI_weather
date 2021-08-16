@@ -1,7 +1,7 @@
 package prog.view;
 
 import prog.Controller.WindDirectControl;
-import prog.Model.JSONDataParser;
+import prog.model.JSONDataParser;
 import prog.view.patterns.controls.LabelPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;

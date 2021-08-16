@@ -1,9 +1,9 @@
 package prog.view;
 
 import prog.Controller.StartButtonController;
-import prog.Model.CityName;
-import prog.Model.WEBConnector;
-import prog.Model.JSONDataParser;
+import prog.model.CityName;
+import prog.model.WEBConnector;
+import prog.model.JSONDataParser;
 import prog.view.patterns.controls.ButtonsPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
@@ -39,6 +39,7 @@ public class FirstWindow {
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 400;
     private final static short WINDOW_MIN_HEIGHT = 700;
+    private final static short WINDOW_MAX_SIZE = 900;
 
     private final static short BUTTON_WIDTH = 150;
     private final static short BUTTON_HEIGHT = 50;
@@ -144,9 +145,12 @@ public class FirstWindow {
         firstWindow.setMinHeight(WINDOW_MIN_HEIGHT);
         firstWindow.setScene(firstWindowScene);
         firstWindow.setTitle(FIRST_WINDOW_TITLE);
+        firstWindow.setMaxHeight(WINDOW_MAX_SIZE);
+        firstWindow.setMaxWidth(WINDOW_MAX_SIZE);
         new FadeIn(mainPane).play();
         firstWindow.show();
     }
+
     public TextField getInputText() {
         return inputText;
     }
