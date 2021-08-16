@@ -1,8 +1,8 @@
 package prog.view.patterns.controls;
 
-import prog.Model.DataAnalyser;
-import prog.Model.IndexClass;
-import prog.Model.JSONDataParser;
+import prog.model.DataAnalyser;
+import prog.model.IndexParser;
+import prog.model.JSONDataParser;
 import javafx.scene.control.Label;
 
 public class LabelPattern extends Label {
@@ -10,18 +10,18 @@ public class LabelPattern extends Label {
     private JSONDataParser parser;
     private DataAnalyser analyser;
     private String labelText;
-    private IndexClass indexClass;
+    private IndexParser indexParser;
 
     public LabelPattern(String text, String styleClass) {
         super(text);
         getStyleClass().add(styleClass);
     }
 
-    public LabelPattern(IndexClass indexClass, String text, JSONDataParser parser, DataAnalyser analyser, String styleClass) {
+    public LabelPattern(IndexParser indexParser, String text, JSONDataParser parser, DataAnalyser analyser, String styleClass) {
         this.parser = parser;
         this.analyser = analyser;
         this.labelText = text;
-        this.indexClass = indexClass;
+        this.indexParser = indexParser;
         setText(text + this.getTemp() + "°C");
         getStyleClass().add(styleClass);
     }
@@ -30,13 +30,13 @@ public class LabelPattern extends Label {
         int temp = 0;
         if (labelText.equals("min ")) {
             temp = analyser.minTemp(parser.getTempMap().
-                    tailMap(parser.getKeysForMap().get(indexClass.getStartDayIndex())).
-                    headMap(parser.getKeysForMap().get(indexClass.getEndDayIndex() + 1)));
+                    tailMap(parser.getKeysForMap().get(indexParser.getStartDayIndex())).
+                    headMap(parser.getKeysForMap().get(indexParser.getEndDayIndex() + 1)));
             return temp;
         } else if (labelText.equals("max ")) {
             temp = analyser.maxTemp(parser.getTempMap().
-                    tailMap(parser.getKeysForMap().get(indexClass.getStartDayIndex())).
-                    headMap(parser.getKeysForMap().get(indexClass.getEndDayIndex() + 1)));
+                    tailMap(parser.getKeysForMap().get(indexParser.getStartDayIndex())).
+                    headMap(parser.getKeysForMap().get(indexParser.getEndDayIndex() + 1)));
             return temp;
         } else return temp;
     }

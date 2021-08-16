@@ -1,8 +1,8 @@
 package prog.view.patterns.containers;
 
-import prog.Model.DataAnalyser;
-import prog.Model.IndexClass;
-import prog.Model.JSONDataParser;
+import prog.model.DataAnalyser;
+import prog.model.IndexParser;
+import prog.model.JSONDataParser;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import prog.view.patterns.controls.ButtonsPattern;
@@ -22,12 +22,12 @@ public class VBoxBlock extends VBoxPattern {
         super(spacing, width, height, position, styleClass);
     }
 
-    public void arrangeElements(String date,String clouds, IndexClass indexClass, JSONDataParser parser, DataAnalyser analyser) {
+    public void arrangeElements(String date, String clouds, IndexParser indexParser, JSONDataParser parser, DataAnalyser analyser) {
         HBox minMaxTempHBox = new HBox(CENTRAL_HBOX_SPICING);
         minMaxTempHBox.setAlignment(Pos.CENTER);
         LabelPattern data = new LabelPattern(date, SC_LABEL);
-        LabelPattern minTemp = new LabelPattern(indexClass, "min ", parser, analyser, SC_LABEL);
-        LabelPattern maxTemp = new LabelPattern(indexClass, "max ", parser, analyser, SC_LABEL);
+        LabelPattern minTemp = new LabelPattern(indexParser, "min ", parser, analyser, SC_LABEL);
+        LabelPattern maxTemp = new LabelPattern(indexParser, "max ", parser, analyser, SC_LABEL);
         LabelPattern weather = new LabelPattern(clouds, SC_LABEL);
         Info = new ButtonsPattern(VBOX_BUTTON_WIDTH, VBOX_BUTTON_HEIGHT, "info", STYLE_CLASS_BUTTON_INSIDE_VBOX);
         minMaxTempHBox.getChildren().addAll(minTemp, maxTemp);
