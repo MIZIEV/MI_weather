@@ -1,8 +1,8 @@
-package Controller.ControllersForDetails;
+package prog.controller.controllersForDetails;
 
-import Model.DataAnalyser;
-import Model.JSONDataParser;
-import View.DetailInfo;
+import prog.model.DataAnalyser;
+import prog.model.web.JSONDataParser;
+import prog.view.DetailInfo;
 
 public class TodayInfoControl {
     private final DetailInfo detailInfo;

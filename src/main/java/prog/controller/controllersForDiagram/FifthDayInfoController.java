@@ -1,8 +1,7 @@
-package Controller.ControllersForDiagram;
+package prog.controller.controllersForDiagram;
 
-import Model.JSONDataParser;
-import View.Diagram;
-import View.SecondWindow;
+import prog.model.web.JSONDataParser;
+import prog.view.Diagram;
 import javafx.scene.chart.XYChart;
 
 public class FifthDayInfoController implements InfoButtonsControllers {

@@ -1,6 +1,6 @@
-package Controller.ControllersForDiagram;
+package prog.controller.controllersForDiagram;
 
-import View.Diagram;
+import prog.view.Diagram;
 
 public interface InfoButtonsControllers {
     void putDataToDiagram();

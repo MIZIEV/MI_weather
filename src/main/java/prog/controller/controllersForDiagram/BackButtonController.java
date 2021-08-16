@@ -1,10 +1,10 @@
-package Controller.ControllersForDiagram;
+package prog.controller.controllersForDiagram;
 /**
  * this controller class set NULL to the two variables
  * this is need too call error window if client come back to start window and will not set any city name
  */
 
-import Model.JSONDataParser;
+import prog.model.web.JSONDataParser;
 
 public class BackButtonController {
 

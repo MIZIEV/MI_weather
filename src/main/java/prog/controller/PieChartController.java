@@ -1,7 +1,7 @@
-package Controller;
+package prog.controller;
 
-import Model.DBModel.DBAnalyzer;
-import Model.DBModel.DBWorker;
+import prog.model.database.DBAnalyzer;
+import prog.model.database.DBWorker;
 import javafx.scene.chart.PieChart;
 
 /**

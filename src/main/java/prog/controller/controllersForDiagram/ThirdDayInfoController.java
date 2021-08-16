@@ -1,7 +1,7 @@
-package Controller.ControllersForDiagram;
+package prog.controller.controllersForDiagram;
 
-import Model.JSONDataParser;
-import View.Diagram;
+import prog.model.web.JSONDataParser;
+import prog.view.Diagram;
 import javafx.scene.chart.XYChart;
 
 public class ThirdDayInfoController implements InfoButtonsControllers {

@@ -1,4 +1,4 @@
-package Controller;
+package prog.controller;
 
 /**
  * class description:
