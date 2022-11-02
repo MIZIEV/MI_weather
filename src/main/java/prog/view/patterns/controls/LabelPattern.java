@@ -1,13 +1,13 @@
 package prog.view.patterns.controls;
 
-import prog.model.DataAnalyser;
-import prog.model.IndexParser;
-import prog.model.JSONDataParser;
+import prog.models.DataAnalyser;
+import prog.web.IndexParser;
+import prog.web.JSONParser;
 import javafx.scene.control.Label;
 
 public class LabelPattern extends Label {
 
-    private JSONDataParser parser;
+    private JSONParser parser;
     private DataAnalyser analyser;
     private String labelText;
     private IndexParser indexParser;
@@ -17,7 +17,7 @@ public class LabelPattern extends Label {
         getStyleClass().add(styleClass);
     }
 
-    public LabelPattern(IndexParser indexParser, String text, JSONDataParser parser, DataAnalyser analyser, String styleClass) {
+    public LabelPattern(IndexParser indexParser, String text, JSONParser parser, DataAnalyser analyser, String styleClass) {
         this.parser = parser;
         this.analyser = analyser;
         this.labelText = text;

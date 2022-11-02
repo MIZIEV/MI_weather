@@ -1,15 +1,15 @@
 package prog.controller.controllersForDetails;
 
-import prog.model.DataAnalyser;
-import prog.model.web.JSONDataParser;
+import prog.models.DataAnalyser;
+import prog.web.JSONParser;
 import prog.view.DetailInfo;
 
 public class FourDayInfControl {
     private final DetailInfo detailInfo;
-    private final JSONDataParser parser;
+    private final JSONParser parser;
     private final DataAnalyser analyser;
 
-    public FourDayInfControl(DetailInfo detailInfo, JSONDataParser jsonParser, DataAnalyser analyser) {
+    public FourDayInfControl(DetailInfo detailInfo, JSONParser jsonParser, DataAnalyser analyser) {
         this.detailInfo = detailInfo;
         this.parser = jsonParser;
         this.analyser = analyser;

@@ -1,7 +1,7 @@
 package prog.view;
 
-import prog.Controller.WindDirectControl;
-import prog.model.JSONDataParser;
+import prog.controller.WindDirectControl;
+import prog.web.JSONParser;
 import prog.view.patterns.controls.LabelPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 
 public class DetailInfo {
 
-    private final JSONDataParser parser;
+    private final JSONParser parser;
 
     private int minTempInt;
     private int maxTempInt;
@@ -32,7 +32,7 @@ public class DetailInfo {
     private final static byte INDICATOR_SIZE = 80;
     private final static byte CENTRAL_HBOX_SPACING = 100;
 
-    public DetailInfo(JSONDataParser jsonParser) {
+    public DetailInfo(JSONParser jsonParser) {
         this.parser = jsonParser;
     }
 

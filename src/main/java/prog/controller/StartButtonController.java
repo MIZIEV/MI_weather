@@ -1,8 +1,8 @@
 package prog.controller;
 
-import prog.model.CityName;
-import prog.model.web.WEBConnector;
-import prog.model.web.JSONDataParser;
+import prog.models.CityName;
+import prog.web.WEBConnector;
+import prog.web.JSONParser;
 import prog.view.FirstWindow;
 
 public class StartButtonController {
@@ -10,9 +10,9 @@ public class StartButtonController {
     private final WEBConnector WEBConnector;
     private final FirstWindow firstWindow;
     private final CityName cityName;
-    private final JSONDataParser parser;
+    private final JSONParser parser;
 
-    public StartButtonController(WEBConnector connector, JSONDataParser jsonParser,
+    public StartButtonController(WEBConnector connector, JSONParser jsonParser,
                                  FirstWindow firstW, CityName name) {
         this.WEBConnector = connector;
         this.firstWindow = firstW;

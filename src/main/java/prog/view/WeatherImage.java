@@ -1,6 +1,6 @@
 package prog.view;
 
-import prog.model.JSONDataParser;
+import prog.web.JSONParser;
 import javafx.scene.image.ImageView;
 
 /**
@@ -15,13 +15,13 @@ import javafx.scene.image.ImageView;
  */
 public class WeatherImage {
 
-    private final JSONDataParser parser;
+    private final JSONParser parser;
     private ImageView weatherImage;
     private final static short TODAY_IMAGE_SIZE = 145;
     private final static byte IMAGE_SIZE = 100;
 
-    public WeatherImage(JSONDataParser jsonDataParser) {
-        this.parser = jsonDataParser;
+    public WeatherImage(JSONParser jsonParser) {
+        this.parser = jsonParser;
     }
 
     public ImageView getTodayImage(String nowTime, String styleTheme) {

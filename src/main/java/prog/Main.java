@@ -1,4 +1,6 @@
-import View.FirstWindow;
+package prog;
+
+import prog.view.FirstWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

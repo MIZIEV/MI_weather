@@ -4,13 +4,13 @@ package prog.controller.controllersForDiagram;
  * this is need too call error window if client come back to start window and will not set any city name
  */
 
-import prog.model.web.JSONDataParser;
+import prog.web.JSONParser;
 
 public class BackButtonController {
 
-    private final JSONDataParser parser;
+    private final JSONParser parser;
 
-    public BackButtonController(JSONDataParser jsonParser) {
+    public BackButtonController(JSONParser jsonParser) {
         this.parser = jsonParser;
     }
 

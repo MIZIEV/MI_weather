@@ -1,15 +1,15 @@
 package prog.controller.controllersForDiagram;
 
-import prog.model.web.JSONDataParser;
+import prog.web.JSONParser;
 import prog.view.Diagram;
 import javafx.scene.chart.XYChart;
 
 public class FifthDayInfoController implements InfoButtonsControllers {
 
     private final Diagram diagram;
-    private final JSONDataParser parser;
+    private final JSONParser parser;
 
-    public FifthDayInfoController(Diagram diagram, JSONDataParser jsonParser) {
+    public FifthDayInfoController(Diagram diagram, JSONParser jsonParser) {
         this.diagram=diagram;
         this.parser = jsonParser;
     }

@@ -1,9 +1,9 @@
 package prog.view;
 
-import prog.Controller.StartButtonController;
-import prog.model.CityName;
-import prog.model.WEBConnector;
-import prog.model.JSONDataParser;
+import prog.controller.StartButtonController;
+import prog.models.CityName;
+import prog.web.WEBConnector;
+import prog.web.JSONParser;
 import prog.view.patterns.controls.ButtonsPattern;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
@@ -55,7 +55,7 @@ public class FirstWindow {
         Stage firstWindow = new Stage();
         CityName cityName = new CityName();
         WEBConnector connector = new WEBConnector();
-        JSONDataParser parser = new JSONDataParser(cityName);
+        JSONParser parser = new JSONParser(cityName);
         SecondWindow secondWindow = new SecondWindow(cityName, parser, this);
 
         StartButtonController startButtonController = new StartButtonController(connector, parser, this, cityName);

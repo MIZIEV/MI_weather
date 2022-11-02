@@ -1,13 +1,13 @@
 package prog.view;
 
-import prog.Controller.ControllersForDetails.*;
-import prog.Controller.ControllersForDiagram.*;
-import prog.Controller.TimeController;
-import prog.model.CityName;
-import prog.model.database.DBWorker;
-import prog.model.DataAnalyser;
-import prog.model.JSONDataParser;
-import prog.model.PresentTime;
+import prog.controller.controllersForDetails.*;
+import prog.controller.controllersForDiagram.*;
+import prog.controller.TimeController;
+import prog.models.CityName;
+import prog.workWIthDB.DBWorker;
+import prog.models.DataAnalyser;
+import prog.web.JSONParser;
+import prog.models.PresentTime;
 import animatefx.animation.FadeIn;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,7 +28,7 @@ public class SecondWindow {
 
     private final CityName cityName;
     private final FirstWindow firstWindow;
-    private final JSONDataParser parser;
+    private final JSONParser parser;
     //____________________________________________________SC - style class, TB - toggle button
     private final static String WINDOW_TITLE = "MI weather";
     private final static String WINDOW_ICON_URL = "Icons/weather_icon.png";
@@ -46,8 +46,8 @@ public class SecondWindow {
     private final static short WINDOW_HEIGHT = 768;
     private final static short WINDOW_MIN_WIDTH = 880;
     private final static short WINDOW_MIN_HEIGHT = 550;
-    private final static short WINDOW_MAX_WIDTH = 1050;
-    private final static short WINDOW_MAX_HEIGHT = 750;
+   // private final static short WINDOW_MAX_WIDTH = 1050;
+   // private final static short WINDOW_MAX_HEIGHT = 750;
     private final static short SIDEBAR_WIDTH = 250;
     //____________________________________________________other elements constants
     private final static short IMAGE_SIZE = 150;
@@ -64,7 +64,7 @@ public class SecondWindow {
     private final static short TB_HEIGHT = 50;
     private final static short LEFT_INFO_BLOCK_WIDTH = 830;
 
-    public SecondWindow(CityName name, JSONDataParser jsonParser, FirstWindow firstW) {
+    public SecondWindow(CityName name, JSONParser jsonParser, FirstWindow firstW) {
         this.cityName = name;
         this.parser = jsonParser;
         this.firstWindow = firstW;
@@ -250,8 +250,8 @@ public class SecondWindow {
         secondWindow.getIcons().add(new Image(WINDOW_ICON_URL));
         secondWindow.setMinWidth(WINDOW_MIN_WIDTH);
         secondWindow.setMinHeight(WINDOW_MIN_HEIGHT);
-        secondWindow.setMaxWidth(WINDOW_MAX_WIDTH);
-        secondWindow.setMaxHeight(WINDOW_MAX_HEIGHT);
+       // secondWindow.setMaxWidth(WINDOW_MAX_WIDTH);
+       // secondWindow.setMaxHeight(WINDOW_MAX_HEIGHT);
         secondWindow.setScene(secondWindowScene);
         secondWindow.setTitle(WINDOW_TITLE);
         new FadeIn(mainPane).play();

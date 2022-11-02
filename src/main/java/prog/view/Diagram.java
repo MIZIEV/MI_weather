@@ -1,7 +1,7 @@
 package prog.view;
 
-import prog.model.DataAnalyser;
-import prog.model.JSONDataParser;
+import prog.models.DataAnalyser;
+import prog.web.JSONParser;
 import animatefx.animation.FadeIn;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 
 public class Diagram {
 
-    private final JSONDataParser parser;
+    private final JSONParser parser;
     private final DataAnalyser analyser;
     private final XYChart.Series temp = new XYChart.Series();
 
@@ -27,7 +27,7 @@ public class Diagram {
     private final static byte UPPER_BOUND_Y = 5;
     private final static byte TICK_UNIT_Y = 5;
 
-    public Diagram(JSONDataParser jsonParser, DataAnalyser dataAnalyser) {
+    public Diagram(JSONParser jsonParser, DataAnalyser dataAnalyser) {
         this.parser = jsonParser;
         this.analyser = dataAnalyser;
     }

@@ -1,8 +1,8 @@
 package prog.view.patterns.containers;
 
-import prog.model.DataAnalyser;
-import prog.model.IndexParser;
-import prog.model.JSONDataParser;
+import prog.models.DataAnalyser;
+import prog.web.IndexParser;
+import prog.web.JSONParser;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import prog.view.patterns.controls.ButtonsPattern;
@@ -22,7 +22,7 @@ public class VBoxBlock extends VBoxPattern {
         super(spacing, width, height, position, styleClass);
     }
 
-    public void arrangeElements(String date, String clouds, IndexParser indexParser, JSONDataParser parser, DataAnalyser analyser) {
+    public void arrangeElements(String date, String clouds, IndexParser indexParser, JSONParser parser, DataAnalyser analyser) {
         HBox minMaxTempHBox = new HBox(CENTRAL_HBOX_SPICING);
         minMaxTempHBox.setAlignment(Pos.CENTER);
         LabelPattern data = new LabelPattern(date, SC_LABEL);
