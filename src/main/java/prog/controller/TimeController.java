@@ -1,6 +1,6 @@
 package prog.controller;
 
-import prog.model.PresentTime;
+import prog.models.PresentTime;
 
 /**
  * class description:
