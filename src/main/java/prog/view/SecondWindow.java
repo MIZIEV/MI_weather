@@ -1,8 +1,5 @@
 package prog.view;
 
-import prog.controller.controllersForDetails.*;
-import prog.controller.controllersForDiagram.*;
-import prog.controller.TimeController;
 import prog.models.CityName;
 import prog.models.DataAnalyser;
 import prog.web.JSONParser;
@@ -24,7 +21,7 @@ import prog.view.patterns.controls.LabelPattern;
 import prog.view.patterns.controls.ToggleButtonPattern;
 
 public class SecondWindow {
-
+/*
     private final CityName cityName;
     private final FirstWindow firstWindow;
     private final JSONParser parser;
@@ -83,8 +80,8 @@ public class SecondWindow {
         Diagram diagram = new Diagram(parser, analyser);
        /* DBWorker dbWorker = new DBWorker(parser);
         dbWorker.setDataToDB();
-        dbWorker.getDataFromDB();*/
-        //____________________________________________________creating the main window components
+        dbWorker.getDataFromDB();
+        ____________________________________________________creating the main window components
         BorderPane mainPane = new BorderPane();
         BorderPane topPane = new BorderPane();
         BorderPane centralPane = new BorderPane();
@@ -228,7 +225,7 @@ public class SecondWindow {
             centralPane.getChildren().clear();
             fifthDayController.clearDataFromDiagram(diagram);
             centralPane.setCenter(dbInfo.showInfo(theme));
-        });*/
+        });
         //____________________________________________________buttons listeners
         mapButton.setOnAction(event -> googleMap.launchMap(cityName.getCityName()));
 
@@ -255,5 +252,5 @@ public class SecondWindow {
         secondWindow.setTitle(WINDOW_TITLE);
         new FadeIn(mainPane).play();
         secondWindow.show();
-    }
+    }*/
 }

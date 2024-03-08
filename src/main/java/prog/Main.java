@@ -13,6 +13,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         FirstWindow firstWindow = new FirstWindow();
-        firstWindow.startWin();
+        //firstWindow.startWin();
     }
 }

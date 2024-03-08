@@ -1,6 +1,5 @@
 package prog.view;
 
-import prog.controller.WindDirectControl;
 import prog.web.JSONParser;
 import prog.view.patterns.controls.LabelPattern;
 import animatefx.animation.FadeIn;
@@ -13,7 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class DetailInfo {
-
+/*
     private final JSONParser parser;
 
     private int minTempInt;
@@ -108,5 +107,5 @@ public class DetailInfo {
         this.windSpeedDouble = speed;
     }
 
-    public void setWindDirectionInt(int windDirection) { this.windDirectionInt = windDirection; }
+    public void setWindDirectionInt(int windDirection) { this.windDirectionInt = windDirection; }*/
 }

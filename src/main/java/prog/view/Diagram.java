@@ -9,7 +9,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.BorderPane;
 
 public class Diagram {
-
+/*
     private final JSONParser parser;
     private final DataAnalyser analyser;
     private final XYChart.Series temp = new XYChart.Series();
@@ -54,5 +54,5 @@ public class Diagram {
         new FadeIn(diagramPane).play();
         return diagramPane;
     }
-    public XYChart.Series getTemp() { return temp; }
+    public XYChart.Series getTemp() { return temp; }*/
 }

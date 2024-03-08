@@ -22,10 +22,10 @@ public class LabelPattern extends Label {
         this.analyser = analyser;
         this.labelText = text;
         this.indexParser = indexParser;
-        setText(text + this.getTemp() + "°C");
+        //setText(text + this.getTemp() + "°C");
         getStyleClass().add(styleClass);
     }
-
+/*
     private int getTemp() {
         int temp = 0;
         if (labelText.equals("min ")) {
@@ -39,5 +39,5 @@ public class LabelPattern extends Label {
                     headMap(parser.getKeysForMap().get(indexParser.getEndDayIndex() + 1)));
             return temp;
         } else return temp;
-    }
+    }*/
 }

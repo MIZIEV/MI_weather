@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
  * then return weather images without time dependency
  */
 public class WeatherImage {
-
+/*
     private final JSONParser parser;
     private ImageView weatherImage;
     private final static short TODAY_IMAGE_SIZE = 145;
@@ -57,5 +57,5 @@ public class WeatherImage {
         weatherImage.setFitWidth(IMAGE_SIZE);
         weatherImage.setFitHeight(IMAGE_SIZE);
         return weatherImage;
-    }
+    }*/
 }

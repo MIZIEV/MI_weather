@@ -2,13 +2,12 @@ package prog.web;
 
 import prog.models.CityName;
 import prog.models.Measurements;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class JSONParser {
-
+/*
     private String tempNow;
     private String weatherNow;
 
@@ -260,5 +259,5 @@ public class JSONParser {
 
     public ArrayList<Measurements> getListForDB() {
         return listForDB;
-    }
+    }*/
 }

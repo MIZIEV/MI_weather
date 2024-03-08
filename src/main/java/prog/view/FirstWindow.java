@@ -1,8 +1,7 @@
 package prog.view;
 
-import prog.controller.StartButtonController;
 import prog.models.CityName;
-import prog.web.WEBConnector;
+import prog.util.web.WEBConnector;
 import prog.web.JSONParser;
 import prog.view.patterns.controls.ButtonsPattern;
 import animatefx.animation.FadeIn;
@@ -21,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class FirstWindow {
-
+/*
     private final TextField inputText = new TextField();
 
     private final static String WIN_ICON_URL = "Icons/weather_icon.png";
@@ -153,5 +152,5 @@ public class FirstWindow {
 
     public TextField getInputText() {
         return inputText;
-    }
+    }*/
 }

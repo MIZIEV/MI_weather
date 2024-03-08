@@ -1,6 +1,5 @@
 package prog.view;
 
-import prog.controller.PieChartController;
 import prog.workWIthDB.DBAnalyzer;
 import prog.util.database.DBWorker;
 import prog.view.patterns.controls.ButtonsPattern;
@@ -15,7 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class DBInfo {
-
+/*
     private final DBWorker dbWorker;
 
     private final static short PANE_WIDTH = 1200;
@@ -69,5 +68,5 @@ public class DBInfo {
         infoPane.setPrefSize(PANE_WIDTH, PANE_HEIGHT);
         infoPane.getStylesheets().add(stylesheets);
         return infoPane;
-    }
+    }*/
 }

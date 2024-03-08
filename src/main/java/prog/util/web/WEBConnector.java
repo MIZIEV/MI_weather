@@ -1,4 +1,4 @@
-package prog.web;
+package prog.util.web;
 
 import prog.view.ErrorsWindow;
 
@@ -11,6 +11,15 @@ import java.net.URLConnection;
  * class description:
  * this class is needed to get connection to site "https://openweathermap.org/" with API calls
  */
+
+/*
+*         cityName.setCityName(firstWindow.getInputText().getText());
+        String oneDayAPICall = "http://api.openweathermap.org/data/2.5/weather?q=" +
+                cityName.getCityName() + "&units=metric&appid=ceb8e786e2a20dff0a80033639084138";
+        String fiveDayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" +
+                cityName.getCityName() + "&appid=ceb8e786e2a20dff0a80033639084138";
+        parser.getResponse(WEBConnector.getAPIResponse(oneDayAPICall));
+        parser.getResponseOnFiveDays(WEBConnector.getAPIResponse(fiveDayForecast));*/
 public class WEBConnector {
 
     public String getAPIResponse(String APICall) {
