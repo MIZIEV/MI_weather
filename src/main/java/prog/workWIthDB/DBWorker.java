@@ -1,6 +1,6 @@
 package prog.workWIthDB;
 
-import prog.models.MeasurementsFromAPI;
+import prog.models.Measurements;
 import prog.models.MeasurementsFromDB;
 import prog.web.JSONParser;
 import prog.view.ErrorsWindow;
@@ -36,7 +36,7 @@ public class DBWorker {
 
         try (PreparedStatement preparedStatement = dbConnector.getConnection().prepareStatement(INSERT)) {
 
-            for (MeasurementsFromAPI element : parser.getListForDB()) {
+            for (Measurements element : parser.getListForDB()) {
                 preparedStatement.setInt(ID_COLLUM, element.hashCode());
                 preparedStatement.setString(CITY_NAME_COLLUM, element.getCityName());
                 preparedStatement.setString(DATE_COLLUM, element.getDate());

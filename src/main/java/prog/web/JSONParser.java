@@ -1,7 +1,7 @@
 package prog.web;
 
 import prog.models.CityName;
-import prog.models.MeasurementsFromAPI;
+import prog.models.Measurements;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class JSONParser {
     private final ArrayList<Double> speedWindList = new ArrayList<>();
     private final ArrayList<Integer> windDirection = new ArrayList<>();
     private final ArrayList<Integer> humidityList = new ArrayList<>();
-    private final ArrayList<MeasurementsFromAPI> listForDB = new ArrayList<>();
+    private final ArrayList<Measurements> listForDB = new ArrayList<>();
 
     private final StartEndIndexDayParser todayIndex = new StartEndIndexDayParser();
     private final StartEndIndexDayParser secondDayIndex = new StartEndIndexDayParser();
@@ -119,7 +119,7 @@ public class JSONParser {
                     fifthDayIndex.setEndDayIndex(counter);
                 }
 
-                listForDB.add(new MeasurementsFromAPI(cityName.getCityName(),
+                listForDB.add(new Measurements(cityName.getCityName(),
                         obj.getJSONArray("list").getJSONObject(counter).getJSONObject("main").getInt("temp") - 273,
                         obj.getJSONArray("list").getJSONObject(counter).getString("dt_txt"),
                         obj.getJSONArray("list").getJSONObject(counter).getJSONObject("wind").getDouble("speed"),
@@ -258,7 +258,7 @@ public class JSONParser {
         return secondDayIndex;
     }
 
-    public ArrayList<MeasurementsFromAPI> getListForDB() {
+    public ArrayList<Measurements> getListForDB() {
         return listForDB;
     }
 }
