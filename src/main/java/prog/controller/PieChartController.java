@@ -1,7 +1,7 @@
 package prog.controller;
 
 import prog.workWIthDB.DBAnalyzer;
-import prog.workWIthDB.DBWorker;
+import prog.util.database.DBWorker;
 import javafx.scene.chart.PieChart;
 
 /**

@@ -4,7 +4,6 @@ import prog.controller.controllersForDetails.*;
 import prog.controller.controllersForDiagram.*;
 import prog.controller.TimeController;
 import prog.models.CityName;
-import prog.workWIthDB.DBWorker;
 import prog.models.DataAnalyser;
 import prog.web.JSONParser;
 import prog.models.PresentTime;
@@ -82,9 +81,9 @@ public class SecondWindow {
         DataAnalyser analyser = new DataAnalyser();
         DetailInfo detailInfo = new DetailInfo(parser);
         Diagram diagram = new Diagram(parser, analyser);
-        DBWorker dbWorker = new DBWorker(parser);
+       /* DBWorker dbWorker = new DBWorker(parser);
         dbWorker.setDataToDB();
-        dbWorker.getDataFromDB();
+        dbWorker.getDataFromDB();*/
         //____________________________________________________creating the main window components
         BorderPane mainPane = new BorderPane();
         BorderPane topPane = new BorderPane();
@@ -224,12 +223,12 @@ public class SecondWindow {
             }
         });
 
-        DBInfoButton.setOnAction(event -> {
+/*        DBInfoButton.setOnAction(event -> {
             DBInfo dbInfo = new DBInfo(dbWorker);
             centralPane.getChildren().clear();
             fifthDayController.clearDataFromDiagram(diagram);
             centralPane.setCenter(dbInfo.showInfo(theme));
-        });
+        });*/
         //____________________________________________________buttons listeners
         mapButton.setOnAction(event -> googleMap.launchMap(cityName.getCityName()));
 

@@ -8,6 +8,7 @@ public class Measurements {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name = "city_name")
     private  String cityName;
