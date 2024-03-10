@@ -1,24 +1,5 @@
 package prog.view;
 
-import prog.models.CityName;
-import prog.util.web.WEBConnector;
-import prog.web.JSONParser;
-import prog.view.patterns.controls.ButtonsPattern;
-import animatefx.animation.FadeIn;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 public class FirstWindow {
 /*
     private final TextField inputText = new TextField();

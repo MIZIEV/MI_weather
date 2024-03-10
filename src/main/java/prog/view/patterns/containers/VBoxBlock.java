@@ -1,6 +1,5 @@
 package prog.view.patterns.containers;
 
-import prog.models.DataAnalyser;
 import prog.web.IndexParser;
 import prog.web.JSONParser;
 import javafx.geometry.Pos;
@@ -9,7 +8,14 @@ import prog.view.patterns.controls.ButtonsPattern;
 import prog.view.patterns.controls.LabelPattern;
 
 public class VBoxBlock extends VBoxPattern {
+    public VBoxBlock(int width, String styleClass) {
+        super(width, styleClass);
+    }
 
+    public VBoxBlock(double spacing, int width, int height, Pos position, String styleClass) {
+        super(spacing, width, height, position, styleClass);
+    }
+/*
     private final static String STYLE_CLASS_BUTTON_INSIDE_VBOX = "Button-insideVBox";
     private final static String SC_LABEL = "Label";
     private final static byte CENTRAL_HBOX_SPICING = 10;
@@ -33,5 +39,5 @@ public class VBoxBlock extends VBoxPattern {
         minMaxTempHBox.getChildren().addAll(minTemp, maxTemp);
         this.getChildren().addAll(data, minMaxTempHBox, weather, Info);
     }
-    public ButtonsPattern getInfo() { return Info; }
+    public ButtonsPattern getInfo() { return Info; }*/
 }

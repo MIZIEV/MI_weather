@@ -1,13 +1,5 @@
 package prog.view;
 
-import prog.models.DataAnalyser;
-import prog.web.JSONParser;
-import animatefx.animation.FadeIn;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.layout.BorderPane;
-
 public class Diagram {
 /*
     private final JSONParser parser;

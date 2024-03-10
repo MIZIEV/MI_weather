@@ -1,18 +1,5 @@
 package prog.view;
 
-import prog.workWIthDB.DBAnalyzer;
-import prog.util.database.DBWorker;
-import prog.view.patterns.controls.ButtonsPattern;
-import animatefx.animation.FadeIn;
-import javafx.geometry.Pos;
-import javafx.geometry.Side;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
 public class DBInfo {
 /*
     private final DBWorker dbWorker;

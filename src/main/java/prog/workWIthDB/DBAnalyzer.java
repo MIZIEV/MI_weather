@@ -1,7 +1,5 @@
 package prog.workWIthDB;
 
-import prog.models.MeasurementsFromDB;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,7 +9,7 @@ import java.util.HashSet;
  * this class is deeded to transform data from the database to show it on the pane
  */
 public class DBAnalyzer {
-
+/*
     public HashMap<String, Integer> transformData(ArrayList<MeasurementsFromDB> list) {
 
         HashMap<String, Integer> dataForPieChart = new HashMap<>();
@@ -29,5 +27,5 @@ public class DBAnalyzer {
             }
         }
         return dataForPieChart;
-    }
+    }*/
 }

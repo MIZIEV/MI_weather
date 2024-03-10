@@ -2,7 +2,10 @@ package prog.util.database;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import prog.models.Measurements;
+import prog.models.Forecast;
+import prog.models.Main;
+import prog.models.Weather;
+import prog.models.WeatherData;
 
 public class DBConnector {
 
@@ -11,7 +14,11 @@ public class DBConnector {
 
     private DBConnector() {
         try {
-            Configuration configuration = new Configuration().addAnnotatedClass(Measurements.class);
+            Configuration configuration = new Configuration().
+                    addAnnotatedClass(WeatherData.class)
+                    .addAnnotatedClass(Forecast.class)
+                    .addAnnotatedClass(Weather.class)
+                    .addAnnotatedClass(Main.class);
             sessionFactory = configuration.buildSessionFactory();
         } catch (Throwable eexeption) {
             throw new ExceptionInInitializerError(eexeption);

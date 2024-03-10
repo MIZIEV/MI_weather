@@ -1,25 +1,5 @@
 package prog.view;
 
-import prog.models.CityName;
-import prog.models.DataAnalyser;
-import prog.web.JSONParser;
-import prog.models.PresentTime;
-import animatefx.animation.FadeIn;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import prog.view.patterns.containers.VBoxBlock;
-import prog.view.patterns.containers.VBoxPattern;
-import prog.view.patterns.controls.ButtonsPattern;
-import prog.view.patterns.controls.LabelPattern;
-import prog.view.patterns.controls.ToggleButtonPattern;
-
 public class SecondWindow {
 /*
     private final CityName cityName;

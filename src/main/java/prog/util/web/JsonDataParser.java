@@ -1,8 +1,10 @@
 package prog.util.web;
 
 
-import prog.models.Measurements;
+import prog.models.WeatherData;
+
+import java.util.List;
 
 public interface JsonDataParser {
-    Measurements parseJson(String json) throws Exception;
+    List<WeatherData> parseJson(String json) throws Exception;
 }

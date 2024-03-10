@@ -1,11 +1,5 @@
 package prog.web;
 
-import prog.models.CityName;
-import prog.models.Measurements;
-
-import java.util.ArrayList;
-import java.util.TreeMap;
-
 public class JSONParser {
 /*
     private String tempNow;
